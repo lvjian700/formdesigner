@@ -1,0 +1,138 @@
+html, body {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	font-size: 13px;
+}
+
+.draggable-area h3 {
+	text-align: center;
+	background-color: #444;
+	font-size:14px;
+	color: #fff;
+	margin: 0px;
+	padding: 6px;
+}
+
+ul.tools {
+	margin: 0px;
+	padding: 3px;
+}
+
+ul.tools li {
+	list-style: none;
+}
+
+li.drags a {
+	display: block;
+	text-decoration: none;
+	cursor: move;
+	padding: 3px 0px;
+	padding-left: 30px;
+	font-size: 13px;
+	color: #000;
+	line-height: 22px;
+}
+
+li.drags a:hover {
+	background-color: #3b5888;
+	color: #fff;
+}
+
+#left, #center {
+	float: left;
+}
+
+#left {
+	width: 20%;
+	height: 99%;
+	background-color:#eee;
+	border: solid 1px #ccc;
+}
+#center {
+	width: 79%;
+	height: 99%;
+	border: solid 1px #ccc;
+}
+
+
+.clear {
+	height: 0px;
+	line-height: 0%;
+	border: none;
+	clear: both;
+}
+
+.input-box {
+	padding: 3px 5px;
+	line-height: 24px;
+}
+
+.drags-box {
+	position: absolute;
+	width: 320px;
+	border: dashed 1px #666;
+}
+
+.input-box label {
+	display: block;
+	float:left;
+	width: 60px;
+	text-align: right;
+	margin-right: 1px;
+}
+
+.input-box span {
+	float:left;
+	margin-right: 5px;
+}
+
+.input-box input {
+	float:left;
+}
+
+
+.controls-2co, .controls-address, .controls-arrow, .controls-authnet, .controls-autocomplete, .controls-autoincrement, .controls-button, .controls-cake, .controls-captcha, .controls-charts, .controls-checkbox, .controls-clickbank, .controls-datetime, .controls-dropdown, .controls-email, .controls-formcollapse, .controls-fullname, .controls-gcheckout, .controls-grading, .controls-header, .controls-hidden, .controls-image, .controls-matrix, .controls-number, .controls-onebip, .controls-pagebreak, .controls-password, .controls-payment_tools, .controls-paypal, .controls-paypalpro, .controls-phone, .controls-power_tools, .controls-quick_tools, .controls-radiobutton, .controls-range, .controls-rating, .controls-rgb, .controls-scale, .controls-screenshot, .controls-slider, .controls-spinner, .controls-survey_tools, .controls-text, .controls-textarea, .controls-textbox, .controls-tool_box, .controls-upload, .controls-world, .controls-worldpay {
+	background: transparent url(../images/form_icons.png) no-repeat scroll 0 0;
+}
+
+.controls-textbox {
+	background-position: -1782px 0px;
+	width: 16px;
+	height: 16px;
+}
+
+#form-canvas {
+	height: auto;
+}
+
+#form-canvas div.col-1 {
+	border: solid 1px #ccc;
+}
+
+#form-canvas .row-1 {
+	
+}
+
+#form-canvas .row-3 {
+	
+}
+
+#form-canvas .row-1 .col-1 {
+	margin: 0px;
+	height: 30px;
+}
+
+#form-canvas .row-3 .col-1 {
+	float: left;
+	margin: 0px;
+	height: 30px;
+	width: 33%;
+}
+
+td div.drops {
+	height: 30px;
+}
+

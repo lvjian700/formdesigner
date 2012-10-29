@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Dayang Form Designer</title>
+		<link rel="stylesheet" href="/assets/css/app.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="/assets/components/jquery-ui/themes/ui-lightness/jquery-ui.css" type="text/css" media="no title" charset="utf-8">
+	</head>
+	<body>
+		<%= yield%>
+		<script src="/assets/components/labjs/LAB.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			$LAB
+			.script('/assets/components/jquery/jquery.js').wait()
+			.script('/assets/components/jquery-ui/jquery-ui.js').wait()
+			.script('/assets/components/json2/json2.js')
+			.script('/assets/components/underscore/underscore.js').wait()
+			.script('/assets/components/backbone/backbone.js')
+			.script('/assets/components/mustache/mustache.js').wait()
+			.script('/assets/js/app.js');
+		</script>
+	</body>
+</html>
