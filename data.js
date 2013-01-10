@@ -1,7 +1,11 @@
 //FormCanvas
-var form = {
+var Form = {
 	id: '',
 	//RowsCollection
+	defaults: {
+		layout: 'fit',
+		label-width: '80'
+	},
 	rows: [{//Row
 		index: 0,
 		columnCount: 3,
@@ -11,15 +15,24 @@ var form = {
 			index: 0,
 			colspan: 1,
 			content: {//Field
-				id: '{{name}}_id',
-				name: 'property',
+				id: '{{property}}_field',
+				name: '{{property}}',
+				label: '标题',//这个字段值的优先级高于字典
 				type: 'text|password|number|user|time-length|date',
+				value: '',
 				required: false,
-				min-length: none|4,
-				max-length: none|16				
 			}
-		}]
-	}]
+		}]//end columns
+
+	}]//end rows
+};
+
+var CanvasRow = function(options) {
+
+};
+
+var CanvasCell = function(options) {
+
 };
 
 var Field = function(options) {
@@ -35,8 +48,7 @@ var Field = function(options) {
 	var opt = {
 		type: 'text',
 		required: false,
-		min-length: 'none',
-		max-length: 'none',
+		value: '',
 		place-holder: 'none'
 	};
 	
