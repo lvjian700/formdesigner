@@ -1,6 +1,6 @@
 //FormCanvas
 var Form = {
-	id: '',
+	id: '',// database table name
 	//RowsCollection
 	defaults: {
 		layout: 'fit',

@@ -5,8 +5,32 @@
 
 </head>
 <body>
-	
+	<div id="formcanvas">
+		<form action="" method="post" accept-charset="utf-8">
+		</form>				
+	</div>		
+	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="index.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/template" id="tmpl-form">
+		<div class="form-wrapper">
+			<form action="" method="post" accept-charset="utf-8">
+				<%= body %>
+				<div class="clear"></div>
+			</form>				
+		</div>		
+	</script>
+	<script type="text/template" id="tmpl-row">
+		<div class='row-<%= columnCount%>'>
+		</div>
+	</script>
+	<script type="text/tmplate" id="tmpl-col">
+		<div class='col-<%= colspan%>'>
+		</div>
+	</script>
 </body>
 </html>

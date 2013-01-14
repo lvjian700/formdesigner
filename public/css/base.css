@@ -1,0 +1,48 @@
+.form-wrapper {
+	min-width: 950px;
+	min-height: 550px;
+	overflow: auto;
+	background-color: #fff;
+}
+
+.builder-form label {
+	background-color:#fff;
+	display:-moz-inline-box;
+	display:inline-block;
+	width: 80px;
+}
+
+.fit .row-1, .fit .row-2, .fit .row-3 {
+	width: 100%
+}
+
+.fit .col-1 {
+	float: left;
+}
+
+.fit input {
+	width: 70%;
+}
+
+.fit .row-1 .col-1 {
+	width: 100%;
+}
+
+.fit .row-2 .col-1 {
+	width: 50%;
+}
+
+.fit .row-2 .col-2 {
+	width: 100%;
+}
+
+.fit .row-3 .col-1 {
+	width: 33%;
+}
+.fit .row-3 .col-2 {
+	width: 66%;
+}
+.fit .row-3 .col-3 {
+	width: 100%;
+}
+
