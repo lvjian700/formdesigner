@@ -1,48 +1,38 @@
+body {
+  font-size: 13px;
+}
 .form-wrapper {
-	min-width: 950px;
-	min-height: 550px;
-	overflow: auto;
-	background-color: #fff;
+  width: 960px;
+  height: 550px;
+  overflow: auto;
+  background-color: #ffffff;
 }
-
 .builder-form label {
-	background-color:#fff;
-	display:-moz-inline-box;
-	display:inline-block;
-	width: 80px;
+  background-color: #fff;
+  display: -moz-inline-box;
+  display: inline-block;
+  width: 80px;
 }
-
-.fit .row-1, .fit .row-2, .fit .row-3 {
-	width: 100%
+.fit .col-1,
+.fit .col-2,
+.fit .col-3 {
+  float: left;
 }
-
-.fit .col-1 {
-	float: left;
+.fit .col-1 div,
+.fit .col-2 div,
+.fit .col-3 div {
+  line-height: 22px;
+  padding: 3px 12px;
 }
-
-.fit input, .fit select {
-	width: 70%;
-}
-
 .fit .row-1 .col-1 {
-	width: 100%;
+  width: 960px;
 }
-
-.fit .row-2 .col-1 {
-	width: 50%;
+.fit .row-1 .col-1 div {
+  width: 860px;
 }
-
-.fit .row-2 .col-2 {
-	width: 100%;
-}
-
 .fit .row-3 .col-1 {
-	width: 33%;
+  width: 320px;
 }
-.fit .row-3 .col-2 {
-	width: 66%;
+.fit .row-3 .col-1 div input {
+  width: 220px;
 }
-.fit .row-3 .col-3 {
-	width: 100%;
-}
-

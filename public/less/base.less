@@ -1,0 +1,60 @@
+@minWidth: 960px;
+@minHeight: 550px;
+@labelWidth: 65px;
+
+body {
+	font-size: 13px;
+}
+
+.form-wrapper {
+	width: @minWidth;
+	height: @minHeight;
+	min-width: @minWidth;
+	min-height: @minHeight;
+	overflow: auto;
+	margin: 20px auto;
+	background-color: #fff
+}
+
+.cell {
+	label {
+		background-color:#fff;
+		display:-moz-inline-box;
+		display:inline-block;
+		width: @labelWidth;
+	}
+}
+
+.inputStyle(@colCount, @colspan) {
+	.cell {
+		input {
+			width: @minWidth / @colCount * @colspan - @labelWidth - 20px;
+		}
+	}
+}
+
+.cellWidth(@colCount, @colSpan) {
+	width: @minWidth / @colCount * @colSpan
+}
+
+.fit {
+	.col-1, .col-2, .col-3 {
+		float: left;
+		.cell {
+			padding: 3px 6px;
+		}
+	}
+	.row-1 {
+		.col-1 {
+			.cellWidth(1, 1);
+			.inputStyle(1, 1);
+		}
+	}
+
+	.row-3 {
+		.col-1 {
+			.cellWidth(3, 1);
+			.inputStyle(3, 1);
+		}
+	}
+}
