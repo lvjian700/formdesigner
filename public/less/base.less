@@ -18,17 +18,26 @@ body {
 
 .cell {
 	label {
+		display: block;
+		line-height: 18px;
+		margin-bottom: 3px;
+	}
+	/*
+	label {
 		background-color:#fff;
 		display:-moz-inline-box;
 		display:inline-block;
+		zoom: 1;                     //IE only
+		*display: inline;            //Only IE know this code (CSS Hack)
 		width: @labelWidth;
 	}
+	*/
 }
 
 .inputStyle(@colCount, @colspan) {
 	.cell {
 		input {
-			width: @minWidth / @colCount * @colspan - @labelWidth - 20px;
+			width: @minWidth / @colCount * @colspan - 20px;
 		}
 	}
 }
@@ -41,7 +50,8 @@ body {
 	.col-1, .col-2, .col-3 {
 		float: left;
 		.cell {
-			padding: 3px 6px;
+			padding: 0px 6px; 
+			margin-bottom: 12px;
 		}
 	}
 	.row-1 {

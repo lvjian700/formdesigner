@@ -3,11 +3,9 @@ var exec = require('child_process').exec,
     path = require('path')
 
 var public_dir = path.join(__dirname, "..", "public");
+var specs_dir = path.join(public_dir, 'specs');
 
-var less_dir = path.join(public_dir, "less", "base.less");
-var css_dir = path.join(public_dir, "css", "base.css");
-
-var cmd = ['lessc ', less_dir, ' > ', css_dir].join('');
+var cmd = ['jasmine-node --color ', specs_dir].join('');
 
 exec(cmd, {encoding: 'utf-8'}, 
 	function(error, stdout, stderr) {

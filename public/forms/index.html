@@ -12,15 +12,69 @@
 </head>
 <body>
 	<div id="form">
-		
+		<link rel="stylesheet" href="/forms/news/plugins/select2/select2.css" type="text/css" media="screen" charset="utf-8">
+		<div class="form-wrapper">
+			<form action="" method="" accept-charset="utf-8" 
+				class="builder-form fit">
+				<div class='row-1'>
+					<div class='col-1'>
+						<div class="cell">
+							<label for="title">Title:</label>
+							<input type="text" name="title" value="" id="title">
+						</div>
+					</div>			
+				</div>
+				<div class='row-3'>
+					<div class='col-1'>
+						<div class="cell">
+							<label for="address">地址:</label>
+							<input type="text" name="address" value="" id="address">
+						</div>
+					</div>	
+					<div class='col-1'>
+						<div class="cell">
+							<label for="field">Field:</label>
+							<input type="text" name="field" value="" id="field">
+						</div>
+					</div>	
+					<div class='col-1 col-last'>
+						<div class="cell">
+							<label for="field2">field2:</label>
+							<input type="text" name="field2" value="" id="field2">
+						</div>
+					</div>			
+				</div>
+				<div class='row-3'>
+					<div class='col-1'>
+						<div class="cell">
+							<label for='select1'>Choson</label>
+							<select name="select1" id="select1" 
+								style="width: 220px;">
+								<option value="value1">value1</option>
+								<option value="value2">value2</option>
+								<option value="name1">name1</option>
+								<option value="name2">name2</option>
+							</select>
+						</div>
+					</div>	
+					<div class='col-1'>
+						<div class="cell">
+							&nbsp;	
+						</div>
+					</div>	
+					<div class='col-1'>
+						<div class="cell">
+							&nbsp;	
+						</div>
+					</div>			
+				</div>
+
+				<div class='clear'></div>
+			</form>
+		</div>	
 	</div>
 	<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="formbuilder.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" charset="utf-8">
-		fb.config({
-			base: ''
-		});
-		fb.load($('#form'), 'news');
-	</script>
+	<script src="/forms/news/plugins/select2/select2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/forms/news/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

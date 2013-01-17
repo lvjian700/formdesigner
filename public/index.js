@@ -37,6 +37,7 @@ var FieldView = Backbone.View.extend({
 	className: 'fd-cell',
 	event: {
 	},
+	
 	initialize: function() {
 	},
 	render: function() {

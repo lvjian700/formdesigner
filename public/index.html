@@ -26,10 +26,14 @@
 	</script>
 	<script type="text/template" id="tmpl-row">
 		<div class='row-<%= columnCount%>'>
+			<%= body %>
 		</div>
 	</script>
-	<script type="text/tmplate" id="tmpl-col">
+	<script type="text/template" id="tmpl-col">
 		<div class='col-<%= colspan%>'>
+			<div class="cell">
+				<%= body %>
+			</div>
 		</div>
 	</script>
 </body>
