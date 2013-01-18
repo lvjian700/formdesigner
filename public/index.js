@@ -34,7 +34,7 @@ field.setRequired(true);
 // emit event.
 var FieldView = Backbone.View.extend({
 	tagName: 'div',
-	className: 'fd-cell',
+	className: 'cell',
 	event: {
 	},
 	
