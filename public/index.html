@@ -10,11 +10,9 @@
 		</form>				
 	</div>		
 	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
-	<script src="assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
-
-	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script src="index.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/template" id="tmpl-form">
 		<div class="form-wrapper">
@@ -34,5 +32,37 @@
 			<%= body %>
 		</div>
 	</script>
+	<script type="text/template" id="tmpl-text">
+		<label for="<%= id%>"><%= label %></label>
+		<input type="text" id="<%= id%>" name="<%= name%>" value="<%= value%>" />
+	</script>
+	<script type="text/template" id="tmpl-select">
+		<label for="<%= id%>"><%= label %></label>
+		<select name="<%= name %>" id="<%= id %>">
+			<option value="1">1</option>
+		</select>
+	</script>
+
+
+	<script src="/index.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function(){
+			var titleFieldModel = new FieldModel({
+				id: 'title_field',
+				name: 'title',
+				label: '标题',
+				type: 'text',
+				value: '',
+				required: false
+			});
+
+			var titleFieldView = new FieldView({
+				model: titleFieldModel
+			});
+			
+			var el = titleFieldView.render().el;
+			$('#formcanvas>form').append(el);
+		});
+	</script>
 </body>
-</html>
+</html

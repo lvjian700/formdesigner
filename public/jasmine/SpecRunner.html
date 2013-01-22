@@ -17,12 +17,11 @@
 
 	<!-- install backbone -->
   <script src="/assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
   <script src="/assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
   <script src="/assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- source code-->
-  <script src="/index.js" type="text/javascript" charset="utf-8"></script>
 	
   <!-- include spec files here... -->
   <!--
@@ -30,42 +29,11 @@
   <script type="text/javascript" src="spec/PlayerSpec.js"></script>
   -->
 
-	<script src="/spec/IndexSpec.js" type="text/javascript" charset="utf-8"></script>
 
 
-  <script type="text/javascript">
-    (function() {
-      var jasmineEnv = jasmine.getEnv();
-      jasmineEnv.updateInterval = 1000;
-
-      var htmlReporter = new jasmine.HtmlReporter();
-
-      jasmineEnv.addReporter(htmlReporter);
-
-      jasmineEnv.specFilter = function(spec) {
-        return htmlReporter.specFilter(spec);
-      };
-
-      var currentWindowOnload = window.onload;
-
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
-        }
-        execJasmine();
-      };
-
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
-
-    })();
-  </script>
 </head>
 
 <body>
-
-	
 
 	<script type="text/template" id="tmpl-form">
 		<div class="form-wrapper">
@@ -82,10 +50,43 @@
 	</script>
 	<script type="text/template" id="tmpl-col">
 		<div class='col-<%= colspan%>'>
-			<div class="cell">
-				<%= body %>
-			</div>
+			<%= body %>
 		</div>
 	</script>
+	<script type="text/template" id="tmpl-text">
+		<label for="<%= id%>"><%= label %></label>
+		<input type="text" id="<%= id%>" name="<%= name%>" value="<%= value%>" />
+	</script>
+	
+	<script src="/index.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/IndexSpec.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function() {
+		 var jasmineEnv = jasmine.getEnv();
+		 jasmineEnv.updateInterval = 1000;
+
+		 var htmlReporter = new jasmine.HtmlReporter();
+
+		 jasmineEnv.addReporter(htmlReporter);
+
+		 jasmineEnv.specFilter = function(spec) {
+		 return htmlReporter.specFilter(spec);
+		 };
+
+		 var currentWindowOnload = window.onload;
+
+		 window.onload = function() {
+		 if (currentWindowOnload) {
+		 currentWindowOnload();
+		 }
+		 execJasmine();
+		 };
+
+		 function execJasmine() {
+			 jasmineEnv.execute();
+		 }
+
+		})();
+</script>
 </body>
 </html>
