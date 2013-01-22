@@ -1,7 +1,11 @@
-var FieldView = Backbone.View.extend(
+function read_tmpl (tmplSelector) {
+	return _.template( $(tmplSelector).html() )
+}
+
+var FieldView = Backbone.View.extend({
 	tagName: 'div',
 	className: 'cell',
-	template: _.template( $('#tmpl-text').html() ),
+	template: read_tmpl('#tmpl-text'),
 
 	events: {
 		'change input': "onChanged"	
@@ -40,6 +44,37 @@ var FieldView = Backbone.View.extend(
 	onChanged: function(e) {
 		var val = this.inputTag.val();	
 
+		this.model.set({
+				value: val
+			}, {
+				silent: true
+			});
+	}
+});
+
+
+var SelectFieldView = FieldView.extend({
+	template: read_tmpl('#tmpl-select'),
+	events: {
+		'change select': "onChanged"	
+	},
+	render: function() {
+		var json = this.model.toJSON();
+		var html = this.template(json);
+	
+		this.$el.html(html);
+		this.cellBody =  this.$el;
+		this.label = this.$('label');
+		this.inputTag =  this.$('select');
+
+		return this;
+	},
+	valueUpdated:	function() {
+		var value = this.model.getValue();
+		this.inputTag.val(value);
+	},
+	onChanged: function(e) {
+		var val = this.inputTag.val();	
 		this.model.set({
 				value: val
 			}, {

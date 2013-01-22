@@ -41,7 +41,9 @@
 	<script type="text/template" id="tmpl-select">
 		<label for="<%= id%>"><%= label %></label>
 		<select name="<%= name %>" id="<%= id %>">
-			<option value="1">1</option>
+			<option value="1">记者</option>
+			<option value="2">司机</option>
+			<option value="3">总编辑</option>
 		</select>
 	</script>
 
@@ -65,6 +67,22 @@
 			
 			var el = titleFieldView.render().el;
 			$('#formcanvas>form').append(el);
+
+			var selectModel = new SelectFieldModel({
+				id: 'actor_field',
+				name : 'actor',
+				label: '角色',
+				type: 'select',
+				value: {value: '1', text: '123'},
+				required: false	
+			});
+
+			var selectView = new SelectFieldView({
+				model: selectModel
+			});
+
+			var select_el = selectView.render().el;
+			$('#formcanvas>form').append(select_el);
 		});
 	</script>
 	<script type="text/javascript" src="/assets/components/jasmine/jasmine.js"></script>

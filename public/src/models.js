@@ -46,10 +46,7 @@ var SelectFieldModel = FieldModel.extend({
 			name: '',
 			label: '',
 			type: 'select',
-			value: {
-				val: '',
-				text: ''
-			},// 可能是object
+			value: '',// 可能是object
 			required: false
 		};
 	}

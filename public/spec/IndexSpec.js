@@ -1,4 +1,4 @@
-describe("FieldModel & View Testing", function() {
+describe("FieldModel testing", function() {
 
 	var field = false;
 	
@@ -12,7 +12,6 @@ describe("FieldModel & View Testing", function() {
 
 	it("Default value must be {type: \'text\', required: false}",
 		function() {
-			console.log(typeof field.constructor);
 			expect(field.get('type'))
 				.toEqual('text');
 
@@ -52,7 +51,7 @@ describe("SelectModel Testing", function() {
 				.toEqual('select')
 
 			expect(select.getValue())
-				.toEqual({val: '', text:''});
+				.toEqual('');
 		});
 });
 
