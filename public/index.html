@@ -55,10 +55,7 @@
 			var titleFieldModel = new FieldModel({
 				id: 'title_field',
 				name: 'title',
-				label: '标题',
-				type: 'text',
-				value: '',
-				required: false
+				label: '标题'
 			});
 
 			var titleFieldView = new FieldView({
@@ -71,10 +68,7 @@
 			var selectModel = new SelectFieldModel({
 				id: 'actor_field',
 				name : 'actor',
-				label: '角色',
-				type: 'select',
-				value: {value: '1', text: '123'},
-				required: false	
+				label: '角色'
 			});
 
 			var selectView = new SelectFieldView({
@@ -87,6 +81,7 @@
 	</script>
 	<script type="text/javascript" src="/assets/components/jasmine/jasmine.js"></script>
 	<script type="text/javascript" src="/assets/components/jasmine/jasmine-html.js"></script>
+	<script type="text/javascript" src="/assets/components/jasmine/jasmine-jquery.js"></script>
 	<script src="/spec/IndexSpec.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/spec/start.js" type="text/javascript" charset="utf-8"></script>
 </body>

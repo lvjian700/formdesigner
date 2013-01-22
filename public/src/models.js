@@ -9,6 +9,8 @@ var FieldModel = Backbone.Model.extend({
 			required: false
 		};
 	},
+	initialize: function() {
+	},
 	setName: function(name) {
 		this.set({
 			id: name + '_field',
@@ -49,6 +51,8 @@ var SelectFieldModel = FieldModel.extend({
 			value: '',// 可能是object
 			required: false
 		};
+	},
+	initialize: function() {
 	}
 });
 

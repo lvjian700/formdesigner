@@ -29,6 +29,10 @@ var FieldView = Backbone.View.extend({
 
 		return this;
 	},
+	getTemplate: function() {
+		var render_el = this.render().el;
+		return render_el;
+	},
 	nameUpdated: function() {
 		var id = this.model.get('id');
 		var name = this.model.getName();
