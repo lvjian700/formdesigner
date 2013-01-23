@@ -56,6 +56,11 @@ var SelectFieldModel = FieldModel.extend({
 	}
 });
 
+if(! (exports === undefined)) {
+	console.log('is node evn, exports views.');
+	exports.FieldModel = FieldModel;
+}
+
 var ColumnModel = Backbone.Model.extend({ 
 	
 });
