@@ -15,7 +15,7 @@ var FieldView = Backbone.View.extend({
 	 * 改变input中的name
 	 * */
 	initialize: function() {
-		this.model.bind('change:name', this.nameUpdated, this);		
+		this.model.bind('change:id change:name', this.nameUpdated, this);		
 		this.model.bind('change:value', this.valueUpdated, this);
 	},
 	render: function() {
@@ -30,13 +30,14 @@ var FieldView = Backbone.View.extend({
 		return this;
 	},
 	getTemplate: function() {
-		var render_el = this.render().el;
-		return render_el;
+		var el = this.render().el;
+		return $('<p></p>').append(el).html();
 	},
 	nameUpdated: function() {
 		var id = this.model.get('id');
 		var name = this.model.getName();
-		this.label.attr(id);
+
+		this.label.attr('for', id);
 
 		this.inputTag.attr('id', id)
 			.attr('name', name);
@@ -86,3 +87,8 @@ var SelectFieldView = FieldView.extend({
 			});
 	}
 });
+
+if(! (exports === undefined)) {
+	console.log('is node evn, exports views.');
+	exports.FieldView = FieldView;
+}
