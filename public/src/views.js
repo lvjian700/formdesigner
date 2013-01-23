@@ -88,7 +88,3 @@ var SelectFieldView = FieldView.extend({
 	}
 });
 
-if(! (exports === undefined)) {
-	console.log('is node evn, exports views.');
-	exports.FieldView = FieldView;
-}
