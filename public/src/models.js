@@ -72,7 +72,8 @@ var ColumnModel = Backbone.Model.extend({
 		};
 	},
 	initialize: function() {
-		this.content = new FieldModel(this.content);
+		var c_json = this.get('content');
+		this.content = new FieldModel(c_json);
 		this.content.parent = this;
 
 		var json = this.content.toJSON();

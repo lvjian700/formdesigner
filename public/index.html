@@ -29,11 +29,6 @@
 			<%= body %>
 		</div>
 	</script>
-	<script type="text/template" id="tmpl-col">
-		<div class='col-<%= colspan%>'>
-			<%= body %>
-		</div>
-	</script>
 	<script type="text/template" id="tmpl-text">
 		<label for="<%= id%>"><%= label %></label>
 		<input type="text" id="<%= id%>" name="<%= name%>" value="<%= value%>" />
@@ -63,7 +58,7 @@
 			});
 			
 			var el = titleFieldView.render().el;
-			$('#formcanvas>form').append(el);
+			$('#formcanvas>form').preppend(el);
 
 			var selectModel = new SelectFieldModel({
 				id: 'actor_field',
