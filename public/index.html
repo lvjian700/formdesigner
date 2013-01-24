@@ -9,6 +9,9 @@
 <body>
 	<div id="formcanvas">
 		<form action="" method="post" accept-charset="utf-8">
+			<div class="row-1">
+				
+			</div>
 		</form>				
 	</div>		
 	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
@@ -19,9 +22,9 @@
 	<script type="text/template" id="tmpl-form">
 		<div class="form-wrapper">
 			<form action="" method="post" accept-charset="utf-8">
-				<%= body %>
-				<div class="clear"></div>
+
 			</form>				
+			<div class="clear"></div>
 		</div>		
 	</script>
 	<script type="text/template" id="tmpl-row">
@@ -47,31 +50,21 @@
 	<script src="/src/views.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(function(){
-			var titleFieldModel = new FieldModel({
-				id: 'title_field',
-				name: 'title',
-				label: '标题'
-			});
+			var columnModel = new ColumnModel({
+					index: 0,
+					colspan: 1,
+					content: {
+						id: 'title_field',
+						name: 'titile',
+						label: '标题'
+					}
+				});
 
-			var titleFieldView = new FieldView({
-				model: titleFieldModel
-			});
-			
-			var el = titleFieldView.render().el;
-			$('#formcanvas>form').preppend(el);
-
-			var selectModel = new SelectFieldModel({
-				id: 'actor_field',
-				name : 'actor',
-				label: '角色'
-			});
-
-			var selectView = new SelectFieldView({
-				model: selectModel
-			});
-
-			var select_el = selectView.render().el;
-			$('#formcanvas>form').append(select_el);
+			var columnView = new ColumnView({
+					model: columnModel
+				});
+			var el = columnView.render().el;
+			$('#formcanvas>form>div.row-1').append(el);
 		});
 	</script>
 	<script type="text/javascript" src="/assets/components/jasmine/jasmine.js"></script>
