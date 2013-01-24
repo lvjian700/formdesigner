@@ -73,18 +73,6 @@ var SelectFieldView = FieldView.extend({
 		this.inputTag =  this.$('select');
 
 		return this;
-	},
-	valueUpdated:	function() {
-		var value = this.model.getValue();
-		this.inputTag.val(value);
-	},
-	onChanged: function(e) {
-		var val = this.inputTag.val();	
-		this.model.set({
-				value: val
-			}, {
-				silent: true
-			});
 	}
 });
 
