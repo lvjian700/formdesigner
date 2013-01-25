@@ -191,13 +191,215 @@ describe('测试ColumnView', function() {
 });
 
 
+describe('测试ColumnCollection', function() {
 
 
+	describe('使用[]创建ColumnCollection', function() {
+		var list = null;
+		beforeEach(function() {
+			list = new ColumnCollection();
+		});
+		it("使用[]可以构建空的Collection", function() {
+			var empty_list = new ColumnCollection([]);
+			expect(empty_list).toBeDefined();
+			expect(empty_list.models).toBeDefined();
+			expect(empty_list.models.length).toBe(0);
+			expect(empty_list.length).toBe(0);
+		});
+
+		it("空Collection可以序列化成[]", function() {
+			var json = list.toJSON();
+			expect(json).toEqual([]);
+		});
+	});
+
+	describe('使用fullconfig创建3列Collection', function() {
+		var config = null;
+
+		beforeEach(function() {
+			config =  [{
+				index: 0,
+				colspan: 1,
+				content: {
+					id: 'author_field',
+					name: 'author',
+					label: '作者',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 1,
+				colspan: 1,
+				content: {
+					id: 'createTime_field',
+					name: 'createTime',
+					label: '创建时间',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 2,
+				colspan: 1,
+				content: {
+					id: 'timeLength_field',
+					name: 'timeLength',
+					label: '时间长度',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}];
+
+			columns = new ColumnCollection(config);
+		});
+
+		it("使用config始化Collection数量正确", function() {
+			expect(columns.length).toBe(3);
+		});
+
+		it("序列化的json匹配contructor参数", function() {
+			var json = columns.toJSON();
+			expect(json).toEqual(config);
+		})
+
+		it("collection中都是ColumnModel对象", function() {
+			columns.forEach(function(item) {
+				expect(item.constructor).toEqual(ColumnModel);
+			});
+		});
+	});
+
+});
 
 
+describe('测试RowModel', function() {
+	var config = null;
+	var collection = null;
 
+	beforeEach(function() {
+		config =  [{
+			index: 0,
+			colspan: 1,
+			content: {
+				id: 'author_field',
+				name: 'author',
+				label: '作者',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}, {
+			index: 1,
+			colspan: 1,
+			content: {
+				id: 'createTime_field',
+				name: 'createTime',
+				label: '创建时间',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}, {
+			index: 2,
+			colspan: 1,
+			content: {
+				id: 'timeLength_field',
+				name: 'timeLength',
+				label: '时间长度',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}];
 
+		collection = new ColumnCollection(config);
+	});
 
+	afterEach(function() {
+
+	});
+
+	describe('默认构造行为', function() {
+		var model = null;
+
+		beforeEach(function() {
+			model = new RowModel();
+		});
+
+		afterEach(function() {
+			model = null;
+		});
+
+		it("默认数据必须是这样:{index: 0, columnCount:3, layout: 'fit',  columns: []}",
+			function() {
+				expect(model.constructor === RowModel);
+				expect(model.get('index')).toBe(0);
+				expect(model.get('columnCount')).toBe(3);
+				expect(model.get('layout')).toBe('fit');
+
+				var columns = model.get('columns');
+				expect(columns.constructor === Array);
+			});
+
+		it("测试setColumns & getColumns", function() {
+			var changedSpy = jasmine.createSpy('chanagedSpy');	
+			model.bind('change:columns', changedSpy);
+
+			model.setColumns(collection);
+			expect(changedSpy).toHaveBeenCalled();
+
+			var ret = model.getColumns();
+			expect(ret).toBe(collection);
+			expect(ret.toJSON()).toEqual(config);
+
+			var json = model.toJSON();
+			expect(json).toEqual({
+				index: 0,
+				columnCount: 3,
+				layout: 'fit',
+				columns: config
+			});
+
+		});
+
+	});
+	
+	describe('full parameters构造', function() {
+		var fullConfig = null;
+		var model = null;
+	
+		beforeEach(function() {
+			fullConfig = {index: 1, columnCount:3, layout: 'fit',  
+				columns: config };	
+
+			model = new RowModel(fullConfig); 	
+		});
+
+		it('确定初始化后，各项参数正确', function() {
+			expect(model.get('index')).toEqual(1);
+			expect(model.get('columnCount')).toEqual(3);
+			expect(model.get('layout')).toEqual('fit');
+			expect(model.get('columns')).toEqual(config);
+			
+			var cols = model.getColumns();
+			expect(cols.constructor).toEqual(ColumnCollection);
+			expect(cols.parent).toBe(model);
+			expect(cols.length).toEqual(3);
+		});
+		
+		it('columns中都是FieldModel对象', function() {
+			var columns = model.getColumns();
+			columns.forEach(function(item) {
+				expect(item.constructor).toEqual(ColumnModel);
+
+				var field = item.getContent();
+				expect(field.constructor).toEqual(FieldModel);
+			});
+		});
+	});
+});
 
 
 

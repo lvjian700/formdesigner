@@ -95,12 +95,51 @@ var ColumnModel = Backbone.Model.extend({
 	}
 });
 
-
-var RowModel = Backbone.Model.extend({
-
+var ColumnCollection = Backbone.Collection.extend({
+	model: ColumnModel,
+	comparator: function() {
+		return this.get('index');
+	}
 });
 
-var RowList = Backbone.Collection.extend({
+var RowModel = Backbone.Model.extend({
+	defaults: function() {
+		return {
+			index: 0,
+			columnCount: 3,
+			layout: 'fit',
+			columns: []
+		};
+	},
+	initialize:	function() {
+		var c_json = this.get('columns');
+		this.columns = new ColumnCollection(c_json);
+		this.columns.parent = this;
+
+		var json = this.columns.toJSON();
+		this.set({
+			columns: json
+		}, { silence: true });
+	},
+	setColumns: function(columnCollection) {
+		this.columns = columnCollection;
+		this.columns.parent = this;
+
+		var json = this.columns.toJSON();
+		this.set({
+			columns: json
+		});
+	},
+	getColumns: function() {
+		return this.columns;
+	}
+});
+
+var RowCollection = Backbone.Collection.extend({
+	model: RowModel,
+	comparator: function() {
+		return this.get('index');
+	}
 });
 
 var FormModel = Backbone.Model.extend({
@@ -113,10 +152,6 @@ var FormModel = Backbone.Model.extend({
 			}
 		}	
 	}
-});
-
-var FormView = Backbone.View.extend({
-	
 });
 
 
