@@ -401,9 +401,277 @@ describe('测试RowModel', function() {
 	});
 });
 
+describe('测试RowCollection', function() {
+	
+	describe('使用fullconfig创建RowCollection', function() {
+		var fullConfig = null;
+		var full = null;
+
+		beforeEach(function() {
+			fullConfig = [{
+				index: 0,
+				columnCount: 3,
+				layout: 'fit',
+				columns: [{
+					index: 0,
+					colspan: 1,
+					content: {
+						id: 'author_field',
+						name: 'author',
+						label: '作者',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 1,
+					colspan: 1,
+					content: {
+						id: 'createTime_field',
+						name: 'createTime',
+						label: '创建时间',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 2,
+					colspan: 1,
+					content: {
+						id: 'timeLength_field',
+						name: 'timeLength',
+						label: '时间长度',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}]
+			}, {
+				index: 1,
+				columnCount: 3,
+				layout: 'fit',
+				columns: [{
+					index: 0,
+					colspan: 1,
+					content: {
+						id: 'author_field',
+						name: 'author',
+						label: '作者',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 1,
+					colspan: 1,
+					content: {
+						id: 'createTime_field',
+						name: 'createTime',
+						label: '创建时间',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 2,
+					colspan: 1,
+					content: {
+						id: 'timeLength_field',
+						name: 'timeLength',
+						label: '时间长度',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}]
+			}]; // end full config
+
+			full = new RowCollection(fullConfig);
+		});// end beforeEach
+		
+		it('构造基本结构正确', function() {
+			expect(full.constructor).toEqual(RowCollection);	
+			expect(full.length).toBe(2);
+		});
+
+		it('每个item都是item对象,并且每个item.getColumns都是ColumnCollection',
+			function() {
+				
+				full.forEach(function(item) {
+					expect(item.constructor).toEqual(RowModel);
+
+					var columns = item.getColumns();
+					expect(columns.constructor).toEqual(ColumnCollection);
+					expect(columns.length).toBe(3);
+				});
+
+			});
+
+		it('RowCollection下的ColumnCollection的item都是ColumnModel', function() {
+			
+			full.forEach(function(item) {
+				var columns = item.getColumns();
+				expect(columns.length).toBe(3);
+
+				columns.forEach(function(col) {
+					expect(col.constructor).toEqual(ColumnModel);	
+				});
+			});
+		});
+	});// end fullconfig describe
+
+});
 
 describe('测试FormModel', function() {
 
+	var model = null;
+	var rowsConfig = null;
+	var formConfig = null;
+
+	beforeEach(function() {
+		model = new FormModel();
+
+		rowsConfig = [{
+			index: 0,
+			columnCount: 3,
+			layout: 'fit',
+			columns: [{
+				index: 0,
+				colspan: 1,
+				content: {
+					id: 'author_field',
+					name: 'author',
+					label: '作者',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 1,
+				colspan: 1,
+				content: {
+					id: 'createTime_field',
+					name: 'createTime',
+					label: '创建时间',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 2,
+				colspan: 1,
+				content: {
+					id: 'timeLength_field',
+					name: 'timeLength',
+					label: '时间长度',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}]
+		}];
+
+		formConfig = {
+			id: 'news-form',
+			defaults: {
+				layout: 'fit',
+				labelWidth: 80, //px
+			},
+			rows: rowsConfig
+		};
+	});
+
+	afterEach(function() {
+		model = null;
+		rowsConfig = null;
+		formConfig = null;
+	});
+
+	describe('使用默认构造方法构造', function() {
+
+		it("默认数据必须是这样:{id:'', defaults:{layout: 'fit',labelWidth: '80',rows: []}",
+			function() {
+
+				expect(model.constructor === FormModel);
+				expect(model.get('id')).toEqual('');
+				expect(model.get('defaults')).toEqual({
+					layout: 'fit',
+					labelWidth: 80
+				});
+				expect(model.get('rows')).toBeDefined();
+
+				var rows = model.get('rows');
+				expect(rows.constructor === Array);
+			});
+		
+
+		it("测试setRows & getRows", function() {
+			var changedSpy = jasmine.createSpy('chanagedSpy');	
+			model.bind('change:rows', changedSpy);
+			
+			var collection = new RowCollection(rowsConfig);
+			model.setRows(collection);
+			expect(changedSpy).toHaveBeenCalled();
+
+			var ret = model.getRows();
+			expect(ret.constructor).toEqual(RowCollection);
+			expect(ret).toBe(collection);
+		});
+	});
+
+	describe('使用full config初始化', function() {
+		var full = null;
+		beforeEach(function() {
+			full = new FormModel(formConfig);
+		});
+
+		afterEach(function() {
+			full = null;
+		});
+	
+		it('确定初始化后，各项参数正确', function() {
+			expect(full.constructor === FormModel);
+			expect(full.get('id')).toEqual('news-form');
+			expect(full.get('defaults')).toEqual({
+				layout: 'fit',
+				labelWidth: 80
+			});
+			expect(full.get('rows')).toBeDefined();
+
+			var rows = full.get('rows');
+			expect(rows.constructor === Array);
+			expect(rows.length).toBe(1);
+
+		});
+
+		it('getRows能获取RowCollection对象', function() {
+			var rows = full.getRows();
+			expect(rows).toBeDefined();
+			expect(rows.length).toBe(1);
+			expect(rows.constructor).toEqual(RowCollection);
+		});
+
+		it('rows中都是RowModel对象', function() {
+			var rows = full.getRows();
+			expect(rows.length).toBe(1);
+
+			rows.forEach(function(item) {
+				expect(item.constructor).toEqual(RowModel);
+
+				var columns = item.getColumns();
+				expect(columns.constructor).toEqual(ColumnCollection);
+				expect(columns.length).toBe(3);
+
+				var col = columns.at(0);
+				expect(col).toBeDefined();
+				expect(col.constructor).toEqual(ColumnModel);
+
+				var field = col.getContent();
+				expect(field).toBeDefined();
+				expect(field.constructor).toEqual(FieldModel);
+			});
+		});
+	});
 });
 
 

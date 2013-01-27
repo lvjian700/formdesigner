@@ -148,7 +148,7 @@ var FormModel = Backbone.Model.extend({
 			id: '',
 			defaults: {
 				layout: 'fit',
-				labelWidth: '80',
+				labelWidth: 80, //px
 			},
 			rows: []
 		}	
