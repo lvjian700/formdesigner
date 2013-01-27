@@ -129,4 +129,47 @@ var ColumnView = Backbone.View.extend({
 	}
 });
 
+var RowView = Backbone.View.extend({
+    tagName: 'div',
+    events: {
+    },
+    initialize: function() {
+        var count = this.model.get('columnCount');
+        var cls = 'row-' + count;
+        this.$el.addClass(cls);
+
+        this.columnModels = this.model.getColumns();
+        this.columnViews = [];
+            
+        this.columnModels.forEach(function(colModel) {
+            var colView = new ColumnView({
+                model: colModel
+            });
+            colView.parent = this;      
+            this.columnViews.push(colView);
+        }, this);
+    },
+    render: function() {
+        _.each(this.columnViews, function(colView) {
+            var colEl = colView.render().el;
+            this.$el.append(colEl);
+        }, this);
+
+        return this;
+    },
+    clearView: function() {
+        _.each(this.columnViews, function(col) {
+            col.remove();
+        }, this);
+
+        this.$el.empty();
+    },
+    columnAdded: function() {
+    },
+    columnDeleted: function() {
+    },
+    columnUpdated: function() {
+    }
+});
+
 

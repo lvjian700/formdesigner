@@ -522,6 +522,111 @@ describe('测试RowCollection', function() {
 
 });
 
+describe('测试Rowview', function() {
+	var model, view = null;	
+    var fullModel, fullView = null;
+
+	var rowConfig = {
+        index: 0,
+        columnCount: 3,
+        layout: 'fit',
+        columns: [{
+            index: 0,
+            colspan: 1,
+            content: {
+                id: 'author_field',
+                name: 'author',
+                label: '作者',
+                type: 'text',
+                value: '',
+                required: false
+            }
+        }, {
+            index: 1,
+            colspan: 1,
+            content: {
+                id: 'createTime_field',
+                name: 'createTime',
+                label: '创建时间',
+                type: 'text',
+                value: '',
+                required: false
+            }
+        }, {
+            index: 2,
+            colspan: 1,
+            content: {
+                id: 'timeLength_field',
+                name: 'timeLength',
+                label: '时间长度',
+                type: 'text',
+                value: '',
+                required: false
+            }
+        }]
+    };
+
+	beforeEach(function() {
+		$('body').append('<div id="bbd"></div>');
+		model = new RowModel();
+		view = new RowView({
+			model: model
+		});
+
+        fullModel = new RowModel(rowConfig);    
+        fullView = new RowView({
+            model: fullModel
+        });
+	});
+
+    describe('尚未渲染到dom', function() {
+        describe('默认构造方法',  function() {
+            it('this.columnModels为空', function() {
+                expect(view.columnModels).toBeDefined(); 
+                expect(view.columnModels.constructor)
+                    .toEqual(ColumnCollection);
+                expect(view.columnModels.length)
+                    .toBe(0);
+            });
+
+            it('this.columnViews为[]', function() {
+                expect(view.columnViews).toBeDefined();
+                expect(view.columnViews.constructor)
+                    .toEqual(Array);
+                expect(view.columnViews.length).toBe(0);
+            });
+
+            it('创建的div需要包含.row-{columnCount}的css样式', function() {
+
+                var el = view.render().el;
+                var jel = $(el);
+
+                expect(jel).toHaveClass('row-3');
+            });
+
+        });
+
+        describe('使用fullconfig构造', function() {
+        });
+    });
+
+
+    describe('渲染到dom后', function() {
+        
+        it('', function() {
+        });
+
+        it('', function() {
+        });
+    });
+
+	afterEach(function() {
+		view.remove();
+        fullView.remove();
+		$('#bbd').remove();
+	});
+});
+
 describe('测试FormModel', function() {
 
 	var model = null;
