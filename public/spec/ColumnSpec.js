@@ -579,6 +579,12 @@ describe('测试Rowview', function() {
         });
 	});
 
+	afterEach(function() {
+		view.remove();
+        fullView.remove();
+		$('#bbd').remove();
+	});
+
     describe('尚未渲染到dom', function() {
         describe('默认构造方法',  function() {
             it('this.columnModels为空', function() {
@@ -607,27 +613,64 @@ describe('测试Rowview', function() {
         });
 
         describe('使用fullconfig构造', function() {
+			
+			it('this.columnModels有3列元素，并且是ColumnCollection对象', function() {
+                expect(fullView.columnModels).toBeDefined(); 
+                expect(fullView.columnModels.constructor)
+                    .toEqual(ColumnCollection);
+                expect(fullView.columnModels.length)
+                    .toBe(3);
+
+				fullView.columnModels.each(function(item) {
+					expect(item.constructor).toEqual(ColumnModel);
+				});
+			});
+
+            it('this.columnViews为Array, 并且有三个ColumnView对象', function() {
+                expect(fullView.columnViews).toBeDefined();
+                expect(fullView.columnViews.constructor)
+                    .toEqual(Array);
+                expect(fullView.columnViews.length).toBe(3);
+
+				_.each(fullView.columnViews, function(item) {
+					expect(item.constructor).toEqual(ColumnView);
+				});
+            });
+
         });
     });
 
 
     describe('渲染到dom后', function() {
         
-        it('', function() {
-        });
+		beforeEach(function() {
+			var renderedEl = fullView.render().el;
+			$('#bbd').append(renderedEl);
+		});
+		
+		it('渲染后的结构应该是: div.row-3>div.col-1>div.cell', function() {
+			var el = fullView.render().el;
+			var jel = $(el);
 
-        it('', function() {
-        });
+			expect(jel).toHaveClass('row-3');
+			expect(jel).toContain('div.col-1');
+
+			var jcols = jel.find('col-1');
+
+			jcols.each(function(i, n) {
+				expect(n).toJaveClass('col-1');
+				expect(n).toContain('div.cell');
+
+				jcell = n.find('div.cell');
+				expect(jcell).toContain('label');
+				expect(jcell).toContain('input:text');
+			});
+		});
     });
 
-	afterEach(function() {
-		view.remove();
-        fullView.remove();
-		$('#bbd').remove();
-	});
 });
 
-describe('测试FormModel', function() {
+describe('测试FormModel & View', function() {
 
 	var model = null;
 	var rowsConfig = null;
@@ -638,6 +681,44 @@ describe('测试FormModel', function() {
 
 		rowsConfig = [{
 			index: 0,
+			columnCount: 3,
+			layout: 'fit',
+			columns: [{
+				index: 0,
+				colspan: 1,
+				content: {
+					id: 'author_field',
+					name: 'author',
+					label: '作者',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 1,
+				colspan: 1,
+				content: {
+					id: 'createTime_field',
+					name: 'createTime',
+					label: '创建时间',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}, {
+				index: 2,
+				colspan: 1,
+				content: {
+					id: 'timeLength_field',
+					name: 'timeLength',
+					label: '时间长度',
+					type: 'text',
+					value: '',
+					required: false
+				}
+			}]
+		}, {
+			index: 1,
 			columnCount: 3,
 			layout: 'fit',
 			columns: [{
@@ -745,20 +826,20 @@ describe('测试FormModel', function() {
 
 			var rows = full.get('rows');
 			expect(rows.constructor === Array);
-			expect(rows.length).toBe(1);
+			expect(rows.length).toBe(2);
 
 		});
 
 		it('getRows能获取RowCollection对象', function() {
 			var rows = full.getRows();
 			expect(rows).toBeDefined();
-			expect(rows.length).toBe(1);
+			expect(rows.length).toBe(2);
 			expect(rows.constructor).toEqual(RowCollection);
 		});
 
 		it('rows中都是RowModel对象', function() {
 			var rows = full.getRows();
-			expect(rows.length).toBe(1);
+			expect(rows.length).toBe(2);
 
 			rows.forEach(function(item) {
 				expect(item.constructor).toEqual(RowModel);
@@ -776,7 +857,63 @@ describe('测试FormModel', function() {
 				expect(field.constructor).toEqual(FieldModel);
 			});
 		});
+
+		it('FormModel.toJSON()跟fullConfig一致', function() {
+			var ret = full.toJSON();
+			expect(ret).toEqual(formConfig);
+		});
+	});
+
+
+	describe('测试FormView', function() {
+		var formView = null;
+
+		beforeEach(function() {
+			full = new FormModel(formConfig);
+			formView = new FormView({
+				model: full
+			});
+
+			var el = formView.render().el;
+
+			$('body').append('<div id="bbd"></div>');
+			$('#bbd').append(el);
+		});
+
+		afterEach(function() {
+			formView.remove();
+			$('#bbd').remove();
+		});
+		
+		it('formView.rowModels,是RowCollection对象，并且有2行', function() {
+			expect(formView.rowModels).toBeDefined();
+			expect(formView.rowModels.constructor).toEqual(RowCollection);
+			expect(formView.rowModels.length).toBe(2);
+		});
+
+		it('formView.rowViews, 是Array对象，并且有2个', function() {
+			expect(formView.rowViews).toBeDefined();
+			expect(formView.rowViews.constructor).toEqual(Array);
+			expect(formView.rowViews.length).toBe(2);
+		});
+
+		it('formView.formView, 是form dom的 jquery wrapper', function() {
+			expect(formView.form).toBeDefined();
+			expect(formView.form.attr('method')).toEqual('post');
+		});
+
+		it('渲染后的dom结构应该是div.form-wrapper>form | div.clear', function() {
+			var el = formView.render().el;
+			var jel = $(el);
+
+			expect(jel).toHaveClass('form-wrapper');
+			expect(jel).toContain('form');
+			expect(jel).toContain('div.clear');
+			
+			var jform = jel.find('form');
+			expect(jform.attr('id')).toEqual('news-form');
+			expect(jform).toContain('div.row-3');
+		});
 	});
 });
-
 

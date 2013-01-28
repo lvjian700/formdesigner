@@ -96,12 +96,15 @@ var ColumnView = Backbone.View.extend({
 		});
 		this.contentView.parent = this;
 	},
-
 	render: function () {
 		var contentEl = this.contentView.render().el;
 		this.$el.html(contentEl);
 
 		return this;
+	},
+	getTemplate: function() {
+		var el = this.render().el;
+		return $('<p></p>').append(el).html();
 	},
 	contentUpdated: function(e) {
 		this.clearView();
@@ -138,6 +141,9 @@ var RowView = Backbone.View.extend({
         var cls = 'row-' + count;
         this.$el.addClass(cls);
 
+		var layout = this.model.get('layout');
+		this.$el.addClass(layout);
+
         this.columnModels = this.model.getColumns();
         this.columnViews = [];
             
@@ -157,6 +163,10 @@ var RowView = Backbone.View.extend({
 
         return this;
     },
+	getTemplate: function() {
+		var el = this.render().el;
+		return $('<p></p>').append(el).html();
+	},
     clearView: function() {
         _.each(this.columnViews, function(col) {
             col.remove();
@@ -171,5 +181,47 @@ var RowView = Backbone.View.extend({
     columnUpdated: function() {
     }
 });
+
+var FormView = Backbone.View.extend({
+	tagName: 'div',
+	className: 'form-wrapper fit',
+	template: read_tmpl('#tmpl-form'),	
+	events: {
+	},
+	initialize: function() {
+		var r_json = this.model.get('rows');
+		this.rowModels = this.model.getRows();
+		this.rowViews = [];		
+
+		this.rowModels.forEach(function(row) {
+			var rowView = new RowView({
+				model: row
+			});
+			rowView.parent = this;
+			this.rowViews.push(rowView);
+		}, this);
+	},
+	render:	function() {
+		var tmpl = this.template(this.model.toJSON());
+		this.$el.html(tmpl);
+
+		this.form = this.$el.find('form');
+
+		_.each(this.rowViews, function(row) {
+			var rowEl = row.render().el;
+			this.form.append(rowEl);
+		}, this);
+
+		return this;
+	},
+	getTemplate: function() {
+		var el = this.render().el;
+		return $('<p></p>').append(el).html();
+	}
+});
+
+
+
+
 
 
