@@ -2,17 +2,13 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>Designer</title>
-
+	<link rel="stylesheet/less" href="/less/base.less" type="text/css" media="screen" charset="utf-8">
+	<script src="/less/less.js" type="text/javascript" charset="utf-8"></script>
 	<link rel="shortcut icon" type="image/png" href="/assets/components/jasmine/jasmine_favicon.png">
 	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
 </head>
 <body>
 	<div id="formcanvas">
-		<form action="" method="post" accept-charset="utf-8">
-			<div class="row-1">
-				
-			</div>
-		</form>				
 	</div>		
 	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -20,17 +16,10 @@
 	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/template" id="tmpl-form">
-		<div class="form-wrapper">
-			<form action="" method="post" accept-charset="utf-8">
+		<form id="<%= id %>" action="" method="post" accept-charset="utf-8">
 
-			</form>				
-			<div class="clear"></div>
-		</div>		
-	</script>
-	<script type="text/template" id="tmpl-row">
-		<div class='row-<%= columnCount%>'>
-			<%= body %>
-		</div>
+		</form>				
+		<div class="clear"></div>
 	</script>
 	<script type="text/template" id="tmpl-text">
 		<label for="<%= id%>"><%= label %></label>
@@ -44,27 +33,117 @@
 			<option value="3">总编辑</option>
 		</select>
 	</script>
-
-
 	<script src="/src/models.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/src/views.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(function(){
-			var columnModel = new ColumnModel({
+			var rowsConfig = [{
+				index: 0,
+				columnCount: 1,
+				layout: 'fit',
+				columns: [{
 					index: 0,
 					colspan: 1,
 					content: {
 						id: 'title_field',
-						name: 'titile',
-						label: '标题'
+						name: 'title',
+						label: '标题',
+						type: 'text',
+						value: '',
+						required: false
 					}
-				});
+				}]
+			}, {
+				index: 1,
+				columnCount: 3,
+				layout: 'fit',
+				columns: [{
+					index: 0,
+					colspan: 1,
+					content: {
+						id: 'author_field',
+						name: 'author',
+						label: '作者',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 1,
+					colspan: 1,
+					content: {
+						id: 'createTime_field',
+						name: 'createTime',
+						label: '创建时间',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 2,
+					colspan: 1,
+					content: {
+						id: 'timeLength_field',
+						name: 'timeLength',
+						label: '时间长度',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}]
+			}, {
+				index: 2,
+				columnCount: 3,
+				layout: 'fit',
+				columns: [{
+					index: 0,
+					colspan: 1,
+					content: {
+						id: 'author2_field',
+						name: 'author',
+						label: '作者',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 1,
+					colspan: 1,
+					content: {
+						id: 'createTime2_field',
+						name: 'createTime',
+						label: '创建时间',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}, {
+					index: 2,
+					colspan: 1,
+					content: {
+						id: 'timeLength2_field',
+						name: 'timeLength',
+						label: '时间长度',
+						type: 'text',
+						value: '',
+						required: false
+					}
+				}]
+			}];
 
-			var columnView = new ColumnView({
-					model: columnModel
-				});
-			var el = columnView.render().el;
-			$('#formcanvas>form>div.row-1').append(el);
+			var formConfig = {
+				id: 'news-form',
+				defaults: {
+					layout: 'fit',
+					labelWidth: 80, //px
+				},
+				rows: rowsConfig
+			};
+
+			var model = new FormModel(formConfig);
+			var view = new FormView({model:model});
+			var el = view.render().el;
+			$('#formcanvas').append(el);
 		});
 	</script>
 	<script type="text/javascript" src="/assets/components/jasmine/jasmine.js"></script>
