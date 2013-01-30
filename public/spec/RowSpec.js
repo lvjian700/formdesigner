@@ -246,7 +246,7 @@ describe('测试RowCollection', function() {
 
 });
 
-describe('测试Rowview', function() {
+describe('测试RowView', function() {
 	var model, view = null;	
     var fullModel, fullView = null;
 
@@ -333,6 +333,17 @@ describe('测试Rowview', function() {
 
                 expect(jel).toHaveClass('row-3');
             });
+			
+			it('改变model.columnCount,会更新div.row-*的css样式', function() {
+                var el = view.render().el;
+                var jel = $(el);
+
+                expect(jel).toHaveClass('row-3');
+
+				view.model.set({columnCount: 2});
+				expect(view.$el).not.toHaveClass('row-3');
+				expect(view.$el).toHaveClass('row-2');
+			});
 
         });
 

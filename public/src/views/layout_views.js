@@ -83,6 +83,7 @@ var RowView = Backbone.View.extend({
             this.$el.append(colEl);
         }, this);
 
+		this.model.bind('change:columnCount', this.columnCountUpdated, this);
         return this;
     },
 	getTemplate: function() {
@@ -96,6 +97,13 @@ var RowView = Backbone.View.extend({
 
         this.$el.empty();
     },
+	columnCountUpdated: function() {
+		var pre = this.model.previous('columnCount');
+		var count = this.model.get('columnCount');
+
+		this.$el.removeClass('row-' + pre)
+			.addClass('row-' + count);
+	},
     columnAdded: function() {
     },
     columnDeleted: function() {
