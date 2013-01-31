@@ -7,12 +7,12 @@ $(function(){
 			index: 0,
 			colspan: 1,
 			content: {
-				id: 'title_field',
-				name: 'title',
+				id: 'newsTitle_field',
+				name: 'newsTitle',
 				label: '标题',
 				type: 'text',
 				value: '',
-				required: false
+				required: true
 			}
 		}]
 	}, {
@@ -23,12 +23,12 @@ $(function(){
 			index: 0,
 			colspan: 1,
 			content: {
-				id: 'author_field',
-				name: 'author',
+				id: 'creater_field',
+				name: 'creater',
 				label: '作者',
 				type: 'text',
 				value: '',
-				required: false
+				required: true
 			}
 		}, {
 			index: 1,
@@ -39,15 +39,15 @@ $(function(){
 				label: '创建时间',
 				type: 'text',
 				value: '',
-				required: false
+				required: true
 			}
 		}, {
 			index: 2,
 			colspan: 1,
 			content: {
-				id: 'timeLength_field',
-				name: 'timeLength',
-				label: '时间长度',
+				id: 'videoLength_field',
+				name: 'videoLength',
+				label: '视频长度',
 				type: 'text',
 				value: '',
 				required: false
@@ -61,9 +61,9 @@ $(function(){
 			index: 0,
 			colspan: 1,
 			content: {
-				id: 'author2_field',
-				name: 'author',
-				label: '作者',
+				id: 'reporter_field',
+				name: 'reporter',
+				label: '记者',
 				type: 'text',
 				value: '',
 				required: false
@@ -72,9 +72,9 @@ $(function(){
 			index: 1,
 			colspan: 1,
 			content: {
-				id: 'createTime2_field',
-				name: 'createTime',
-				label: '创建时间',
+				id: 'camerist_field',
+				name: 'camerist',
+				label: '摄像',
 				type: 'text',
 				value: '',
 				required: false
@@ -83,16 +83,53 @@ $(function(){
 			index: 2,
 			colspan: 1,
 			content: {
-				id: 'timeLength2_field',
-				name: 'timeLength',
-				label: '时间长度',
+				id: 'assistant_field',
+				name: 'assistant',
+				label: '参与人员',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}]
+	}, {
+		index: 3,
+		columnCount: 3,
+		layout: 'fit',
+		columns: [{
+			index: 0,
+			colspan: 1,
+			content: {
+				id: 'newsKeyword_field',
+				name: 'newsKeyword',
+				label: '关键字',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}, {
+			index: 1,
+			colspan: 1,
+			content: {
+				id: 'dubMan_field',
+				name: 'dubMan',
+				label: '配音',
+				type: 'text',
+				value: '',
+				required: false
+			}
+		}, {
+			index: 2,
+			colspan: 1,
+			content: {
+				id: 'batMan_field',
+				name: 'batMan',
+				label: '通讯员',
 				type: 'text',
 				value: '',
 				required: false
 			}
 		}]
 	}];
-
 	var formConfig = {
 		id: 'news-form-index',
 		defaults: {
