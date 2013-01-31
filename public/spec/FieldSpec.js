@@ -119,8 +119,9 @@ describe("测试FieldView", function() {
 			$('#bbd').append(renderedEl);
 
 		});
-
-		afterEach(function() {
+		
+		it('渲染到dom后，触发ready事件', function() {
+			
 		});
 
 		it("更新model.value后,调用valueUpdated方法更新dom", 

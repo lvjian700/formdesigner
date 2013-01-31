@@ -50,6 +50,9 @@ var FieldView = Backbone.View.extend({
 			}, {
 				silent: true
 			});
+	},
+	onDomReady: function() {
+		console.log('field ready');
 	}
 });
 

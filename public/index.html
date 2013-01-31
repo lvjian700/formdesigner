@@ -5,7 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap-responsive.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap-timepicker/compiled/timepicker.css">
-	
 	<link rel="stylesheet/less" href="/less/base.less" type="text/css" media="screen" charset="utf-8">
 	<script src="/less/less.js" type="text/javascript" charset="utf-8"></script>
 	<link rel="shortcut icon" type="image/png" href="/assets/components/jasmine/jasmine_favicon.png">
@@ -41,12 +40,20 @@
 			<option value="3">总编辑</option>
 		</select>
 	</script>
+	<script type="text/template" id="tmpl-timelength">
+		<label for="<%= id%>"><%= label %></label>
+		<input id="videoTimeLength" class="input-large timepicker-default" type="text"
+				value="10:11:10:01">
+		<span class="add-on"><i class="icon-time"></i></span>
+	</script>
 
 	<script src="/src/models/field_models.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/src/models/layout_models.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="/src/views/core.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/src/views/field_views.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/src/views/timelength_view.js" type="text/javascript" charset="utf-8"></script>
+
 	<script src="/src/views/layout_views.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="/src/app.js" type="text/javascript" charset="utf-8"></script>
