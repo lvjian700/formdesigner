@@ -4,7 +4,7 @@ var FieldView = Backbone.View.extend({
 	template: read_tmpl('#tmpl-text'),
 
 	events: {
-		'change input': "onChanged"	
+		'change input': "onChanged"
 	},
 	/*
 	 * name changed, 需要改变input&label的id
@@ -53,6 +53,8 @@ var FieldView = Backbone.View.extend({
 	}
 });
 
+Fields.reg('text', FieldView);
+
 
 var SelectFieldView = FieldView.extend({
 	template: read_tmpl('#tmpl-select'),
@@ -71,3 +73,5 @@ var SelectFieldView = FieldView.extend({
 		return this;
 	}
 });
+
+Fields.reg('select', SelectFieldView);
