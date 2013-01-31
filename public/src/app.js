@@ -143,5 +143,4 @@ $(function(){
 	var view = new FormView({model:model});
 	var el = view.render().el;
 	$('#formcanvas').append(el);
-	view.onDomReady();
 });
