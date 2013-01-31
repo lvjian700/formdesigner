@@ -57,9 +57,6 @@ var ColumnView = Backbone.View.extend({
 		var cls = 'col-' + colspan;
 
 		this.$el.addClass(cls).removeClass(preCls);
-	},
-	onDomReady: function() {
-		this.contentView.onDomReady();
 	}
 });
 
@@ -118,12 +115,7 @@ var RowView = Backbone.View.extend({
     columnDeleted: function() {
     },
     columnUpdated: function() {
-    },
-	onDomReady: function() {
-		_.each(this.columnViews, function(view) {
-			view.onDomReady();
-		}, this);
-	}
+    }
 });
 
 var FormView = Backbone.View.extend({
@@ -161,11 +153,6 @@ var FormView = Backbone.View.extend({
 	getTemplate: function() {
 		var el = this.render().el;
 		return $('<p></p>').append(el).html();
-	},
-	onDomReady: function() {
-		_.each(this.rowViews, function(view) {
-			view.onDomReady();
-		}, this);
 	}
 });
 
