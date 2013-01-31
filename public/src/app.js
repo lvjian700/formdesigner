@@ -26,7 +26,7 @@ $(function(){
 				id: 'creater_field',
 				name: 'creater',
 				label: '作者',
-				type: 'text',
+				type: 'select',
 				value: '',
 				required: true
 			}
@@ -37,7 +37,7 @@ $(function(){
 				id: 'createTime_field',
 				name: 'createTime',
 				label: '创建时间',
-				type: 'text',
+				type: 'date',
 				value: '',
 				required: true
 			}
@@ -48,7 +48,7 @@ $(function(){
 				id: 'videoLength_field',
 				name: 'videoLength',
 				label: '视频长度',
-				type: 'text',
+				type: 'timelength',
 				value: '',
 				required: false
 			}
