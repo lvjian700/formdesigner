@@ -21,6 +21,11 @@ FieldViews.prototype.clear = function() {
 FieldViews.prototype.create = function(options) {
 	var f_type = options.model.get('type');
 	var cls = this.getCls(f_type);
+
+	if(cls === undefined) {
+		return new FieldView(options);
+	}
+
 	var view = new cls(options);	
 
 	return view;
