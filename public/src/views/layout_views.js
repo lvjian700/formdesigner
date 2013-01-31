@@ -1,3 +1,8 @@
+// layout_views.js
+// dependences:
+//	core.js
+//		Fields
+//
 var ColumnView = Backbone.View.extend({
 	tagName: 'div',
 	events: {
@@ -13,7 +18,8 @@ var ColumnView = Backbone.View.extend({
 		this.model.bind('change:colspan', this.colspanUpdated, this);
 		
 		var fieldModel = this.model.getContent();
-		this.contentView = new FieldView({
+
+		this.contentView = Fields.create({
 			model: fieldModel
 		});
 		this.contentView.parent = this;
