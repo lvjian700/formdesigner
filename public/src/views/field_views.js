@@ -23,6 +23,8 @@ var FieldView = Backbone.View.extend({
 		this.label = this.$('label');
 		this.inputTag =  this.$('input');
 
+		this.onRender();
+
 		return this;
 	},
 	getTemplate: function() {
@@ -51,8 +53,7 @@ var FieldView = Backbone.View.extend({
 				silent: true
 			});
 	},
-	onDomReady: function() {
-		console.log('field ready');
+	onRender: function() {
 	}
 });
 
@@ -64,16 +65,8 @@ var SelectFieldView = FieldView.extend({
 	events: {
 		'change select': "onChanged"	
 	},
-	render: function() {
-		var json = this.model.toJSON();
-		var html = this.template(json);
-	
-		this.$el.html(html);
-		this.cellBody =  this.$el;
-		this.label = this.$('label');
+	onRender: function() {
 		this.inputTag =  this.$('select');
-
-		return this;
 	}
 });
 
