@@ -4,10 +4,17 @@
 	<title>Designer</title>
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap-responsive.css">
+	
+	<!-- bootstrap components -->
+	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap-datepicker/datepicker.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap-timepicker/compiled/timepicker.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/select2/select2.css">
+
+	<!-- base.less css style sheet -->
 	<link rel="stylesheet/less" href="/less/base.less" type="text/css" media="screen" charset="utf-8">
 	<script src="/less/less.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- jasmine bbd testing library -->
 	<link rel="shortcut icon" type="image/png" href="/assets/components/jasmine/jasmine_favicon.png">
 	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
 	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
@@ -15,12 +22,20 @@
 <body>
 	<div id="formcanvas">
 	</div>		
-
+	
+	<!-- backbone library -->
 	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="assets/components/moment/min/moment.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/moment/min/lang/zh-cn.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/moment/min/lang/zh-tw.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- bootstrap & relation components -->
 	<script src="assets/components/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/bootstrap-datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript" charset="utf-8"></script>
 	<script src="assets/components/select2/select2.js" type="text/javascript" charset="utf-8"></script>
 
@@ -46,6 +61,13 @@
 		<label for="<%= id%>"><%= label %></label>
 		<input id="videoTimeLength" class="input-large timepicker-default" type="text"
 				value="10:11:10:01">
+		<span class="add-on"><i class="icon-time"></i></span>
+	</script>
+
+	<script type="text/template" id="tmpl-date">
+		<label for="<%= id%>"><%= label %></label>
+		<input id="<%= id%>" type="text" class="timepicker-default timepicker-1 input-large"  
+			value=''>
 		<span class="add-on"><i class="icon-time"></i></span>
 	</script>
 
