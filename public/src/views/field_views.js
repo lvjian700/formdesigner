@@ -67,7 +67,16 @@ var SelectFieldView = FieldView.extend({
 	},
 	onRender: function() {
 		this.inputTag =  this.$('select');
+		this.inputTag.select2({
+			width: 'resolve'
+		});
 	}
 });
 
 Fields.reg('select', SelectFieldView);
+
+
+var DateFieldView = FieldView.extend({
+});
+
+Fields.reg('date', DateFieldView);

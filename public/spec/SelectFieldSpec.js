@@ -23,6 +23,12 @@ describe("SelectFieldView 测试", function() {
 		$('#bbd').remove();
 	});
 
+	it('SelectFieldView 注册了select类型', function() {
+		var cls = Fields.getCls('select');
+		expect(cls).toBeDefined();
+		expect(cls).toEqual(SelectFieldView);
+	});
+
 	describe("尚未渲染到dom", function() {
 		
 		it("View中model的初始化状态, type:select, name:actor, label: 角色", 
