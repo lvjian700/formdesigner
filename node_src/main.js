@@ -1,9 +1,12 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
+var base = path.join(__dirname, '..', 'public', 'src');
+console.log(base);
+
 requirejs.config({
 	nodeRequire: require,
-	baseUrl: path.join(__dirname, 'src'),
+	baseUrl: base,
 	paths: {
 		"tmpl": "../templates",
 		"moment": "../assets/components/moment/moment",
