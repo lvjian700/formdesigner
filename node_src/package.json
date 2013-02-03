@@ -1,0 +1,15 @@
+{
+  "name": "formdesigner",
+  "version": "0.0.1",
+  "description": "formdesigner back-end",
+  "main": "main.js",
+  "scripts": {
+  },
+  "dependences": {
+	"jquery": "*",
+	"requirejs": "*"
+  },
+  "repository": "",
+  "author": "lvjian",
+  "license": "MIT"
+}
