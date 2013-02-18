@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
-var base = path.join(__dirname, '..', 'public', 'src');
+var base = path.join(__dirname, '..', 'public', 'rsrc');
 console.log(base);
 
 requirejs.config({
@@ -12,7 +12,7 @@ requirejs.config({
 		"moment": "../assets/components/moment/moment",
 		"underscore": "../assets/components/underscore/underscore",
 		"backbone": "../assets/components/backbone/backbone-min",
-		"text": "../assets/components/text/text.js"
+		"text": "../assets/components/text/text"
 	},
 	shim: {
         'underscore': {
@@ -26,11 +26,10 @@ requirejs.config({
     }
 });
 
-requirejs(['jquery', 'models/FieldModel', 'models/SelectFieldModel'], 
+requirejs(['jquery', 'models/fields/FieldModel', 'models/fields/SelectFieldModel'], 
 	
 	function($, FieldModel, SelectFieldModel) {
 		//the jquery.alpha.js and jquery.beta.js plugins have been loaded.
-		$(function() {
 		});
 	}
 );
