@@ -1,4 +1,4 @@
-require.config({
+requirejs.config({
 	baseUrl:'rsrc/',
 	paths: {
 		"tmpl": "./templates",
@@ -19,7 +19,7 @@ require.config({
     }
 });
 
-require(['jquery', 'models/FieldModel', 'models/SelectFieldModel',
+requirejs(['jquery', 'models/FieldModel', 'models/SelectFieldModel',
 		'views/FieldView', 'views/Fields'], 
 	
 	function($, FieldModel, SelectFieldModel, FieldView, Fields) {
