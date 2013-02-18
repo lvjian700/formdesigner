@@ -77,7 +77,9 @@ requirejs([
 		specs.push('spec/views/FieldViewSpec');
 		specs.push('spec/models/SelectFieldModelSpec');
 		specs.push('spec/views/SelectFieldViewSpec');
+
 		specs.push('spec/models/ColumnModelSpec');
+		specs.push('spec/views/ColumnViewSpec');
 
 		$(function() {
 			requirejs(specs, function() {
