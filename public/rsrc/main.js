@@ -81,7 +81,10 @@ requirejs([
 
 
 		specs.push('spec/models/ColumnModelSpec');
+		specs.push('spec/models/ColumnCollectionSpec');
 		specs.push('spec/views/ColumnViewSpec');
+
+		specs.push('spec/models/RowModelSpec');
 
 		$(function() {
 			requirejs(specs, function() {
