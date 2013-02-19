@@ -2,7 +2,7 @@ define([
 	'backbone',
 	'./RowCollection'
 
-], function(Backbone) {
+], function(Backbone, RowCollection) {
 	
 	var FormModel = Backbone.Model.extend({
 		defaults: function() {
