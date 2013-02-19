@@ -1,9 +1,8 @@
 define([
 	'jquery', 
-	'v/Fields', 
 	'm/SelectFieldModel', 'v/SelectFieldView'
 
-], function($, Fields, SelectFieldModel, SelectFieldView) {
+], function($, SelectFieldModel, SelectFieldView) {
 
 	return describe("SelectFieldView 测试", function() {
 

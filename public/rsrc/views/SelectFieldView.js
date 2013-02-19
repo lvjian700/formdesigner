@@ -1,11 +1,10 @@
 define([
-	'underscore', 'backbone', 
-	'./Core', './Fields', 
+	'./Core',
 	'./FieldView',
 	'text!tmpl/select_field.html',
 	'jquery-select2'
 
-], function(_, Backbone, Core, Fields, FieldView, tmpl) {
+], function(Core, FieldView, tmpl) {
 
 	var SelectFieldView = FieldView.extend({
 		template: Core.read_tmpl(tmpl),

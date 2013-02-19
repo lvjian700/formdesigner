@@ -1,13 +1,14 @@
 define([
 	'jquery', 
-	'./Core', './Fields', 
+	'./Core',
 	'./FieldView',
+	'text!tmpl/date_field.html',
 	'bootstrap-date'
-],function($, Core, Fields, FieldView) {}
+],function($, Core, FieldView, tmpl) {}
 	
 	var DateFieldView = FieldView.extend({
 		className: 'cell input-append controls bootstrap-timepicker-component',
-		template: read_tmpl('#tmpl-date'),
+		template: Core.read_tmpl(tmpl),
 		events: {
 			'changeDate input': "onChanged"
 		},

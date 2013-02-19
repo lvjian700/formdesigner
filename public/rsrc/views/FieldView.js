@@ -1,9 +1,9 @@
 define([
 	'underscore', 'backbone', 
-	'./Core', './Fields', 
+	'./Core', 
 	'text!tmpl/text_field.html'
 
-], function(_, Backbone, Core, Fields, tmpl) {
+], function(_, Backbone, Core, tmpl) {
 
 	var FieldView = Backbone.View.extend({
 		tagName: 'div',

@@ -1,10 +1,9 @@
 define([
 	'jquery', 'backbone', 
 	'm/ColumnModel',
-	'v/Fields',
 	'v/FieldView'
 
-], function($, Backbone, ColumnModel, Fields, FieldView ) {
+], function($, Backbone, ColumnModel, FieldView ) {
 
 	var ColumnView = Backbone.View.extend({
 		tagName: 'div',

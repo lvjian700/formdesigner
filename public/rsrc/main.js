@@ -8,9 +8,9 @@ requirejs.config({
 		"text": "../assets/components/text/text",
 
 		/* bootstrap.js & plugins*/
-		"boostrap": "../assets/components/bootstrap/js/bootstrap.min",
-		"bootstrap-date": "../assets/components/boostrap-datepicker/bootstrap-datepicker",
-		"bootstrap-time": "../assets/components/boostrap-timepicker/bootstrap-timepicker",
+		"bootstrap": "../assets/components/bootstrap/js/bootstrap.min",
+		"bootstrap-date": "../assets/components/bootstrap-datepicker/bootstrap-datepicker",
+		"bootstrap-time": "../assets/components/bootstrap-timepicker/js/bootstrap-timepicker",
 		
 		/*jquery plugins*/
 		"jquery-select2": "../assets/components/select2/select2.min",
@@ -36,8 +36,8 @@ requirejs.config({
         },
 
 		'bootstrap': ['jquery'],
-		'boostrap-date': ['bootstrap'],
-		'boostrap-time': ['boostrap'],
+		'bootstrap-date': ['bootstrap'],
+		'bootstrap-time': ['bootstrap'],
 
 		'jquery-select2': ['jquery'],
 
@@ -77,6 +77,8 @@ requirejs([
 		specs.push('spec/views/FieldViewSpec');
 		specs.push('spec/models/SelectFieldModelSpec');
 		specs.push('spec/views/SelectFieldViewSpec');
+		specs.push('spec/views/TimelengthFieldViewSpec');
+
 
 		specs.push('spec/models/ColumnModelSpec');
 		specs.push('spec/views/ColumnViewSpec');
