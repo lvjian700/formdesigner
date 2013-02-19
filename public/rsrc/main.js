@@ -4,7 +4,7 @@ requirejs.config({
 		"jquery": "../assets/components/jquery/jquery",
 		"moment": "../assets/components/moment/moment",
 		"underscore": "../assets/components/underscore/underscore",
-		"backbone": "../assets/components/backbone/backbone-min",
+		"backbone": "../assets/components/backbone/backbone",
 		"text": "../assets/components/text/text",
 
 		/* bootstrap.js & plugins*/
@@ -18,13 +18,7 @@ requirejs.config({
 		/* source code aliase */
 		"m": "./models",
 		"v": "./views",	
-		"tmpl": "./templates",
-		
-		/* jasmine test */
-		"spec": "../rspec",
-		"jasmine": "../assets/components/jasmine/jasmine",
-		"jasmine-html": "../assets/components/jasmine/jasmine-html",
-		"jasmine-jquery": "../assets/components/jasmine/jasmine-jquery"
+		"tmpl": "./templates"
 	},
 	shim: {
         'underscore': {
@@ -55,46 +49,14 @@ requirejs.config({
     }
 });
 
-requirejs([
-	'jquery', 'jasmine-jquery',
+var loads = [
+	'./app',
+	'v/FieldView',
+	'v/SelectFieldView',
+	'v/DateFieldView',
+	'v/TimelengthView'
+];
 
-], function($, jasmine) {
+requirejs(loads, function() {
 
-		var jasmineEnv = jasmine.getEnv();
-		jasmineEnv.updateInterval = 1000;
-
-		var htmlReporter = new jasmine.HtmlReporter();
-
-		jasmineEnv.addReporter(htmlReporter);
-
-		jasmineEnv.specFilter = function(spec) {
-			return htmlReporter.specFilter(spec);
-		};
-
-		var specs = [];
-
-		specs.push('spec/models/FieldModelSpec');
-		specs.push('spec/views/FieldViewSpec');
-		specs.push('spec/models/SelectFieldModelSpec');
-		specs.push('spec/views/SelectFieldViewSpec');
-		specs.push('spec/views/TimelengthFieldViewSpec');
-
-
-		specs.push('spec/models/ColumnModelSpec');
-		specs.push('spec/models/ColumnCollectionSpec');
-		specs.push('spec/views/ColumnViewSpec');
-
-		specs.push('spec/models/RowModelSpec');
-		specs.push('spec/models/RowCollectionSpec');
-		specs.push('spec/views/RowViewSpec');
-
-		specs.push('spec/FormSpec');
-
-
-		$(function() {
-			requirejs(specs, function() {
-				jasmineEnv.execute();
-			});
-		});
-	}
-);
+});

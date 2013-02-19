@@ -1,0 +1,101 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Designer</title>
+	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap/css/bootstrap-responsive.css">
+	
+	<!-- bootstrap components -->
+	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap-datepicker/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="/assets/components/bootstrap-timepicker/compiled/timepicker.css">
+	<link rel="stylesheet" type="text/css" href="/assets/components/select2/select2.css">
+
+	<!-- base.less css style sheet -->
+	<link rel="stylesheet/less" href="/less/base.less" type="text/css" media="screen" charset="utf-8">
+	<script src="/less/less.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- jasmine bbd testing library -->
+	<link rel="shortcut icon" type="image/png" href="/assets/components/jasmine/jasmine_favicon.png">
+	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
+	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
+</head>
+<body>
+	<div id="formcanvas">
+	</div>		
+	
+	<!-- backbone library -->
+	<script src="assets/components/json2/json2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="assets/components/moment/min/moment.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/moment/min/lang/zh-cn.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/moment/min/lang/zh-tw.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- bootstrap & relation components -->
+	<script src="assets/components/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/bootstrap-datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assets/components/select2/select2.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/template" id="tmpl-form">
+		<form id="<%= id %>" action="" method="post" accept-charset="utf-8">
+
+		</form>				
+		<div class="clear"></div>
+	</script>
+	<script type="text/template" id="tmpl-text">
+		<label for="<%= id%>"><%= label %></label>
+		<input type="text" id="<%= id%>" name="<%= name%>" value="<%= value%>" />
+	</script>
+	<script type="text/template" id="tmpl-select">
+		<label for="<%= id%>"><%= label %></label>
+		<select name="<%= name %>" id="<%= id %>">
+			<option value="1">记者</option>
+			<option value="2">司机</option>
+			<option value="3">总编辑</option>
+		</select>
+	</script>
+	<script type="text/template" id="tmpl-timelength">
+		<label for="<%= id%>"><%= label %></label>
+		<input id="videoTimeLength" class="input-large timepicker-default" type="text"
+				value="10:11:10:01">
+		<span class="add-on"><i class="icon-time"></i></span>
+	</script>
+
+	<script type="text/template" id="tmpl-date">
+		<label for="<%= id%>"><%= label %></label>
+		<input id="<%= id%>" type="text" class="timepicker-default timepicker-1 input-large"  
+			value=''>
+		<span class="add-on"><i class="icon-time"></i></span>
+	</script>
+
+	<script src="/src/models/field_models.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/src/models/layout_models.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/src/views/core.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/src/views/field_views.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/src/views/timelength_view.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/src/views/layout_views.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/src/app.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" src="/assets/components/jasmine/jasmine.js"></script>
+	<script type="text/javascript" src="/assets/components/jasmine/jasmine-html.js"></script>
+	<script type="text/javascript" src="/assets/components/jasmine/jasmine-jquery.js"></script>
+	
+
+	<script src="/spec/ViewCore.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/FieldSpec.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/SelectFieldSpec.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/TimelengthSpec.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/spec/ColumnSpec.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/RowSpec.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/spec/FormSpec.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/spec/start.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

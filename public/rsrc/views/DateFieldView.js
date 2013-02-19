@@ -1,10 +1,11 @@
 define([
 	'jquery', 
+	'moment',
 	'./Core',
 	'./FieldView',
 	'text!tmpl/date_field.html',
 	'bootstrap-date'
-],function($, Core, FieldView, tmpl) {}
+],function($, moment, Core, FieldView, tmpl) {
 	
 	var DateFieldView = FieldView.extend({
 		className: 'cell input-append controls bootstrap-timepicker-component',
