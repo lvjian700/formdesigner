@@ -73,6 +73,8 @@ requirejs([
 
 		var specs = [];
 
+		specs.push('spec/models/emptyrowSpec');
+
 		specs.push('spec/models/FieldModelSpec');
 		specs.push('spec/views/FieldViewSpec');
 		specs.push('spec/models/SelectFieldModelSpec');

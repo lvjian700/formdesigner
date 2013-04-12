@@ -28,6 +28,8 @@ define([
 				colView.parent = this;      
 				this.columnViews.push(colView);
 			}, this);
+
+			this.model.bind('change:columnCount', this.columnCountUpdated, this);
 		},
 		render: function() {
 			_.each(this.columnViews, function(colView) {
@@ -35,7 +37,6 @@ define([
 				this.$el.append(colEl);
 			}, this);
 
-			this.model.bind('change:columnCount', this.columnCountUpdated, this);
 			return this;
 		},
 		getTemplate: function() {
@@ -61,6 +62,10 @@ define([
 		columnDeleted: function() {
 		},
 		columnUpdated: function() {
+		},
+		onRemoved: function() {
+				
+			this.unbind();
 		}
 	});
 

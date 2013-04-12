@@ -58,5 +58,5 @@ var loads = [
 ];
 
 requirejs(loads, function() {
-
+	console.log('load success');
 });

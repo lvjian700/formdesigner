@@ -1,9 +1,9 @@
 define([
 	'backbone',
-	'./RowCollection'
-
-], function(Backbone, RowCollection) {
-	
+	'./RowCollection',
+	'./emptyrow'	
+], function(Backbone, RowCollection, emptyRowJson) {
+		
 	var FormModel = Backbone.Model.extend({
 		defaults: function() {
 			return {
@@ -24,6 +24,16 @@ define([
 			this.set({
 				rows: json
 			}, { silence: true });
+		},
+		addRow: function() {
+			var index = this.rows.size();
+			var json = emptyRowJson(index);	
+			this.rows.add([
+				json
+			]);
+		},
+		removeLastRow: function() {
+			this.rows.pop();
 		},
 		setRows: function(rowsCollection) {
 			this.rows = rowsCollection;

@@ -27,6 +27,9 @@ define([
 				rowView.parent = this;
 				this.rowViews.push(rowView);
 			}, this);
+			
+			this.rowModels.bind('add', this.addRow, this);
+			this.rowModels.bind('remove', this.removeRow, this);
 		},
 		render:	function() {
 			var tmpl = this.template(this.model.toJSON());
@@ -44,6 +47,21 @@ define([
 		getTemplate: function() {
 			var el = this.render().el;
 			return $('<p></p>').append(el).html();
+		},
+		addRow: function(row, rows, options) {
+			console.log(row);
+			var rowView = new RowView({
+				model: row
+			});
+			this.rowViews.push(rowView);
+			this.form.append(rowView.render().el);
+		},
+		removeRow: function(row, rows, options) {
+			console.log(row);	
+			console.log(options);
+
+			var rowView = this.rowViews.pop();
+			rowView.remove();
 		}
 	});
 
