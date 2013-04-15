@@ -9,6 +9,7 @@ define([
 				index: 0,
 				columnCount: 3,
 				layout: 'fit',
+				selected: false,
 				columns: []
 			};
 		},

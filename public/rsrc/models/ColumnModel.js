@@ -11,6 +11,7 @@ define(['backbone', 'm/FieldModel'], function(Backbone, FieldModel) {
 					label: '',
 					type: 'text',
 					value: '',// 可能是object
+					selected: false,
 					required: false
 				}
 			};
