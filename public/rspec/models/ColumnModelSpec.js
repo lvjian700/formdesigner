@@ -28,6 +28,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 				expect(json).toEqual({
 					index: 0,
 					colspan: 1,
+					selected: false,
 					content: {
 						id: '',
 						name: '',
@@ -61,6 +62,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 				expect(json).toEqual({
 					index: 0,
 					colspan: 1,
+					selected: false,
 					content: {
 						id:'title_field',
 						name: 'title',
@@ -77,6 +79,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 				var config = {
 					index: 0,
 					colspan: 1,
+					selected: false,
 					content: {
 						id:'title_field',
 						name: 'title',

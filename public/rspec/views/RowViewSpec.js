@@ -17,9 +17,11 @@ define([
 			index: 0,
 			columnCount: 3,
 			layout: 'fit',
+			selected: false
 			columns: [{
 				index: 0,
 				colspan: 1,
+				selected: false
 				content: {
 					id: 'author_field',
 					name: 'author',
@@ -31,6 +33,7 @@ define([
 			}, {
 				index: 1,
 				colspan: 1,
+				selected: false
 				content: {
 					id: 'createTime_field',
 					name: 'createTime',
@@ -42,6 +45,7 @@ define([
 			}, {
 				index: 2,
 				colspan: 1,
+				selected: false
 				content: {
 					id: 'timeLength_field',
 					name: 'timeLength',
@@ -107,7 +111,6 @@ define([
 					expect(view.$el).not.toHaveClass('row-3');
 					expect(view.$el).toHaveClass('row-2');
 				});
-
 			});
 
 			describe('使用fullconfig构造', function() {
@@ -163,6 +166,34 @@ define([
 					expect(jcell).toContain('label');
 					expect(jcell).toContain('input:text');
 				});
+			});
+
+			it('model.selected初始化状态为true时，显示背景色', function() {
+				var selectedModel = new RowModel(fullModel.toJSON());
+				selectedModel.set({
+					selected: true
+				});
+				var selectedView = new RowView({
+					model: selectedModel
+				});
+				expect(selectedView.model.get('selected')).toEqual(true);
+
+				var el = selectedView.render().el;
+				expect(el).toHaveClass('row-selected');
+			});
+
+			it('修改model.selected状态会改变行背景色', function() {
+				fullView.render().el;
+				fullView.model.set({
+					selected: true
+				});
+				expect(fullView.el).toHaveClass('row-selected');
+
+				fullView.model.set({
+					selected: false 
+				});
+				expect(fullView.el).not.toHaveClass('row-selected');
+
 			});
 		});
 

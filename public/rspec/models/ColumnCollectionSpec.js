@@ -31,6 +31,7 @@ define([
 				config =  [{
 					index: 0,
 					colspan: 1,
+					selected: false,
 					content: {
 						id: 'author_field',
 						name: 'author',
@@ -42,6 +43,7 @@ define([
 				}, {
 					index: 1,
 					colspan: 1,
+					selected: false,
 					content: {
 						id: 'createTime_field',
 						name: 'createTime',
@@ -53,6 +55,7 @@ define([
 				}, {
 					index: 2,
 					colspan: 1,
+					selected: false,
 					content: {
 						id: 'timeLength_field',
 						name: 'timeLength',

@@ -13,6 +13,7 @@ define([
 			config =  [{
 				index: 0,
 				colspan: 1,
+				selected: false,
 				content: {
 					id: 'author_field',
 					name: 'author',
@@ -24,6 +25,7 @@ define([
 			}, {
 				index: 1,
 				colspan: 1,
+				selected: false,
 				content: {
 					id: 'createTime_field',
 					name: 'createTime',
@@ -35,6 +37,7 @@ define([
 			}, {
 				index: 2,
 				colspan: 1,
+				selected: false,
 				content: {
 					id: 'timeLength_field',
 					name: 'timeLength',
@@ -74,6 +77,10 @@ define([
 					expect(columns.constructor === Array);
 				});
 
+			it('默认selected属性为false', function() {
+				expect(model.get('selected')).toBe(false);
+			});
+
 			it("测试setColumns & getColumns", function() {
 				var changedSpy = jasmine.createSpy('chanagedSpy');	
 				model.bind('change:columns', changedSpy);
@@ -89,6 +96,7 @@ define([
 				expect(json).toEqual({
 					index: 0,
 					columnCount: 3,
+					selected: false,
 					layout: 'fit',
 					columns: config
 				});
