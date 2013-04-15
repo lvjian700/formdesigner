@@ -5,18 +5,24 @@ define(['backbone', 'm/FieldModel'], function(Backbone, FieldModel) {
 			return {
 				index: 0,
 				colspan: 1,
+				selected: false,
 				content: {
 					id: '',
 					name: '',
 					label: '',
 					type: 'text',
 					value: '',// 可能是object
-					selected: false,
 					required: false
 				}
 			};
 		},
 		initialize: function() {
+			if(this.get('selected') == undefined) {
+				this.set({
+					selected: false
+				}, { silent: true});
+			}
+
 			var c_json = this.get('content');
 			this.content = new FieldModel(c_json);
 			this.content.parent = this;

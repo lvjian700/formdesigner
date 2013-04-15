@@ -14,6 +14,12 @@ define([
 			};
 		},
 		initialize:	function() {
+			if(this.get('selected') == undefined) {
+				this.set({
+					selected: false
+				}, { silent: true});
+			}
+
 			var c_json = this.get('columns');
 			this.columns = new ColumnCollection(c_json);
 			this.columns.parent = this;
