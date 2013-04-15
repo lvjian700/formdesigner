@@ -49,7 +49,6 @@ define([
 			return $('<p></p>').append(el).html();
 		},
 		addRow: function(row, rows, options) {
-			console.log(row);
 			var rowView = new RowView({
 				model: row
 			});
@@ -57,9 +56,6 @@ define([
 			this.form.append(rowView.render().el);
 		},
 		removeRow: function(row, rows, options) {
-			console.log(row);	
-			console.log(options);
-
 			var rowView = this.rowViews.pop();
 			rowView.remove();
 		}
