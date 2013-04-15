@@ -5,9 +5,10 @@ define([
 	'm/RowModel',
 	'm/RowCollection',
 	'm/FormModel',
-	'v/FormView'
+	'v/FormView',
+	'm/emptyrow'
 ], function(FieldModel, ColumnModel, ColumnCollection, RowModel,
-		RowCollection, FormModel, FormView) {
+		RowCollection, FormModel, FormView, emptyRow) {
 
 	return describe('测试FormModel & View', function() {
 
@@ -142,6 +143,36 @@ define([
 				expect(ret.constructor).toEqual(RowCollection);
 				expect(ret).toBe(collection);
 			});
+
+			it("addRow添加新行，并且this.rows触发add事件", function() {
+				var rowList = model.getRows();
+				expect(rowList.constructor === RowCollection);
+				expect(rowList.size() == 0);
+				var changedSpy = jasmine.createSpy('chanagedSpy');	
+
+				rowList.bind('add', changedSpy);
+				var data = emptyRow();	
+				model.addRow(data);
+				expect(changedSpy).toHaveBeenCalled();
+
+				expect(rowList.size() == 1);
+			});
+
+			it("removeLastRow删除最后一行，并且this.rows触发delete事件", 
+					function() {
+				var data = emptyRow();	
+				model.addRow(data);
+
+				var rowList = model.getRows();
+				expect(rowList.size()).toEqual(1);
+
+				var changedSpy = jasmine.createSpy('chanagedSpy');	
+				rowList.bind('remove', changedSpy);
+				model.removeLastRow();
+				expect(changedSpy).toHaveBeenCalled();
+
+				expect(rowList.size()).toEqual(0);
+			});
 		});
 
 		describe('使用full config初始化', function() {
@@ -252,6 +283,27 @@ define([
 				var jform = jel.find('form');
 				expect(jform.attr('id')).toEqual('news-form');
 				expect(jform).toContain('div.row-3');
+			});
+
+			it('添加行后，view应该新建行', function() {
+				formView.render();
+				var jrows = formView.$el.find("div[class^='row']");
+				var numBefore = jrows.length;
+
+				var data = emptyRow();
+				formView.model.addRow(data);
+				var numAfter = formView.$el.find("div[class^='row']").length;
+				expect(numAfter).toEqual(numBefore + 1);
+			});
+
+			it('删除行后, view应该减少行', function() {
+				formView.render();
+				var jrows = formView.$el.find("div[class^='row']");
+				var numBefore = jrows.length;
+
+				formView.model.removeLastRow();
+				var numAfter = formView.$el.find("div[class^='row']").length;
+				expect(numAfter).toEqual(numBefore - 1);
 			});
 		});
 	});
