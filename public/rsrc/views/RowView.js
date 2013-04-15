@@ -9,6 +9,7 @@ define([
 	var RowView = Backbone.View.extend({
 		tagName: 'div',
 		events: {
+			'click': 'onSelect'
 		},
 		initialize: function() {
 			var count = this.model.get('columnCount');
@@ -30,12 +31,16 @@ define([
 			}, this);
 
 			this.model.bind('change:columnCount', this.columnCountUpdated, this);
+			this.model.bind('change:selected', this.selectChanged, this);
 		},
 		render: function() {
 			_.each(this.columnViews, function(colView) {
 				var colEl = colView.render().el;
 				this.$el.append(colEl);
 			}, this);
+
+			this.$el.click(function() {
+			});
 
 			return this;
 		},
@@ -66,6 +71,24 @@ define([
 		onRemoved: function() {
 				
 			this.unbind();
+		},
+		onSelect: function() {
+			var currentSelected = this.model.get('selected');
+
+			this.model.set({
+				selected: !currentSelected
+			});
+		},
+		selectChanged: function() {
+			console.log('show select...');
+			var selected = this.model.get('selected');
+
+			if(selected) {
+				$(this.el).addClass('row-selected');
+				return;
+			}
+
+			$(this.el).removeClass('row-selected');
 		}
 	});
 
