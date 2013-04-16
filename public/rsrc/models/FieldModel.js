@@ -39,6 +39,18 @@ define(['backbone'], function() {
 		},
 		setRequired: function(required) {
 			this.set({required: required});
+		},
+		toPlain: function(options){
+			var required = this.isRequired() ? 1 : 0;
+			var array = [
+				options.index, this.getName(), this.get('label'), 
+				options.columnIndex, options.rowIndex, options.width,
+				required, 1];	
+
+			var plainConfig = array.join(',');
+			plainConfig = plainConfig + ";";
+
+			return plainConfig;
 		}
 	});
 

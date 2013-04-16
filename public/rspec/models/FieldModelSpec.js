@@ -57,5 +57,25 @@ define(['models/FieldModel'], function(FieldModel) {
 				expect(textField.isRequired()).toEqual(false);
 			});
 
+		it("json格式field转换成老版本的新闻配置", function() {
+			var jsonModel = new FieldModel({
+				id: 'NewsTitle_field',
+				name: 'NewsTitle',
+				label: '标题',
+				type: 'text',
+				value: '',
+				required: true
+			});
+
+			var plain = jsonModel.toPlain({
+				index: 0,
+				columnIndex: 0,
+				rowIndex: 0,
+				width: 100
+			});
+			
+			expect(plain).toEqual('0,NewsTitle,标题,0,0,100,1,1;');
+		});
+
 	});
 });
