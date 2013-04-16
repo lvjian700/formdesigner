@@ -7,17 +7,20 @@ define([
 
 	var ColumnView = Backbone.View.extend({
 		tagName: 'div',
+		className: 'column',
 		events: {
 
 		},
 
 		initialize: function () {
-			var colspan = this.model.get('colspan');
-			var cls = 'col-' + colspan;
-			this.$el.addClass(cls);
+			var width = this.model.get('width');
+			var widthAttr = width <= 1 ? width * 100 + '%' : width + 'px';
+			this.$el.css({
+				width: widthAttr
+			})
 
 			this.model.bind('change:content', this.contentUpdated, this);
-			this.model.bind('change:colspan', this.colspanUpdated, this);
+			this.model.bind('change:width', this.widthUpdated, this);
 			
 			var fieldModel = this.model.getContent();
 
@@ -36,6 +39,15 @@ define([
 			var el = this.render().el;
 			return $('<p></p>').append(el).html();
 		},
+		widthUpdated: function(e) {
+			var width = this.model.get('width');
+
+			var widthAttr = width <= 1 ? width * 100 + '%' : width + 'px';
+
+			this.$el.css({
+				width: widthAttr
+			});
+		},
 		contentUpdated: function(e) {
 			this.clearView();
 			
@@ -50,15 +62,6 @@ define([
 		clearView: function() {
 			this.contentView.remove();	
 			this.$el.empty();
-		},
-		colspanUpdated: function(e) {
-			var preview = this.model.previous('colspan');
-			var preCls = 'col-' + preview;
-			
-			var colspan = this.model.get('colspan');
-			var cls = 'col-' + colspan;
-
-			this.$el.addClass(cls).removeClass(preCls);
 		}
 	});
 

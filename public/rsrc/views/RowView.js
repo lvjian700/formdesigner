@@ -8,16 +8,17 @@ define([
 
 	var RowView = Backbone.View.extend({
 		tagName: 'div',
+		className: 'row',
 		events: {
 			'click': 'onSelect'
 		},
 		initialize: function() {
-			var count = this.model.get('columnCount');
-			var cls = 'row-' + count;
-			this.$el.addClass(cls);
-
 			var layout = this.model.get('layout');
 			this.$el.addClass(layout);
+
+			if(this.model.get('selected') == true) {
+				this.$el.addClass('row-selected');
+			}
 
 			this.columnModels = this.model.getColumns();
 			this.columnViews = [];
@@ -30,7 +31,6 @@ define([
 				this.columnViews.push(colView);
 			}, this);
 
-			this.model.bind('change:columnCount', this.columnCountUpdated, this);
 			this.model.bind('change:selected', this.selectChanged, this);
 		},
 		render: function() {
@@ -38,9 +38,6 @@ define([
 				var colEl = colView.render().el;
 				this.$el.append(colEl);
 			}, this);
-
-			this.$el.click(function() {
-			});
 
 			return this;
 		},
@@ -55,23 +52,6 @@ define([
 
 			this.$el.empty();
 		},
-		columnCountUpdated: function() {
-			var pre = this.model.previous('columnCount');
-			var count = this.model.get('columnCount');
-
-			this.$el.removeClass('row-' + pre)
-				.addClass('row-' + count);
-		},
-		columnAdded: function() {
-		},
-		columnDeleted: function() {
-		},
-		columnUpdated: function() {
-		},
-		onRemoved: function() {
-				
-			this.unbind();
-		},
 		onSelect: function() {
 			var currentSelected = this.model.get('selected');
 
@@ -80,7 +60,6 @@ define([
 			});
 		},
 		selectChanged: function() {
-			console.log('show select...');
 			var selected = this.model.get('selected');
 
 			if(selected) {

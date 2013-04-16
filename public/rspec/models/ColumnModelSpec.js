@@ -12,10 +12,10 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 			model = null;
 		});
 
-		it("默认数据必须是这样:{index: 0, colspan:1, content: FieldModel}",
+		it("默认数据必须是这样:{index: 0, width:1, content: FieldModel}",
 			function() {
 				expect(model.get('index')).toBe(0);
-				expect(model.get('colspan')).toBe(1);
+				expect(model.get('width')).toBe(0.0);
 				expect(model.constructor === ColumnModel);
 
 				var content = model.get('content');
@@ -27,7 +27,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 				var json = model.toJSON();
 				expect(json).toEqual({
 					index: 0,
-					colspan: 1,
+					width: 0.0,
 					selected: false,
 					content: {
 						id: '',
@@ -61,7 +61,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 				var json = model.toJSON();
 				expect(json).toEqual({
 					index: 0,
-					colspan: 1,
+					width: 0.0,
 					selected: false,
 					content: {
 						id:'title_field',
@@ -78,7 +78,7 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 			function() {
 				var config = {
 					index: 0,
-					colspan: 1,
+					width: 1.0,
 					selected: false,
 					content: {
 						id:'title_field',

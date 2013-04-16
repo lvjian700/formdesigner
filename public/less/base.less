@@ -18,6 +18,8 @@ body {
 	min-height: @minHeight;
 	background-color: #fff
 }
+.column {
+}
 
 .cell {
 	label {
@@ -41,41 +43,14 @@ body {
 	*/
 }
 
-.inputStyle(@colCount, @colspan) {
+.row {
+	float: left;
 	.cell {
-		input {
-			width: @minWidth / @colCount * @colspan - 20px;
-		}
-		select {
-			width: @minWidth / @colCount * @colspan - 10px;
-		}
+		padding: 0px 6px; 
+		margin-bottom: 12px;
 	}
 }
 
-.cellWidth(@colCount, @colSpan) {
-	width: @minWidth / @colCount * @colSpan
-}
-
-.fit {
-	.row-1, row-2, .row-3, .col-1, .col-2, .col-3 {
-		float: left;
-		.cell {
-			padding: 0px 6px; 
-			margin-bottom: 12px;
-		}
-	}
-	.row-1 {
-		.col-1 {
-			.cellWidth(1, 1);
-		}
-	}
-
-	.row-3 {
-		.col-1 {
-			.cellWidth(3, 1);
-		}
-	}
-}
 .row-selected {
 	border-bottom: solid 1px #ccc;
 	background-color: #f7f7f7;

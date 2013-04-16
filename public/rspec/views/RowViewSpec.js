@@ -17,11 +17,11 @@ define([
 			index: 0,
 			columnCount: 3,
 			layout: 'fit',
-			selected: false
+			selected: false,
 			columns: [{
 				index: 0,
 				colspan: 1,
-				selected: false
+				selected: false,
 				content: {
 					id: 'author_field',
 					name: 'author',
@@ -33,7 +33,7 @@ define([
 			}, {
 				index: 1,
 				colspan: 1,
-				selected: false
+				selected: false,
 				content: {
 					id: 'createTime_field',
 					name: 'createTime',
@@ -45,7 +45,7 @@ define([
 			}, {
 				index: 2,
 				colspan: 1,
-				selected: false
+				selected: false,
 				content: {
 					id: 'timeLength_field',
 					name: 'timeLength',
@@ -93,24 +93,6 @@ define([
 					expect(view.columnViews.length).toBe(0);
 				});
 
-				it('创建的div需要包含.row-{columnCount}的css样式', function() {
-
-					var el = view.render().el;
-					var jel = $(el);
-
-					expect(jel).toHaveClass('row-3');
-				});
-				
-				it('改变model.columnCount,会更新div.row-*的css样式', function() {
-					var el = view.render().el;
-					var jel = $(el);
-
-					expect(jel).toHaveClass('row-3');
-
-					view.model.set({columnCount: 2});
-					expect(view.$el).not.toHaveClass('row-3');
-					expect(view.$el).toHaveClass('row-2');
-				});
 			});
 
 			describe('使用fullconfig构造', function() {
@@ -149,17 +131,17 @@ define([
 				$('#bbd').append(renderedEl);
 			});
 			
-			it('渲染后的结构应该是: div.row-3>div.col-1>div.cell', function() {
+			it('渲染后的结构应该是: div.row>div.column>div.cell', function() {
 				var el = fullView.render().el;
 				var jel = $(el);
 
-				expect(jel).toHaveClass('row-3');
-				expect(jel).toContain('div.col-1');
+				expect(jel).toHaveClass('row');
+				expect(jel).toContain('div.column');
 
-				var jcols = jel.find('col-1');
+				var jcols = jel.find('column');
 
 				jcols.each(function(i, n) {
-					expect(n).toJaveClass('col-1');
+					expect(n).toJaveClass('column');
 					expect(n).toContain('div.cell');
 
 					jcell = n.find('div.cell');

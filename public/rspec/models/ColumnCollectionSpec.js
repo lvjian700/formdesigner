@@ -30,7 +30,7 @@ define([
 			beforeEach(function() {
 				config =  [{
 					index: 0,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'author_field',
@@ -42,7 +42,7 @@ define([
 					}
 				}, {
 					index: 1,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'createTime_field',
@@ -54,7 +54,7 @@ define([
 					}
 				}, {
 					index: 2,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'timeLength_field',

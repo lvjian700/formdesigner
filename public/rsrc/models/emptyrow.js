@@ -3,11 +3,10 @@ define([
 	function emptyRowJson (rowIndex) {
 		var rowsCfg = {
 			index: rowIndex,
-			columnCount: 3,
 			layout: 'fit',
 			columns: [{
 				index: 0,
-				colspan: 1,
+				width: 0.33,
 				content: {
 					id: 'creater_field',
 					name: 'creater',
@@ -18,7 +17,7 @@ define([
 				}
 			}, {
 				index: 1,
-				colspan: 1,
+				width: 0.33,
 				content: {
 					id: 'createTime_field',
 					name: 'createTime',
@@ -29,7 +28,7 @@ define([
 				}
 			}, {
 				index: 2,
-				colspan: 1,
+				width: 0.33,
 				content: {
 					id: 'videoLength_field',
 					name: 'videoLength',

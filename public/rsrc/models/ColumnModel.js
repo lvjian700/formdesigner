@@ -4,7 +4,7 @@ define(['backbone', 'm/FieldModel'], function(Backbone, FieldModel) {
 		defaults: function() {
 			return {
 				index: 0,
-				colspan: 1,
+				width: 0.0,
 				selected: false,
 				content: {
 					id: '',

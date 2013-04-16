@@ -21,12 +21,12 @@ define([
 
 			rowsConfig = [{
 				index: 0,
-				columnCount: 3,
+				
 				layout: 'fit',
 				selected: false,
 				columns: [{
 					index: 0,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'author_field',
@@ -38,7 +38,7 @@ define([
 					}
 				}, {
 					index: 1,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'createTime_field',
@@ -50,7 +50,7 @@ define([
 					}
 				}, {
 					index: 2,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'timeLength_field',
@@ -63,12 +63,12 @@ define([
 				}]
 			}, {
 				index: 1,
-				columnCount: 3,
+				
 				layout: 'fit',
 					selected: false,
 				columns: [{
 					index: 0,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'author_field',
@@ -80,7 +80,7 @@ define([
 					}
 				}, {
 					index: 1,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'createTime_field',
@@ -92,7 +92,7 @@ define([
 					}
 				}, {
 					index: 2,
-					colspan: 1,
+					width: 0.33,
 					selected: false,
 					content: {
 						id: 'timeLength_field',
@@ -290,27 +290,27 @@ define([
 				
 				var jform = jel.find('form');
 				expect(jform.attr('id')).toEqual('news-form');
-				expect(jform).toContain('div.row-3');
+				expect(jform).toContain('div.row');
 			});
 
 			it('添加行后，view应该新建行', function() {
 				formView.render();
-				var jrows = formView.$el.find("div[class^='row']");
+				var jrows = formView.$el.find("div.row");
 				var numBefore = jrows.length;
 
 				var data = emptyRow();
 				formView.model.addRow(data);
-				var numAfter = formView.$el.find("div[class^='row']").length;
+				var numAfter = formView.$el.find("div.row").length;
 				expect(numAfter).toEqual(numBefore + 1);
 			});
 
 			it('删除行后, view应该减少行', function() {
 				formView.render();
-				var jrows = formView.$el.find("div[class^='row']");
+				var jrows = formView.$el.find("div.row");
 				var numBefore = jrows.length;
 
 				formView.model.removeLastRow();
-				var numAfter = formView.$el.find("div[class^='row']").length;
+				var numAfter = formView.$el.find("div.row").length;
 				expect(numAfter).toEqual(numBefore - 1);
 			});
 		});

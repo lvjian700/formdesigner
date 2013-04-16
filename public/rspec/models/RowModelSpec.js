@@ -12,7 +12,7 @@ define([
 		beforeEach(function() {
 			config =  [{
 				index: 0,
-				colspan: 1,
+				width: 0.33,
 				selected: false,
 				content: {
 					id: 'author_field',
@@ -24,7 +24,7 @@ define([
 				}
 			}, {
 				index: 1,
-				colspan: 1,
+				width: 0.33,
 				selected: false,
 				content: {
 					id: 'createTime_field',
@@ -36,7 +36,7 @@ define([
 				}
 			}, {
 				index: 2,
-				colspan: 1,
+				width: 0.33,
 				selected: false,
 				content: {
 					id: 'timeLength_field',
@@ -70,7 +70,6 @@ define([
 				function() {
 					expect(model.constructor === RowModel);
 					expect(model.get('index')).toBe(0);
-					expect(model.get('columnCount')).toBe(3);
 					expect(model.get('layout')).toBe('fit');
 
 					var columns = model.get('columns');
@@ -95,7 +94,6 @@ define([
 				var json = model.toJSON();
 				expect(json).toEqual({
 					index: 0,
-					columnCount: 3,
 					selected: false,
 					layout: 'fit',
 					columns: config
@@ -110,7 +108,7 @@ define([
 			var model = null;
 		
 			beforeEach(function() {
-				fullConfig = {index: 1, columnCount:3, layout: 'fit',  
+				fullConfig = {index: 1, layout: 'fit',  
 					columns: config };	
 
 				model = new RowModel(fullConfig); 	
@@ -118,7 +116,6 @@ define([
 
 			it('确定初始化后，各项参数正确', function() {
 				expect(model.get('index')).toEqual(1);
-				expect(model.get('columnCount')).toEqual(3);
 				expect(model.get('layout')).toEqual('fit');
 				expect(model.get('columns')).toEqual(config);
 				
