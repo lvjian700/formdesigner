@@ -6,15 +6,43 @@ body {
 	font-size: 13px;
 }
 
-#header, #formcanvas {
-	width: @minWidth;
+#header {
+	width: 100%;
 	min-width: @minWidth;
-	overflow: auto;
-	margin: 20px auto;
+	overflow: none;
+	height: 60px;
+}
+
+#left-panel {
+	position: absolute;
+	left: 0px;
+	top: 60px;
+	bottom: 0px;
+	width: 220px;
+}
+#center-panel {
+	position: absolute;
+	left: 220px;
+	top: 60px;
+	bottom: 0px;
+	width: 950px;
+}
+#right-panel {
+	position: absolute;
+	left: 1170px;
+	top: 60px;
+	bottom: 0px;
+	width: 220px;
+}
+
+#formcanvas {
+	width: 920px;
+	min-width: 940px;
+	min-height: 550px;
 }
 
 .form-wrapper {
-	width: 920px;
+	width: 940px;
 	height: @minHeight;
 	min-height: @minHeight;
 	background-color: #fff
@@ -48,9 +76,14 @@ body {
 
 .form-row {
 	float: left;
+	width: 940px;
 	.form-cell {
 		padding: 0px 6px; 
 	}
+}
+
+.form-row:hover {
+	background-color: #f7f7f7;
 }
 
 .form-row-selected {
