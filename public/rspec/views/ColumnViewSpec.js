@@ -29,13 +29,13 @@ define(['jquery','m/ColumnModel', 'v/ColumnView', 'm/FieldModel',
 					expect(view.contentView.constructor).toEqual(FieldView);
 				});
 			
-			it('创建column div需要包含.column的css样式',
+			it('创建column div需要包含.form-column的css样式',
 				function() {
 					var el = view.render().el;
 					var jel = $(el);	
 					
-					expect(jel).toHaveClass('column');
-					expect(jel).toContain('div.cell');
+					expect(jel).toHaveClass('form-column');
+					expect(jel).toContain('div.form-cell');
 				});
 
 		});
@@ -55,7 +55,7 @@ define(['jquery','m/ColumnModel', 'v/ColumnView', 'm/FieldModel',
 					view.model.set({width: 0.5});
 					var widthAttr = view.el.style.width;
 
-					expect(widthAttr).toBe('50%');
+					expect(widthAttr).toBe('450px');
 				});
 
 			it('更新model.content后,调用contentUpdated方法重绘content',
@@ -74,8 +74,8 @@ define(['jquery','m/ColumnModel', 'v/ColumnView', 'm/FieldModel',
 					var el = view.render().el;
 					var jel = $(el);	
 					
-					expect(jel).toHaveClass('column');
-					expect(jel).toContain('div.cell');
+					expect(jel).toHaveClass('form-column');
+					expect(jel).toContain('div.form-cell');
 
 					var fieldView = view.contentView;
 					expect(fieldView.constructor).toEqual(FieldView);

@@ -8,7 +8,7 @@ define([
 ],function($, moment, Core, FieldView, tmpl) {
 	
 	var DateFieldView = FieldView.extend({
-		className: 'cell input-append controls bootstrap-timepicker-component',
+		className: 'form-cell input-append controls bootstrap-timepicker-component',
 		template: Core.read_tmpl(tmpl),
 		events: {
 			'changeDate input': "onChanged"

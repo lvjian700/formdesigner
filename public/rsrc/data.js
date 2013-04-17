@@ -2,11 +2,10 @@ define([
 ], function() {
 	var rowsConfig = [{
 		index: 0,
-		columnCount: 1,
 		layout: 'fit',
 		columns: [{
 			index: 0,
-			colspan: 1,
+			width: 1,
 			content: {
 				id: 'newsTitle_field',
 				name: 'newsTitle',
@@ -18,11 +17,10 @@ define([
 		}]
 	}, {
 		index: 1,
-		columnCount: 3,
 		layout: 'fit',
 		columns: [{
 			index: 0,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'creater_field',
 				name: 'creater',
@@ -33,7 +31,7 @@ define([
 			}
 		}, {
 			index: 1,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'createTime_field',
 				name: 'createTime',
@@ -44,7 +42,7 @@ define([
 			}
 		}, {
 			index: 2,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'videoLength_field',
 				name: 'videoLength',
@@ -56,11 +54,10 @@ define([
 		}]
 	}, {
 		index: 2,
-		columnCount: 3,
 		layout: 'fit',
 		columns: [{
 			index: 0,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'reporter_field',
 				name: 'reporter',
@@ -71,7 +68,7 @@ define([
 			}
 		}, {
 			index: 1,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'camerist_field',
 				name: 'camerist',
@@ -82,7 +79,7 @@ define([
 			}
 		}, {
 			index: 2,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'assistant_field',
 				name: 'assistant',
@@ -94,11 +91,10 @@ define([
 		}]
 	}, {
 		index: 3,
-		columnCount: 3,
 		layout: 'fit',
 		columns: [{
 			index: 0,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'newsKeyword_field',
 				name: 'newsKeyword',
@@ -109,7 +105,7 @@ define([
 			}
 		}, {
 			index: 1,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'dubMan_field',
 				name: 'dubMan',
@@ -120,7 +116,7 @@ define([
 			}
 		}, {
 			index: 2,
-			colspan: 1,
+			width: 0.33,
 			content: {
 				id: 'batMan_field',
 				name: 'batMan',

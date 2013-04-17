@@ -14,14 +14,17 @@ body {
 }
 
 .form-wrapper {
+	width: 920px;
 	height: @minHeight;
 	min-height: @minHeight;
 	background-color: #fff
 }
-.column {
+.form-column {
+	float: left;
+	margin-bottom: 12px;
 }
 
-.cell {
+.form-cell {
 	label {
 		display: block;
 		line-height: 18px;
@@ -43,15 +46,14 @@ body {
 	*/
 }
 
-.row {
+.form-row {
 	float: left;
-	.cell {
+	.form-cell {
 		padding: 0px 6px; 
-		margin-bottom: 12px;
 	}
 }
 
-.row-selected {
+.form-row-selected {
 	border-bottom: solid 1px #ccc;
 	background-color: #f7f7f7;
 }

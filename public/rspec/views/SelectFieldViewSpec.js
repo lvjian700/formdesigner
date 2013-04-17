@@ -44,12 +44,12 @@ define([
 					expect(model.get('label')).toEqual('角色');			
 				});
 
-			it("Render Template包含.cell, label和select等基本结构", 
+			it("Render Template包含.form-cell, label和select等基本结构", 
 				function() {
 					var el = fieldView.render().el;
 					var jel = $(el);
 
-					expect(jel).toBe('div.cell');
+					expect(jel).toBe('div.form-cell');
 					expect(jel).toContain('label');	
 					expect(jel).toContain('select');	
 				});
@@ -59,7 +59,7 @@ define([
 					jasmine.any('string');
 
 					var jel = $(html);
-					expect(jel).toBe('div.cell');
+					expect(jel).toBe('div.form-cell');
 					expect(jel).toContain('label');	
 					expect(jel).toContain('select');	
 				});	

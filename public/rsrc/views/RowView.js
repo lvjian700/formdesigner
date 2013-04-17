@@ -8,7 +8,7 @@ define([
 
 	var RowView = Backbone.View.extend({
 		tagName: 'div',
-		className: 'row',
+		className: 'form-row',
 		events: {
 			'click': 'onSelect'
 		},
@@ -17,7 +17,7 @@ define([
 			this.$el.addClass(layout);
 
 			if(this.model.get('selected') == true) {
-				this.$el.addClass('row-selected');
+				this.$el.addClass('form-row-selected');
 			}
 
 			this.columnModels = this.model.getColumns();
@@ -63,11 +63,11 @@ define([
 			var selected = this.model.get('selected');
 
 			if(selected) {
-				$(this.el).addClass('row-selected');
+				$(this.el).addClass('form-row-selected');
 				return;
 			}
 
-			$(this.el).removeClass('row-selected');
+			$(this.el).removeClass('form-row-selected');
 		}
 	});
 

@@ -290,27 +290,27 @@ define([
 				
 				var jform = jel.find('form');
 				expect(jform.attr('id')).toEqual('news-form');
-				expect(jform).toContain('div.row');
+				expect(jform).toContain('div.form-row');
 			});
 
 			it('添加行后，view应该新建行', function() {
 				formView.render();
-				var jrows = formView.$el.find("div.row");
+				var jrows = formView.$el.find("div.form-row");
 				var numBefore = jrows.length;
 
 				var data = emptyRow();
 				formView.model.addRow(data);
-				var numAfter = formView.$el.find("div.row").length;
+				var numAfter = formView.$el.find('div.form-row').length;
 				expect(numAfter).toEqual(numBefore + 1);
 			});
 
 			it('删除行后, view应该减少行', function() {
 				formView.render();
-				var jrows = formView.$el.find("div.row");
+				var jrows = formView.$el.find('div.form-row');
 				var numBefore = jrows.length;
 
 				formView.model.removeLastRow();
-				var numAfter = formView.$el.find("div.row").length;
+				var numAfter = formView.$el.find('div.form-row').length;
 				expect(numAfter).toEqual(numBefore - 1);
 			});
 		});

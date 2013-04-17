@@ -8,7 +8,7 @@ define([
 
 	var TimelengthView = FieldView.extend({
 		tagName: 'div',
-		className: 'cell input-append bootstrap-timepicker-component controls',
+		className: 'form-cell input-append bootstrap-timepicker-component controls',
 		template: Core.read_tmpl(tmpl),
 		onRender: function() {
 			this.inputTag.timepicker({

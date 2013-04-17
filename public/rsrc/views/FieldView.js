@@ -7,7 +7,7 @@ define([
 
 	var FieldView = Backbone.View.extend({
 		tagName: 'div',
-		className: 'cell',
+		className: 'form-cell',
 		template: Core.read_tmpl(tmpl),
 
 		events: {

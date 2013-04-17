@@ -15,12 +15,11 @@ define([
 
 		var rowConfig = {
 			index: 0,
-			columnCount: 3,
 			layout: 'fit',
 			selected: false,
 			columns: [{
 				index: 0,
-				colspan: 1,
+				width: 1.0,
 				selected: false,
 				content: {
 					id: 'author_field',
@@ -32,7 +31,7 @@ define([
 				}
 			}, {
 				index: 1,
-				colspan: 1,
+				width: 0.33,
 				selected: false,
 				content: {
 					id: 'createTime_field',
@@ -44,7 +43,7 @@ define([
 				}
 			}, {
 				index: 2,
-				colspan: 1,
+				width: 0.33,
 				selected: false,
 				content: {
 					id: 'timeLength_field',
@@ -131,12 +130,12 @@ define([
 				$('#bbd').append(renderedEl);
 			});
 			
-			it('渲染后的结构应该是: div.row>div.column>div.cell', function() {
+			it('渲染后的结构应该是: div.form-row>div.form-column>div.form-cell', function() {
 				var el = fullView.render().el;
 				var jel = $(el);
 
-				expect(jel).toHaveClass('row');
-				expect(jel).toContain('div.column');
+				expect(jel).toHaveClass('form-row');
+				expect(jel).toContain('div.form-column');
 
 				var jcols = jel.find('column');
 
@@ -161,7 +160,7 @@ define([
 				expect(selectedView.model.get('selected')).toEqual(true);
 
 				var el = selectedView.render().el;
-				expect(el).toHaveClass('row-selected');
+				expect(el).toHaveClass('form-row-selected');
 			});
 
 			it('修改model.selected状态会改变行背景色', function() {
@@ -169,12 +168,12 @@ define([
 				fullView.model.set({
 					selected: true
 				});
-				expect(fullView.el).toHaveClass('row-selected');
+				expect(fullView.el).toHaveClass('form-row-selected');
 
 				fullView.model.set({
 					selected: false 
 				});
-				expect(fullView.el).not.toHaveClass('row-selected');
+				expect(fullView.el).not.toHaveClass('form-row-selected');
 
 			});
 		});

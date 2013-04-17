@@ -4,21 +4,21 @@ define([
 	'v/FieldView'
 
 ], function($, Backbone, ColumnModel, FieldView ) {
+		
+	function calculateWidth (width) {
+		var widthAttr = (width <= 1) ? width * 900 : width;
+
+		return widthAttr;
+	}
 
 	var ColumnView = Backbone.View.extend({
 		tagName: 'div',
-		className: 'column',
+		className: 'form-column',
 		events: {
 
 		},
 
 		initialize: function () {
-			var width = this.model.get('width');
-			var widthAttr = width <= 1 ? width * 100 + '%' : width + 'px';
-			this.$el.css({
-				width: widthAttr
-			})
-
 			this.model.bind('change:content', this.contentUpdated, this);
 			this.model.bind('change:width', this.widthUpdated, this);
 			
@@ -33,6 +33,11 @@ define([
 			var contentEl = this.contentView.render().el;
 			this.$el.html(contentEl);
 
+			var width = this.model.get('width');
+			this.$el.css({
+				width: calculateWidth(width)
+			})
+
 			return this;
 		},
 		getTemplate: function() {
@@ -41,11 +46,8 @@ define([
 		},
 		widthUpdated: function(e) {
 			var width = this.model.get('width');
-
-			var widthAttr = width <= 1 ? width * 100 + '%' : width + 'px';
-
 			this.$el.css({
-				width: widthAttr
+				width: calculateWidth(width) 
 			});
 		},
 		contentUpdated: function(e) {
