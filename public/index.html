@@ -37,8 +37,33 @@
 			<form action="prop-form" method="get" accept-charset="utf-8">
 				<table id="prop-table" border="0">
 					<tr>
-						<td></td>
-						<td></td>
+						<td><label for="ipt-name">字段名称:</label></td>
+						<td>
+							<input id="ipt-name" type="text" name="name" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="ipt-label">Label:</label></td>
+						<td>
+							<input id="ipt-label" type="text" name="label" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="sel-type">Type:</label></td>
+						<td>
+							<select name="type" id="sel-type">
+								<option value="text">Text</option>
+								<option value="select">Select</option>
+								<option value="date">Date Picker</option>
+								<option value="timelength">Time Picker</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="ck-required">是否必填</label></td>
+						<td>
+							<input type="checkbox" name="required" value="1" />
+						</td>
 					</tr>
 				</table>
 			</form>
