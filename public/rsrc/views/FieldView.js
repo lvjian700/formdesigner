@@ -18,8 +18,7 @@ define([
 		 * 改变input中的name
 		 * */
 		initialize: function() {
-			this.model.bind('change:id change:name', this.nameUpdated, this);		
-			this.model.bind('change:value', this.valueUpdated, this);
+			this.model.bind('change', this.modelUpdated, this);		
 		},
 		render: function() {
 			var json = this.model.toJSON();
@@ -37,6 +36,13 @@ define([
 		getTemplate: function() {
 			var el = this.render().el;
 			return $('<p></p>').append(el).html();
+		},
+		modelUpdated: function() {
+			this.nameUpdated();
+			this.valueUpdated();
+
+			var label = this.model.getLabel();
+			this.label.text(label);
 		},
 		nameUpdated: function() {
 			var id = this.model.get('id');
