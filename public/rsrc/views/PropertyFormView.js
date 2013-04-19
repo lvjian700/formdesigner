@@ -31,8 +31,6 @@ define([
 			this.requiredCheck.attr('checked', required);
 		},
 		updateModel: function() {
-			console.log('data chagned...');
-			console.log(this.version);	
 			var name = this.nameInput.val();
 			this.fieldModel.setName(name);
 
