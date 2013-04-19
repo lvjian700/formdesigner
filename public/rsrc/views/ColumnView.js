@@ -15,12 +15,12 @@ define([
 		tagName: 'div',
 		className: 'form-column',
 		events: {
-
+			'click': 'onSelect'
 		},
-
 		initialize: function () {
 			this.model.bind('change:content', this.contentUpdated, this);
 			this.model.bind('change:width', this.widthUpdated, this);
+			this.model.bind('change:selected', this.selectedUpdated, this);
 			
 			var fieldModel = this.model.getContent();
 
@@ -60,6 +60,23 @@ define([
 			this.contentView.parent = this;
 
 			this.render();
+		},
+		onSelect: function() {
+			var selected = this.model.get('selected');
+			this.parent.parent.clearCellSelect();	
+
+			this.model.set({
+				selected: true	
+			});
+		},
+		selectedUpdated: function() {
+			this.$el.addClass('cell-selected');
+			var link = ['#cell', 
+				this.parent.model.get('index'),
+				this.model.get('index')
+			].join('/');
+
+			Backbone.history.navigate(link, {trigger: true});
 		},
 		clearView: function() {
 			this.contentView.remove();	
