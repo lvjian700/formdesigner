@@ -22,6 +22,12 @@ define(['backbone'], function() {
 		getName: function() {
 			return this.get('name');
 		},
+		getLabel: function() {
+			return this.get('label');
+		},
+		setLabel: function(label) {
+			this.set({label: label});
+		},
 		setValue: function(value) {
 			this.set({value: value});	
 		},

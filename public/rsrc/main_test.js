@@ -92,6 +92,7 @@ requirejs([
 		specs.push('spec/views/RowViewSpec');
 
 		specs.push('spec/FormSpec');
+		specs.push('spec/views/PropertyFormViewSpec');
 
 
 		$(function() {

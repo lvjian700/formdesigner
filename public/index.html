@@ -34,7 +34,7 @@
 	<div id="right-panel">
 		<div id="prop-editor">
 			<h3>Property Editor</h3>
-			<form action="prop-form" method="get" accept-charset="utf-8">
+			<form id="prop-form" method="get" accept-charset="utf-8">
 				<table id="prop-table" border="0">
 					<tr>
 						<td><label for="ipt-name">字段名称:</label></td>
@@ -62,7 +62,7 @@
 					<tr>
 						<td><label for="ck-required">是否必填</label></td>
 						<td>
-							<input type="checkbox" name="required" value="1" />
+							<input id='ck-required' type="checkbox" name="required" value="true" checked='false' />
 						</td>
 					</tr>
 				</table>
