@@ -12,7 +12,8 @@ define([
 		var view = new FormView({model:model});
 		var el = view.render().el;
 
-		var propertyForm = new PropertyFormView();
+		var propForm = new PropertyFormView();
+		propForm.render();
 
 		$('#formcanvas').append(el);
 
@@ -30,15 +31,16 @@ define([
 				'cell/:row/:column': 'editCell'
 			},
 			editCell: function(row, column) {
-				console.log('editing cell');
-				var column = model.getRows().at(row)
-					.getColumns().at(column);
-				var fieldModel = column.getContent().model;	
-				console.log(fieldModel);	
+				var currentRow = model.getRows().at(row);
+				var currentColumn = currentRow.getColumns().at(column);
+				var fieldModel = currentColumn.getContent();	
 				
-
+				propForm.loadData(fieldModel);
 			}
 		});
+		
+		router = new Workspace;
+		Backbone.history.start();
 	});
 });
 
