@@ -48,6 +48,13 @@ define([
 			var el = this.render().el;
 			return $('<p></p>').append(el).html();
 		},
+		clearCellSelect: function() {
+			this.rowModels.forEach(function(rowModel) {
+				rowModel.getColumns().forEach(function(columnModel) {
+					columnModel.set({selected: false});
+				});
+			});
+		},
 		addRow: function(row, rows, options) {
 			var rowView = new RowView({
 				model: row
