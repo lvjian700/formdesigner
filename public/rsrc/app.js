@@ -31,9 +31,11 @@ define([
 				'cell/:row/:column': 'editCell'
 			},
 			editCell: function(row, column) {
+				console.log('edit...');
 				var currentRow = model.getRows().at(row);
 				var currentColumn = currentRow.getColumns().at(column);
 				var fieldModel = currentColumn.getContent();	
+				console.log(fieldModel);
 				
 				propForm.loadData(fieldModel);
 			}
