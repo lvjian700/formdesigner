@@ -51,7 +51,6 @@ define([
 					currentColumn.set({
 						selected: true
 					});
-					return;
 				}
 
 				var fieldModel = currentColumn.getContent();	
