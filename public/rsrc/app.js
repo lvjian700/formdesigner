@@ -47,8 +47,15 @@ define([
 				var currentRow = model.getRows().at(row);
 
 				var currentColumn = currentRow.getColumns().at(column);
+				if(currentColumn.get('selected') == false) {
+					currentColumn.set({
+						selected: true
+					});
+					return;
+				}
+
 				var fieldModel = currentColumn.getContent();	
-				
+
 				propForm.loadData(fieldModel);
 			}
 		});
