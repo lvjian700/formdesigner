@@ -34,10 +34,18 @@ define([
 			this.model.bind('change:selected', this.selectChanged, this);
 		},
 		render: function() {
+			var show = false;
 			_.each(this.columnViews, function(colView) {
 				var colEl = colView.render().el;
 				this.$el.append(colEl);
+				if(colView.model.getContent().isUsed() == true) {
+					show = true;	
+				}
 			}, this);
+
+			if(show == false) {
+				this.$el.hide();
+			}
 
 			return this;
 		},
