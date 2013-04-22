@@ -27,12 +27,37 @@ body {
 	bottom: 0px;
 	width: 950px;
 }
+
 #right-panel {
-	position: absolute;
-	left: 1170px;
+	position: fixed;
+	right: 0px;
 	top: 60px;
 	bottom: 0px;
-	width: 220px;
+	width: 318px;
+	border: solid 1px #ccc;
+	h3.panel-header {
+		color: #fff;
+		margin: 0px;
+		text-align: center;
+		font-size: 16px;
+		background-color: #666
+	}
+	form#prop-form {
+		padding: 10px 5px 0px 10px;
+		table#prop-table {
+			tr {
+				td {
+					padding: 5px 0px;
+					input, select {
+						height: 30px;
+					}
+				}
+				td.prop-label {
+					width: 80px;
+				}
+			}
+		}
+	}
 }
 
 #formcanvas {
