@@ -2,13 +2,26 @@ define([
 	'jquery',
 	'backbone',
 	'm/FormModel',
+	'm/PlainConfig',
 	'v/FormView',
 	'./data',
-	'v/PropertyFormView'
-], function($, Backbone, FormModel, FormView, config,
-		PropertyFormView) {
+	'v/PropertyFormView',
+	'text!tmpl/news_config.txt'
+], function($, Backbone, FormModel, PlainConfig, FormView, config,
+		PropertyFormView, plainConfig) {
+
 	$(function() {
-		var model = new FormModel(config);
+		var newsConfig = PlainConfig.convert(plainConfig);
+		var formConfig = {
+			id: 'news-form-index',
+			defaults: {
+				layout: 'fit',
+				labelWidth: 80, //px
+			},
+			rows: newsConfig 
+		};
+
+		var model = new FormModel(formConfig);
 		var view = new FormView({model:model});
 		var el = view.render().el;
 
