@@ -20,7 +20,8 @@ define([
 						label: '作者',
 						type: 'text',
 						value: '',
-						required: true
+						required: true,
+						used: true
 					}
 				}, {
 					index: 1,
@@ -31,7 +32,8 @@ define([
 						label: '创建时间',
 						type: 'text',
 						value: '',
-						required: true
+						required: true,
+						used: true
 					}
 				}, {
 					index: 2,
@@ -42,7 +44,8 @@ define([
 						label: '视频长度',
 						type: 'text',
 						value: '',
-						required: false
+						required: false,
+						used: true
 					}
 				}]
 			});

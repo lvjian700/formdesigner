@@ -12,7 +12,8 @@ define([
 			rowIndex: 0,
 			columnIndex: 0,
 			width: 100,
-			required: true
+			required: true,
+			used: true
 		};
 		
 		var fieldsData = '0,NewsTitle,标题,0,0,100,1,1;1,NewsTitle1,标题别名1,1,0,50,0,1;';
@@ -28,7 +29,8 @@ define([
 			rowIndex: 0,
 			columnIndex: 0,
 			width: 100,
-			required: true
+			required: true,
+			used: true
 		}, {
 			index: 1,
 			name: 'NewsTitle1',
@@ -36,7 +38,8 @@ define([
 			rowIndex: 1,
 			columnIndex: 0,
 			width: 50,
-			required: true
+			required: true,
+			used: true
 		}];
 
 		var rowsJson = [{
@@ -53,7 +56,8 @@ define([
 					label:'标题',
 					type:'text',
 					value:'',
-					required:true
+					required:true,
+					used: true
 				}
 			}]
 		}, {
@@ -70,15 +74,23 @@ define([
 					label:'标题别名1',
 					type:'text',
 					value:'',
-					required: false
+					required: false,
+					used: true
 				}
 			}]
 		}];
 		
 		
-		it('parset2Item可以正确解析行数据', function() {
+		it('parse2Item可以正确解析行数据', function() {
 			var ret = plain.parse2Item(itemData);	
 			expect(ret).toEqual(itemJson);
+		});
+
+		it('parse2Item可以解析used=1的数据', function() {
+			var unusedData = '0,NewsTitle,标题,0,0,100,1,0;'; 
+			var ret = plain.parse2Item(unusedData);
+			
+			expect(ret.used).toEqual(false);
 		});
 
 		it('parse2Fields可以正确解析带60;开头数据,将plainText分成item段', function() {
@@ -87,6 +99,7 @@ define([
 			expect(items.length).toBe(2);
 			expect(items).toEqual(fieldsParts);
 		});
+
 
 		it('parse2Fields可以正确解析不带60;开头数据, 将plainText分成item段', function() {
 			var items = plain.parse2Fields(fieldsData); 
@@ -99,6 +112,7 @@ define([
 			expect(ret.length).toBe(2);
 			expect(ret).toEqual(rowsJson);
 		});
+
 
 		it('convert方法能将plainText配置转成rows json数据', function() {
 			var ret = plain.convert(numberData);

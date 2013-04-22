@@ -12,7 +12,8 @@ define([
 				label: '标题',
 				type: 'text',
 				value: '',
-				required: true
+				required: true,
+				used: true
 			}
 		}]
 	}, {
@@ -27,7 +28,8 @@ define([
 				label: '作者',
 				type: 'select',
 				value: '',
-				required: true
+				required: true,
+				used: true
 			}
 		}, {
 			index: 1,
@@ -38,7 +40,8 @@ define([
 				label: '创建时间',
 				type: 'date',
 				value: '',
-				required: true
+				required: true,
+				used: true
 			}
 		}, {
 			index: 2,
@@ -49,7 +52,8 @@ define([
 				label: '视频长度',
 				type: 'timelength',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}]
 	}, {
@@ -64,7 +68,8 @@ define([
 				label: '记者',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}, {
 			index: 1,
@@ -75,7 +80,8 @@ define([
 				label: '摄像',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}, {
 			index: 2,
@@ -86,7 +92,8 @@ define([
 				label: '参与人员',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}]
 	}, {
@@ -101,7 +108,8 @@ define([
 				label: '关键字',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}, {
 			index: 1,
@@ -112,7 +120,8 @@ define([
 				label: '配音',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}, {
 			index: 2,
@@ -123,7 +132,8 @@ define([
 				label: '通讯员',
 				type: 'text',
 				value: '',
-				required: false
+				required: false,
+				used: true
 			}
 		}]
 	}];

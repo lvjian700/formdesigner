@@ -25,6 +25,7 @@ define([
 	function parse2Item(text) {
 		var p = text.split(',');
 		var required = p[6] == '1';
+		var used = p[7] == '1';
 
 		return {
 			index: parseInt(p[0]),
@@ -33,7 +34,8 @@ define([
 			rowIndex: parseInt(p[3]),
 			columnIndex: parseInt(p[4]),
 			width: parseInt(p[5]),
-			required: required
+			required: required,
+			used: used
 		}
 	}
 
@@ -72,7 +74,8 @@ define([
 					label: json.label,
 					type: 'text',
 					value: '',
-					required: json.required
+					required: json.required,
+					used: json.used
 				}
 			}
 

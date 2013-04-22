@@ -35,7 +35,8 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 						label: '',
 						type: 'text',
 						value: '',// 可能是object
-						required: false
+						required: false,
+						used: true
 					}
 				});
 
@@ -69,7 +70,8 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 						label: 'Title',
 						type: 'text',
 						value: '',// 可能是object
-						required: false
+						required: false,
+						used: true 
 					}
 				});
 			});
@@ -86,7 +88,8 @@ define(['m/ColumnModel', 'm/FieldModel'], function(ColumnModel, FieldModel) {
 						label: 'Title',
 						type: 'text',
 						value: '',// 可能是object
-						required: false
+						required: false,
+						used: true
 					}
 				};
 

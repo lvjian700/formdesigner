@@ -64,7 +64,8 @@ define(['models/FieldModel'], function(FieldModel) {
 				label: '标题',
 				type: 'text',
 				value: '',
-				required: true
+				required: true,
+				used: true
 			});
 
 			var plain = jsonModel.toPlain({

@@ -20,7 +20,8 @@ define([
 					label: '作者',
 					type: 'text',
 					value: '',
-					required: false
+					required: false,
+					used: true
 				}
 			}, {
 				index: 1,
@@ -32,7 +33,8 @@ define([
 					label: '创建时间',
 					type: 'text',
 					value: '',
-					required: false
+					required: false,
+					used: true
 				}
 			}, {
 				index: 2,
@@ -44,7 +46,8 @@ define([
 					label: '时间长度',
 					type: 'text',
 					value: '',
-					required: false
+					required: false,
+					used: true
 				}
 			}];
 
