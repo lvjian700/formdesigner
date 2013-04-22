@@ -29,6 +29,10 @@ define([
 			this.label = this.$('label');
 			this.inputTag =  this.$('input');
 
+			if(this.model.isUsed() == false) {
+				this.$el.hide();
+			}
+			
 			this.onRender();
 
 			return this;
@@ -43,6 +47,13 @@ define([
 
 			var label = this.model.getLabel();
 			this.label.text(label);
+
+			if(this.model.isUsed() == true) {
+				this.$el.show();
+			} else {
+				this.$el.hide();
+			}
+
 		},
 		nameUpdated: function() {
 			var id = this.model.get('id');
