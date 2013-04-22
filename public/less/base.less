@@ -49,14 +49,12 @@ body {
 }
 .form-column {
 	float: left;
-	margin-bottom: 12px;
 }
 
 .form-cell {
 	label {
 		display: block;
 		line-height: 18px;
-		margin-bottom: 3px;
 	}
 	
 	input, select {
@@ -74,19 +72,19 @@ body {
 	*/
 }
 
+.form-column:hover, .form-column-selected {
+	background-color: #3b5888;
+	color: #fff;
+}
+
 .form-row {
 	float: left;
 	width: 940px;
 	.form-cell {
-		padding: 0px 6px; 
+		padding: 6px; 
 	}
 }
 
-.form-row:hover {
-	background-color: #f7f7f7;
-}
-
-.form-row-selected {
-	border-bottom: solid 1px #ccc;
+.form-row:hover, .form-row-selected {
 	background-color: #f7f7f7;
 }

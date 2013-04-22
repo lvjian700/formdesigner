@@ -62,9 +62,10 @@ define([
 		},
 		onSelect: function() {
 			var currentSelected = this.model.get('selected');
+			this.parent.clearRowSelect();			
 
 			this.model.set({
-				selected: !currentSelected
+				selected: true 
 			});
 		},
 		selectChanged: function() {

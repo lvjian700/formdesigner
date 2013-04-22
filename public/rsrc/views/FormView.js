@@ -55,6 +55,11 @@ define([
 				});
 			});
 		},
+		clearRowSelect: function() {
+			this.rowModels.forEach(function(rowModel) {
+				rowModel.set({selected: false});
+			});
+		},
 		addRow: function(row, rows, options) {
 			var rowView = new RowView({
 				model: row

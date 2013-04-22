@@ -70,7 +70,12 @@ define([
 			});
 		},
 		selectedUpdated: function() {
-			this.$el.addClass('cell-selected');
+			if(this.model.get('selected') == true) {
+				this.$el.addClass('form-column-selected');
+			} else {
+				this.$el.removeClass('form-column-selected');
+			}
+
 			var link = ['#cell', 
 				this.parent.model.get('index'),
 				this.model.get('index')
