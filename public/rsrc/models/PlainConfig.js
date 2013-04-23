@@ -40,7 +40,7 @@ define([
 	}
 
 	function fields2Json(fields) {
-		var rows = [];
+		var rows = new Array(100);
 		
 		var rowIndex = -1;
 		var columnCount = 0;
@@ -58,7 +58,8 @@ define([
 					columns: []
 				}
 			
-				rowIndex = json.rowIndex;
+				rowIndex = json.rowIndex;	
+				//补足undefined
 				rows[rowIndex] = row;
 			}
 			
@@ -83,8 +84,10 @@ define([
 			var currentRow = rows[rowIndex];
 			currentRow.columns.push(column);
 		}
+		
+		var ret = _.without(rows, [undefined]);
 
-		return rows;
+		return ret;
 	}
 	
 	function convert (plain) {

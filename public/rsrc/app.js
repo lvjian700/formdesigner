@@ -13,12 +13,11 @@ define([
 
 	$(function() {
 		var newsConfig = PlainConfig.convert(plainConfig);
-
 		var formConfig = {
 			id: 'news-form-index',
 			defaults: {
 				layout: 'fit',
-				labelWidth: 80, //px
+				labelWidth: 80 //px
 			},
 			rows: newsConfig 
 		};
@@ -26,6 +25,8 @@ define([
 		var model = new FormModel(formConfig);
 		var view = new FormView({model:model});
 		var el = view.render().el;
+
+		console.log(model.toJSON());
 
 		var propForm = new PropertyFormView();
 		propForm.render();
@@ -50,8 +51,15 @@ define([
 			},
 			editCell: function(row, column) {
 				var currentRow = model.getRows().at(row);
+				if(currentRow == undefined) {
+					return;
+				}
 
 				var currentColumn = currentRow.getColumns().at(column);
+				if(currentColumn == undefined) {
+					return;
+				}
+
 				if(currentColumn.get('selected') == false) {
 					currentColumn.set({
 						selected: true
