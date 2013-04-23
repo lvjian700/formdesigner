@@ -55,7 +55,7 @@ define(['jquery','m/ColumnModel', 'v/ColumnView', 'm/FieldModel',
 					view.model.set({width: 0.5});
 					var widthAttr = view.el.style.width;
 
-					expect(widthAttr).toBe('450px');
+					expect(widthAttr).toBe('640px');
 				});
 
 			it('更新model.content后,调用contentUpdated方法重绘content',

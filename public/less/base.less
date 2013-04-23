@@ -1,6 +1,7 @@
 @minWidth: 960px;
 @minHeight: 550px;
-@labelWidth: 65px;
+@labelWidth: 80px;
+@top: 45px;
 
 body {
 	font-size: 13px;
@@ -14,24 +15,24 @@ body {
 }
 
 #left-panel {
-	position: absolute;
+	position: fixed;
 	left: 0px;
-	top: 60px;
+	top: @top;
 	bottom: 0px;
 	width: 220px;
 }
 #center-panel {
 	position: absolute;
 	left: 220px;
-	top: 60px;
+	top: @top;
 	bottom: 0px;
-	width: 950px;
+	right: 320px;
 }
 
 #right-panel {
 	position: fixed;
 	right: 0px;
-	top: 0px;
+	top: @top;
 	bottom: 0px;
 	width: 318px;
 	border: solid 1px #ccc;
@@ -61,13 +62,14 @@ body {
 }
 
 #formcanvas {
-	width: 920px;
 	min-width: 940px;
 	min-height: 550px;
+	form {
+		float: left;
+	}
 }
 
 .form-wrapper {
-	width: 940px;
 	height: @minHeight;
 	min-height: @minHeight;
 	background-color: #fff
@@ -77,24 +79,19 @@ body {
 }
 
 .form-cell {
-	label {
-		display: block;
-		line-height: 18px;
-	}
 	
 	input, select {
 		height: 30px;
 	}
-	/*
 	label {
-		background-color:#fff;
 		display:-moz-inline-box;
 		display:inline-block;
 		zoom: 1;                     //IE only
 		*display: inline;            //Only IE know this code (CSS Hack)
 		width: @labelWidth;
+		text-align: right;
+		margin-right: 6px;
 	}
-	*/
 }
 
 .form-column:hover, .form-column-selected {
@@ -104,12 +101,22 @@ body {
 
 .form-row {
 	float: left;
-	width: 940px;
+	width: 1320px;
 	.form-cell {
-		padding: 6px; 
+		padding: 12px 6px 0 6px; 
 	}
 }
 
 .form-row:hover, .form-row-selected {
 	background-color: #f7f7f7;
+}
+
+
+.clear {
+	clear: both;
+	height: 0px;
+	line-height: 0%;
+	padding: 0px;
+	margin: 0px;
+	font-size: 0px;
 }

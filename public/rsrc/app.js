@@ -6,12 +6,14 @@ define([
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
+	'v/LayoutView',
 	'text!tmpl/news_config.txt'
 ], function($, Backbone, FormModel, PlainConfig, FormView, config,
-		PropertyFormView, plainConfig) {
+		PropertyFormView, LayoutView, plainConfig) {
 
 	$(function() {
 		var newsConfig = PlainConfig.convert(plainConfig);
+
 		var formConfig = {
 			id: 'news-form-index',
 			defaults: {
@@ -38,6 +40,9 @@ define([
 			console.log('remove last row');	
 			model.removeLastRow();
 		});
+
+		var appLayout = new LayoutView();
+		appLayout.render();
 
 		var Workspace = Backbone.Router.extend({
 			routes: {
