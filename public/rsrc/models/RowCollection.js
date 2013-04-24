@@ -7,7 +7,7 @@ define([
 		model: RowModel,
         comparator: function(now, next) {
             var nowIndex = now.get('index');
-            var nextIndex = now.get('index');
+            var nextIndex = next.get('index');
 
             if (nowIndex > nextIndex) return 1;
             if (nowIndex < nextIndex) return -1;
