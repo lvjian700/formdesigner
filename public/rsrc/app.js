@@ -29,6 +29,26 @@ define([
 		});
 	}
 
+	function initializeCanvas (plainConfig) {
+		// body...
+
+		var newsConfig = PlainConfig.convert(plainConfig);
+		var formConfig = {
+			id: 'news-form-index',
+			defaults: {
+				layout: 'fit',
+				labelWidth: 80 //px
+			},
+			rows: newsConfig 
+		};
+
+		window.formModel = new FormModel(formConfig);
+		window.formView = new FormView({model:window.formModel});
+
+		var el = window.formView.render().el;
+		$('#formcanvas').append(el);
+	}
+
 	$(function() {
 		var appLayout = new LayoutView();
 		appLayout.render();
@@ -50,26 +70,19 @@ define([
 		var Workspace = Backbone.Router.extend({
 			routes: {
 				'new': 'createForm',
+				'edit': 'loadForm',
 				'cell/:row/:column': 'editCell'
 			},
 			createForm: function() {
 				resetForm();
 				loadPlainConfig('123', function(plainConfig) {
-					var newsConfig = PlainConfig.convert(plainConfig);
-					var formConfig = {
-						id: 'news-form-index',
-						defaults: {
-							layout: 'fit',
-							labelWidth: 80 //px
-						},
-						rows: newsConfig 
-					};
-
-					window.formModel = new FormModel(formConfig);
-					window.formView = new FormView({model:window.formModel});
-
-					var el = window.formView.render().el;
-					$('#formcanvas').append(el);
+					initializeCanvas(plainConfig);
+				});
+			},
+			loadForm: function() {
+				resetForm();
+				loadPlainConfig('123', function(plainConfig) {
+					initializeCanvas(plainConfig);
 				});
 			},
 			editCell: function(row, column) {
