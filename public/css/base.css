@@ -85,6 +85,9 @@ body {
   text-align: right;
   margin-right: 6px;
 }
+.form-cell label.required {
+  color: red;
+}
 .form-column:hover,
 .form-column-selected {
   background-color: #3b5888;
