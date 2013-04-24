@@ -96,12 +96,87 @@ define([
 		
 		return arrayRows;
 	}
+	
+	/**
+	 * 读取rowIndex, columnIndex
+	 * @return []
+	 */
+	function readOptions (rowJson) {
+		var options = [];
+		var columns = rowJson.columns;
+		
+		var rowIndex = rowJson.index;
+
+		for(var i = 0; i < columns.length; i++) {
+			var col = columns[i];
+			var columnIndex = col.index;
+			var field = col.content;
+
+			var required = field.required ? 1 : 0;
+			var used = field.used ? 1 : 0;
+			var width = col.width * 100.0;
+
+			var opt = {
+				name: field.name,
+				label: field.label,
+				rowIndex: rowIndex,
+				columnIndex: columnIndex,
+				width: width,
+				required: required,
+				used: used
+			}
+
+			options.push(opt);
+		}
+
+		return options
+	}
+
+	function toPlain(option){
+
+		var array = [
+			option.index, option.name, option.label, 
+			option.rowIndex, option.columnIndex, option.width,
+			option.required, option.used];	
+
+		var plainConfig = array.join(',');
+		plainConfig = plainConfig;
+
+		return plainConfig;
+	}
+
+	function generate (rowsJson) {
+		var parts = new Array();
+		parts.push(rowsJson.length);
+		
+		var fieldIndex = 0;
+
+		for(var i = 0; i < rowsJson.length; i++) {
+			var rowItem = rowsJson[i];
+			var options = readOptions(rowItem);
+
+			_.each(options, function(option) {
+				option.index = fieldIndex;
+				fieldIndex++;
+
+				var item = toPlain(option);
+				parts.push(item);
+			});
+		}
+		
+		var plainConfig = parts.join(';') + ';';
+
+		return plainConfig;
+	}
 
 	return {
 		parse2Item: parse2Item,
 		parse2Fields: parse2Fields,
 		fields2Json: fields2Json,
-		convert: convert 
+		convert: convert,
+		readOptions: readOptions,
+		toPlain: toPlain,
+		generate: generate
 	};
 });
 
