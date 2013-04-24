@@ -52,20 +52,6 @@ define(['backbone'], function() {
 		},
 		setUsed: function(used) {
 			this.set({used: used});
-		},
-		toPlain: function(options){
-			var required = this.isRequired() ? 1 : 0;
-			var used = this.isUsed() ? 1 : 0;
-
-			var array = [
-				options.index, this.getName(), this.get('label'), 
-				options.columnIndex, options.rowIndex, options.width,
-				required, used];	
-
-			var plainConfig = array.join(',');
-			plainConfig = plainConfig + ";";
-
-			return plainConfig;
 		}
 	});
 
