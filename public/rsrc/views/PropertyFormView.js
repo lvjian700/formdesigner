@@ -13,6 +13,7 @@ define([
 		initialize: function() {
 		},
 		render: function() {
+			this.widthInput = this.$('#ipt-width');
 			this.nameInput = this.$('#ipt-name');
 			this.labelInput = this.$('#ipt-label');
 			this.typeSelect = this.$('#sel-type');
@@ -20,8 +21,11 @@ define([
 
 			return this.el;
 		},
-		loadData: function(model) {
-			this.fieldModel = model;
+		loadData: function(field, column) {
+			this.fieldModel = field;
+			this.columnModel = column
+
+			this.widthInput.val(this.columnModel.get('width'));
 			
 			this.nameInput.val(this.fieldModel.getName());
 			this.labelInput.val(this.fieldModel.getLabel());
@@ -31,6 +35,10 @@ define([
 			this.requiredCheck.attr('checked', required);
 		},
 		updateModel: function() {
+			var width = this.widthInput.val();
+			var numberWidth = parseFloat(width);
+			this.columnModel.set({width: numberWidth});
+
 			var name = this.nameInput.val();
 			this.fieldModel.setName(name);
 
@@ -42,6 +50,11 @@ define([
 
 			var required = this.requiredCheck.attr('checked');
 			this.fieldModel.setRequired(required);
+		},
+		reset: function() {
+			this.fieldModel = undefined;
+			this.columnModel = undefined;
+			this.$el[0].reset();
 		}
 	});
 
