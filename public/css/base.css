@@ -1,38 +1,111 @@
 body {
   font-size: 13px;
 }
-.form-wrapper {
-  width: 960px;
-  height: 550px;
-  overflow: auto;
-  background-color: #ffffff;
+#header {
+  width: 100%;
+  min-width: 960px;
+  overflow: none;
+  height: 60px;
 }
-.builder-form label {
-  background-color: #fff;
-  display: -moz-inline-box;
-  display: inline-block;
+#left-panel {
+  position: fixed;
+  left: 0px;
+  top: 45px;
+  bottom: 0px;
+  width: 220px;
+}
+#center-panel {
+  position: absolute;
+  left: 220px;
+  top: 45px;
+  bottom: 0px;
+  right: 320px;
+}
+#right-panel {
+  position: fixed;
+  right: 0px;
+  top: 45px;
+  bottom: 0px;
+  width: 318px;
+  border: solid 1px #ccc;
+}
+#right-panel h3.panel-header {
+  color: #fff;
+  margin: 0px;
+  text-align: center;
+  font-size: 16px;
+  background-color: #666666;
+}
+#right-panel form#prop-form {
+  padding: 10px 5px 0px 10px;
+}
+#right-panel form#prop-form table#prop-table tr td {
+  padding: 5px 0px;
+}
+#right-panel form#prop-form table#prop-table tr td input,
+#right-panel form#prop-form table#prop-table tr td select {
+  height: 30px;
+}
+#right-panel form#prop-form table#prop-table tr td.prop-label {
   width: 80px;
 }
-.fit .col-1,
-.fit .col-2,
-.fit .col-3 {
+#formcanvas {
+  min-width: 940px;
+  min-height: 550px;
+}
+#formcanvas form {
   float: left;
 }
-.fit .col-1 div,
-.fit .col-2 div,
-.fit .col-3 div {
-  line-height: 22px;
-  padding: 3px 12px;
+.form-wrapper {
+  height: 550px;
+  min-height: 550px;
+  background-color: #ffffff;
 }
-.fit .row-1 .col-1 {
-  width: 960px;
+.form-column {
+  float: left;
 }
-.fit .row-1 .col-1 div {
-  width: 860px;
+.form-cell .input-wrapper {
+  margin-left: 90px;
 }
-.fit .row-3 .col-1 {
-  width: 320px;
+.form-cell .input-wrapper input,
+.form-cell .input-wrapper select {
+  width: 100%;
 }
-.fit .row-3 .col-1 div input {
-  width: 220px;
+.form-cell input,
+.form-cell select {
+  height: 30px;
+}
+.form-cell label {
+  float: left;
+  display: -moz-inline-box;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 80px;
+  text-align: right;
+  margin-right: 6px;
+}
+.form-column:hover,
+.form-column-selected {
+  background-color: #3b5888;
+  color: #fff;
+}
+.form-row {
+  float: left;
+  width: 1320px;
+}
+.form-row .form-cell {
+  padding: 12px 6px 0 6px;
+}
+.form-row:hover,
+.form-row-selected {
+  background-color: #f7f7f7;
+}
+.clear {
+  clear: both;
+  height: 0px;
+  line-height: 0%;
+  padding: 0px;
+  margin: 0px;
+  font-size: 0px;
 }

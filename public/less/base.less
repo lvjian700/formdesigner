@@ -79,11 +79,17 @@ body {
 }
 
 .form-cell {
-	
+	.input-wrapper {
+		margin-left: @labelWidth + 10;
+		input, select {
+			width: 100%;
+		}
+	}
 	input, select {
 		height: 30px;
 	}
 	label {
+		float: left;
 		display:-moz-inline-box;
 		display:inline-block;
 		zoom: 1;                     //IE only
