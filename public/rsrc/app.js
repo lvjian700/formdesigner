@@ -66,6 +66,19 @@ define([
 			window.model.removeLastRow();
 		});
 
+		$('#btnSave').click(function(e) {
+			console.log('saving...');
+			var rowsJson = window.formModel.getRows().toJSON();
+			var content = PlainConfig.generate(rowsJson);
+
+			var body = {
+				content: content
+			};
+			$.post('plain/configs/123', body, function() {
+				console.log('post success...');
+			});
+		});
+
 
 		var Workspace = Backbone.Router.extend({
 			routes: {
