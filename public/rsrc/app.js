@@ -6,51 +6,74 @@ define([
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
-	'v/LayoutView',
-	'text!tmpl/news_config.txt'
+	'v/LayoutView'
 ], function($, Backbone, FormModel, PlainConfig, FormView, config,
-		PropertyFormView, LayoutView, plainConfig) {
+		PropertyFormView, LayoutView) {
+	
+	function resetForm () {
+		window.propForm.reset();	
+		if(window.formView != undefined) {
+			window.formView.undelegateEvents();
+			window.formView.remove();
+			window.formView = undefined;
+		}
+		
+		if(window.formModel != undefined) {
+			window.formModel = undefined;
+		}
+	}
+
+	function loadPlainConfig (guid, callback) {
+		$.getJSON('plain/configs/' + guid, {}, function(data) {
+			callback(data.content);
+		});
+	}
 
 	$(function() {
-		var newsConfig = PlainConfig.convert(plainConfig);
-		var formConfig = {
-			id: 'news-form-index',
-			defaults: {
-				layout: 'fit',
-				labelWidth: 80 //px
-			},
-			rows: newsConfig 
-		};
+		var appLayout = new LayoutView();
+		appLayout.render();
 
-		var model = new FormModel(formConfig);
-		var view = new FormView({model:model});
-		var el = view.render().el;
-
-		console.log(model.toJSON());
-
-		var propForm = new PropertyFormView();
+		window.propForm = new PropertyFormView();
 		propForm.render();
 
-		$('#formcanvas').append(el);
 
 		$('#btnAddRow').click(function(e) {
-			model.addRow();
+			window.model.addRow();
 		});
 
 		$('#btnRemoveRow').click(function(e) {
 			console.log('remove last row');	
-			model.removeLastRow();
+			window.model.removeLastRow();
 		});
 
-		var appLayout = new LayoutView();
-		appLayout.render();
 
 		var Workspace = Backbone.Router.extend({
 			routes: {
+				'new': 'createForm',
 				'cell/:row/:column': 'editCell'
 			},
+			createForm: function() {
+				resetForm();
+				loadPlainConfig('123', function(plainConfig) {
+					var newsConfig = PlainConfig.convert(plainConfig);
+					var formConfig = {
+						id: 'news-form-index',
+						defaults: {
+							layout: 'fit',
+							labelWidth: 80 //px
+						},
+						rows: newsConfig 
+					};
+
+					window.formModel = new FormModel(formConfig);
+					window.formView = new FormView({model:window.formModel});
+
+					var el = window.formView.render().el;
+					$('#formcanvas').append(el);
+				});
+			},
 			editCell: function(row, column) {
-				var currentRow = model.getRows().at(row);
+				var currentRow = window.model.getRows().at(row);
 				if(currentRow == undefined) {
 					return;
 				}
@@ -68,7 +91,7 @@ define([
 
 				var fieldModel = currentColumn.getContent();	
 
-				propForm.loadData(fieldModel);
+				propForm.loadData(fieldModel, currentColumn);
 			}
 		});
 		
