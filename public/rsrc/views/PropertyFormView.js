@@ -8,7 +8,8 @@ define([
 	var PropertyFormView = Backbone.View.extend({
 		el: '#prop-form',
 		events: {
-			'change': 'updateModel'
+			'change': 'updateModel',
+			'click #ck-required': 'updateModel'
 		},
 		initialize: function() {
 		},
@@ -49,6 +50,7 @@ define([
 			this.fieldModel.set({type: type});
 
 			var required = this.requiredCheck.attr('checked');
+			required = required == undefined ? false : true;
 			this.fieldModel.setRequired(required);
 		},
 		reset: function() {
