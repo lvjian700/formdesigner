@@ -70,7 +70,7 @@ define([
 		var Workspace = Backbone.Router.extend({
 			routes: {
 				'new': 'createForm',
-				'edit': 'loadForm',
+				'edit': 'editForm',
 				'cell/:row/:column': 'editCell'
 			},
 			createForm: function() {
@@ -79,7 +79,7 @@ define([
 					initializeCanvas(plainConfig);
 				});
 			},
-			loadForm: function() {
+			editForm: function() {
 				resetForm();
 				loadPlainConfig('123', function(plainConfig) {
 					initializeCanvas(plainConfig);
