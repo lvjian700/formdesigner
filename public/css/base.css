@@ -2,17 +2,53 @@ body {
   font-size: 13px;
 }
 #header {
-  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
   min-width: 960px;
   overflow: none;
-  height: 60px;
+  height: 42px;
+  z-index: 100;
 }
 #left-panel {
   position: fixed;
   left: 0px;
   top: 42px;
   bottom: 0px;
-  width: 220px;
+  width: 218px;
+  border: solid 1px #ccc;
+  background-color: #eee;
+}
+h3.panel-header {
+  text-align: center;
+  background-color: #444;
+  font-size: 14px;
+  line-height: 22px;
+  color: #fff;
+  margin: 0px;
+  padding: 6px;
+}
+ul.tools {
+  margin: 0px;
+  padding: 3px;
+}
+ul.tools li {
+  list-style: none;
+}
+li.drags a {
+  display: block;
+  text-decoration: none;
+  cursor: move;
+  padding: 3px 0px;
+  padding-left: 30px;
+  font-size: 13px;
+  color: #000;
+  line-height: 22px;
+}
+li.drags a:hover {
+  background-color: #3b5888;
+  color: #fff;
 }
 #center-panel {
   position: absolute;
@@ -20,6 +56,7 @@ body {
   top: 42px;
   bottom: 0px;
   right: 320px;
+  padding: 15px 10px;
 }
 #right-panel {
   position: fixed;
@@ -29,15 +66,6 @@ body {
   width: 318px;
   border: solid 1px #ccc;
   background-color: #eee;
-}
-#right-panel h3.panel-header {
-  color: #fff;
-  margin: 0px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: normal;
-  height: 38px;
-  background-color: #444;
 }
 #right-panel form#prop-form {
   padding: 10px 5px 0px 10px;
