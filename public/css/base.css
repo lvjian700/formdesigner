@@ -10,31 +10,34 @@ body {
 #left-panel {
   position: fixed;
   left: 0px;
-  top: 45px;
+  top: 42px;
   bottom: 0px;
   width: 220px;
 }
 #center-panel {
   position: absolute;
   left: 220px;
-  top: 45px;
+  top: 42px;
   bottom: 0px;
   right: 320px;
 }
 #right-panel {
   position: fixed;
   right: 0px;
-  top: 45px;
+  top: 42px;
   bottom: 0px;
   width: 318px;
   border: solid 1px #ccc;
+  background-color: #eee;
 }
 #right-panel h3.panel-header {
   color: #fff;
   margin: 0px;
   text-align: center;
   font-size: 16px;
-  background-color: #666666;
+  font-weight: normal;
+  height: 38px;
+  background-color: #444;
 }
 #right-panel form#prop-form {
   padding: 10px 5px 0px 10px;

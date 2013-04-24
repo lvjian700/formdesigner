@@ -58,13 +58,18 @@ define([
 
 
 		$('#btnAddRow').click(function(e) {
-			window.model.addRow();
+			window.formModel.addRow();
 		});
 
 		$('#btnRemoveRow').click(function(e) {
 			console.log('remove last row');	
-			window.model.removeLastRow();
+			window.formModel.removeLastRow();
 		});
+
+        $('#btnNew').click(function(e) {
+            console.log('new ...');
+            Backbone.history.navigate('#new', {trigger: true});
+        });
 
 		$('#btnSave').click(function(e) {
 			console.log('saving...');
@@ -76,6 +81,7 @@ define([
 			};
 			$.post('plain/configs/123', body, function() {
 				console.log('post success...');
+
 			});
 		});
 
