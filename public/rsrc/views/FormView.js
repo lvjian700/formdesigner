@@ -16,7 +16,6 @@ define([
 		events: {
 		},
 		initialize: function() {
-			var r_json = this.model.get('rows');
 			this.rowModels = this.model.getRows();
 			this.rowViews = [];		
 
