@@ -99,7 +99,7 @@ define([
 				});
 			},
 			editCell: function(row, column) {
-				var currentRow = window.model.getRows().at(row);
+				var currentRow = window.formModel.getRows().at(row);
 				if(currentRow == undefined) {
 					return;
 				}
