@@ -17,8 +17,6 @@ define([
 		},
 		initialize:	function() {
 			var r_json = this.get('rows');
-			console.log('initialize form model');
-			console.log(r_json);
 
 			this.rows = new RowCollection(r_json);
 			this.rows.parent = this;
