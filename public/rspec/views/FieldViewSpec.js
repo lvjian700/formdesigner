@@ -101,7 +101,13 @@ define(['jquery','m/FieldModel', 'v/FieldView'],
 
 			it('used状态为false的字段不显示', function() {
 				
-			})
+			});
+
+			it('required=true时，label有变红', function() {
+				fieldView.model.setRequired(true);
+
+				expect(fieldView.label).toHaveClass('required');
+			});
 		});
 	});
 });

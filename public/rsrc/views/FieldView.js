@@ -28,12 +28,13 @@ define([
 			this.cellBody =  this.$el;
 			this.label = this.$('label');
 			this.inputTag =  this.$('input');
+			
+			this.onRender();
 
 			if(this.model.isUsed() == false) {
 				this.$el.hide();
 			}
-			
-			this.onRender();
+			this.requiredUpated();
 
 			return this;
 		},
@@ -54,6 +55,14 @@ define([
 				this.$el.hide();
 			}
 
+			this.requiredUpated();
+		},
+		requiredUpated: function() {
+			if(this.model.isRequired() == true) {
+				this.label.addClass('required');
+			} else {
+				this.label.removeClass('required');
+			}
 		},
 		nameUpdated: function() {
 			var id = this.model.get('id');
