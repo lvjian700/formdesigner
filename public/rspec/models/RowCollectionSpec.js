@@ -17,33 +17,38 @@ define([
 			beforeEach(function() {
 				fullConfig = [{
 					index: 0,
-					columnCount: 3,
+					selected: false,
 					layout: 'fit',
 					columns: [{
 						index: 0,
-						colspan: 1,
+						width: 0.3,
+						selected: false,
 						content: {
 							id: 'author_field',
 							name: 'author',
 							label: '作者',
 							type: 'text',
 							value: '',
-							required: false
+							required: false,
+							used: true
 						}
 					}, {
 						index: 1,
-						colspan: 1,
+						width: 0.33,
+						selected: false,
 						content: {
 							id: 'createTime_field',
 							name: 'createTime',
 							label: '创建时间',
 							type: 'text',
 							value: '',
-							required: false
+							required: false,
+							used: true
 						}
 					}, {
 						index: 2,
-						colspan: 1,
+						width: 0.33,
+						selected: false,
 						content: {
 							id: 'timeLength_field',
 							name: 'timeLength',
@@ -55,11 +60,12 @@ define([
 					}]
 				}, {
 					index: 1,
-					columnCount: 3,
+					selected: true,
 					layout: 'fit',
 					columns: [{
 						index: 0,
-						colspan: 1,
+						width: 0.33,
+						selected: false,
 						content: {
 							id: 'author_field',
 							name: 'author',
@@ -70,7 +76,8 @@ define([
 						}
 					}, {
 						index: 1,
-						colspan: 1,
+						width: 0.33,
+						selected: false,
 						content: {
 							id: 'createTime_field',
 							name: 'createTime',
@@ -81,7 +88,8 @@ define([
 						}
 					}, {
 						index: 2,
-						colspan: 1,
+						width: 0.33,
+						selected: false,
 						content: {
 							id: 'timeLength_field',
 							name: 'timeLength',
@@ -124,6 +132,30 @@ define([
 						expect(col.constructor).toEqual(ColumnModel);	
 					});
 				});
+			});
+
+
+			it('测试findSelected', function() {
+				var list = full.findSelected();
+				expect(list.constructor).toEqual(Array);
+				expect(list.length).toBe(1);
+
+				var item = list[0];
+				expect(item.constructor).toEqual(RowModel);
+				expect(item.get('index')).toBe(1);
+			});
+
+			it('removeSelected删除选中行', function() {
+				var changedSpy = jasmine.createSpy('changed');
+				full.bind('remove', changedSpy);
+				full.bind('remove', function(row, rows, options) {
+					expect(options.index).toBe(1);
+				});
+
+				full.removeSelected();
+
+				expect(changedSpy).toHaveBeenCalled();
+				expect(full.length).toBe(1);
 			});
 		});// end fullconfig describe
 
