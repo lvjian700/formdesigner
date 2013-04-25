@@ -17,7 +17,7 @@ define([
 			beforeEach(function() {
 				fullConfig = [{
 					index: 0,
-					selected: false,
+					selected: true,
 					layout: 'fit',
 					columns: [{
 						index: 0,
@@ -60,7 +60,7 @@ define([
 					}]
 				}, {
 					index: 1,
-					selected: true,
+					selected: false,
 					layout: 'fit',
 					columns: [{
 						index: 0,
@@ -142,20 +142,31 @@ define([
 
 				var item = list[0];
 				expect(item.constructor).toEqual(RowModel);
-				expect(item.get('index')).toBe(1);
+				expect(item.get('index')).toBe(0);
 			});
 
 			it('removeSelected删除选中行', function() {
-				var changedSpy = jasmine.createSpy('changed');
-				full.bind('remove', changedSpy);
+				var removeSpy = jasmine.createSpy('remove');
+				full.bind('remove', removeSpy);
 				full.bind('remove', function(row, rows, options) {
-					expect(options.index).toBe(1);
+					expect(options.index).toBe(0);
 				});
+
+				var changeSpy = jasmine.createSpy('change');
+				var unselected = full.at(1);
+				expect(unselected.constructor).toEqual(RowModel);
+				unselected.bind('change:index', changeSpy);
+
+				expect(unselected.get('index')).toBe(1);
+				expect(unselected.get('selected')).toBe(false);
 
 				full.removeSelected();
 
-				expect(changedSpy).toHaveBeenCalled();
+				expect(removeSpy).toHaveBeenCalled();
+				expect(changeSpy).toHaveBeenCalled();
+
 				expect(full.length).toBe(1);
+				expect(unselected.get('index')).toBe(0);
 			});
 		});// end fullconfig describe
 
