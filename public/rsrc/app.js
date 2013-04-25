@@ -65,6 +65,10 @@ define([
 			console.log('remove last row');	
 			window.formModel.removeLastRow();
 		});
+		$('#btnRemoveSelected').click(function() {
+			console.log('remove row selected');
+			window.formModel.removeSelected();
+		});
 
         $('#btnNew').click(function(e) {
             console.log('new ...');
