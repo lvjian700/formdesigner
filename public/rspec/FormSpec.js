@@ -187,6 +187,27 @@ define([
 
 				expect(rowList.size()).toEqual(0);
 			});
+
+			it("removeAt:index删除只定行", function() {
+				var data = emptyRow();	
+				model.addRow(data);
+				data = emptyRow();	
+				model.addRow(data);
+				data = emptyRow();	
+				model.addRow(data);
+				
+				var rowList = model.getRows();
+				expect(rowList.length).toBe(3);
+				var changedSpy = jasmine.createSpy('chanagedSpy');	
+				rowList.bind('remove', changedSpy);
+				rowList.bind('remove', function(row, rows, options) {
+					expect(options.index).toBe(1);
+				});
+
+				model.removeAt(1);
+				expect(changedSpy).toHaveBeenCalled();
+				expect(model.getRows().length).toBe(2);
+			});
 		});
 
 		describe('使用full config初始化', function() {
@@ -316,6 +337,17 @@ define([
 				var numBefore = jrows.length;
 
 				formView.model.removeLastRow();
+				var numAfter = formView.$el.find('div.form-row').length;
+				expect(numAfter).toEqual(numBefore - 1);
+			});
+
+			it('删除只定行, view应该被压缩', function() {
+				formView.render();
+				var jrows = formView.$el.find('div.form-row');
+				var numBefore = jrows.length;
+
+				formView.model.removeAt(0);
+
 				var numAfter = formView.$el.find('div.form-row').length;
 				expect(numAfter).toEqual(numBefore - 1);
 			});

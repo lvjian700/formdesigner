@@ -29,6 +29,12 @@ define([
 				json
 			]);
 		},
+		removeAt: function(index) {
+			this.rows.removeAt(index);
+		},
+		removeSelected: function() {
+			this.rows.removeSelected();
+		},
 		removeLastRow: function() {
 			this.rows.pop();
 		},

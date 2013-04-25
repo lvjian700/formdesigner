@@ -14,6 +14,27 @@ define([
 
             return 0;
         },
+		resetIndexAttr: function() {
+			// 重新设置index
+			this.forEach(function(item, index, list) {
+				if(item.get('index') <= index) {
+					return;
+				}
+
+				item.set({index: index});
+			});
+		},
+		/**
+		 * @param index {int} 删除只定行, start at 0
+		 */
+		removeAt: function(index) {
+			if(index < 0 || index > this.length - 1) {
+				return;
+			}
+			var item = this.at(index);
+			this.remove(item);
+			this.resetIndexAttr();
+		},
 		/**
 		 * @return Array{RowModel}
 		 */
@@ -30,15 +51,7 @@ define([
 				return;
 			}
 			this.remove(items);
-
-			// 重新设置index
-			this.forEach(function(item, index, list) {
-				if(item.get('index') <= index) {
-					return;
-				}
-
-				item.set({index: index});
-			});
+			this.resetIndexAttr();
 		}
 	});
 
