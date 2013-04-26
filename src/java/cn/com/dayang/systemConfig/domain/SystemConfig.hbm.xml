@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.com.dayang.systemConfig.domain">
+    <class name="SystemConfig" table="SYSTEMCONFIG">
+        <id name="configGuid" type="java.lang.String">
+            <column name="CONFIGGUID" />
+            <generator class="cn.com.dayang.common.core.util.Guid"></generator>
+        </id>
+        <property name="configName" type="java.lang.String">
+            <column name="CONFIGNAME" />
+        </property>
+        <property name="configType" type="java.lang.Long">
+            <column name="CONFIGTYPE" precision="10" scale="0" />
+        </property>
+        <property name="orderNum" type="java.lang.Long">
+            <column name="ORDERNUM" precision="10" scale="0" />
+        </property>
+        <property name="configValue" type="java.lang.String">
+            <column name="CONFIGVALUE" />
+        </property>
+        <property name="preceptName" type="java.lang.String">
+            <column name="PRECEPTNAME" />
+        </property>
+    </class>
+</hibernate-mapping>

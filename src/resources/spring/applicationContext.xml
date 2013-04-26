@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/config/jdbc.properties</value>	
+			</list>
+		</property>
+	</bean>
+	
+	<context:annotation-config />
+	<context:component-scan base-package="cn.com.dayang"></context:component-scan>
+
+	<bean id="newsDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"><value>${jdbc.sqlserver.driverName}</value></property>
+		<property name="url"><value>${jdbc.sqlserver.news.url}</value></property>	
+		<property name="username"><value>${jdbc.sqlserver.news.name}</value></property>
+		<property name="password"><value>${jdbc.sqlserver.news.password}</value></property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource"><ref bean="newsDataSource" /></property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/com/dayang/systemConfig/domain/SystemConfig.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.sqlserver.hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${jdbc.sqlserver.hibernate.show_sql}</prop>
+			</props>
+		</property>
+		
+	</bean>
+	
+	<bean id="configSerivce" class="cn.com.dayang.systemConfig.service.impl.ConfigServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>

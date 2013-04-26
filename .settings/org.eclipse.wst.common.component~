@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="formdesigner">
+        <wb-resource deploy-path="/" source-path="/war"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
+        <property name="context-root" value="formdesigner"/>
+        <property name="java-output-path" value="/formdesigner/public/WEB-INF/classes"/>        
+    </wb-module>
+</project-modules>

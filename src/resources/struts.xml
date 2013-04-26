@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.custom.i18n.resources" value="i18n"></constant>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	
+	<package name="systemConfig" extends="struts-default">
+		
+		<interceptors>
+	        <interceptor-stack name="myDefaultStack">
+	            <interceptor-ref name="defaultStack">
+	                <param name="modelDriven.refreshModelBeforeResult">true</param>
+	            </interceptor-ref>
+	        </interceptor-stack>
+	    </interceptors>
+	    <default-interceptor-ref name="myDefaultStack"/>
+		
+		<!--
+	    <action name="home" class="HomeAction" method="execute">
+	    	<result name="success">/home.jsp</result>
+	    </action>
+	
+	    <action name="login" class="LoginAction" method="execute">
+	        <result name="success" type="redirect">/home.action</result>
+			<result name="error">/index.jsp</result>
+	    </action>
+	   -->
+	</package>
+</struts>
