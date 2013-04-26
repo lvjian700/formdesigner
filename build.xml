@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="formdesigner" default="compile" basedir=".">
+	<property name="src.dir" value="src/java" />
+	<property name="res.dir" value="src/resources" />
+	<property name="war.dir" value="public" />
+	
+	<property name="web_inf.dir" value="${war.dir}/WEB-INF"/>
+	<property name="classes.dir" value="${web_inf.dir}/classes" />
+	<property name="lib.dir" value="${web_inf.dir}/lib"/>		
+	
+	<!-- 定义classpath -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+	
+	<!-- 创建构建目录，用于存放构建生成的文件 -->
+	<target name="init">
+		<mkdir dir="${classes.dir}"/>
+	</target>
+	
+	<!-- 编译 -->
+	<target name="compile" depends="init">
+		<mkdir dir="${classes.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" 
+			classpathref="classpath"/>
+			
+		<!-- copy properties file to classpath -->
+		<copy todir="${classes.dir}">
+			<fileset dir="${res.dir}" excludes="**.*.jar" />
+		</copy>
+	</target>
+
+	
+	<target name="clean">
+		<delete dir="${classes.dir}"/>
+	</target>
+	
+</project>
