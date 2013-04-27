@@ -6,7 +6,7 @@ define([
 ], function($, Backbone, ColumnModel, FieldView ) {
 		
 	function calculateWidth (width) {
-		var widthAttr = (width <= 1) ? width * 1280 : width;
+		var widthAttr = (width <= 1) ? width * Configs.canvas.width : width;
 		return widthAttr;
 	}
 
