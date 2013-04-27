@@ -29,4 +29,8 @@
 	    </action>
 	   -->
 	</package>
+	<package name="configs" namespace="/configs" extends="systemConfig">
+		<action name="save" class="configsAction" method="save"></action>
+		
+	</package>
 </struts>

@@ -43,7 +43,7 @@
 		
 	</bean>
 	
-	<bean id="configSerivce" class="cn.com.dayang.systemConfig.service.impl.ConfigServiceImpl">
+	<bean id="configService" class="cn.com.dayang.systemConfig.service.impl.ConfigServiceImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

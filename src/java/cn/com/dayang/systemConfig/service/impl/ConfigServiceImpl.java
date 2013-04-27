@@ -42,7 +42,7 @@ public class ConfigServiceImpl extends HibernateDaoSupport implements ConfigServ
 	}
 	
 	public void addConfig(SystemConfig systemconfig){
-		getHibernateTemplate().save(systemconfig);
+		getHibernateTemplate().saveOrUpdate(systemconfig);
 	}
 	
 	public void deleteConfig(SystemConfig systemconfig){
