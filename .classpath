@@ -75,7 +75,6 @@
 	<classpathentry kind="lib" path="public/WEB-INF/lib/jdom-2.0.2-junit.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/jdom-2.0.2-sources.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/jdom-2.0.2.jar"/>
-	<classpathentry kind="lib" path="public/WEB-INF/lib/jetty-all-9.0.2.v20130417.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/jsr173_1.0_api.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/jsr250-api-1.0.jar"/>
@@ -119,7 +118,6 @@
 	<classpathentry kind="lib" path="public/WEB-INF/lib/scroogexhtml.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/Serialization.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/serializer-2.7.0.jar"/>
-	<classpathentry kind="lib" path="public/WEB-INF/lib/servlet-api-3.0.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/shiro-all-1.2.0.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/sitemesh-2.4.jar"/>
 	<classpathentry kind="lib" path="public/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
