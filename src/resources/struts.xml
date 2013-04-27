@@ -31,6 +31,7 @@
 	</package>
 	<package name="configs" namespace="/configs" extends="systemConfig">
 		<action name="save" class="configsAction" method="save"></action>
+		<action name="get" class="configsAction" method="get"></action>
 		
 	</package>
 </struts>

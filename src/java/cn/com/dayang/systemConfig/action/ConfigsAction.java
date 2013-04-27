@@ -20,6 +20,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import flexjson.JSONSerializer;
 
+@SuppressWarnings("serial")
 @Controller("configsAction")
 @Log4j
 public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfig> {
@@ -27,43 +28,69 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 	@Autowired
 	private ConfigService configService = null;
 	
-	private SystemConfig config = null;
+	JSONSerializer s = new JSONSerializer().exclude("*.class");
+	
+	private SystemConfig model = null;
 	
 	public void setModel(SystemConfig model) {
-		config = model;
+		this.model = model;
 	}
 	
 	public SystemConfig getModel() {
-		return config;
+		return model;
 	}
 	
 	public void save() throws IOException {
 		log.info("saving config...");
-		configService.addConfig(config);
+		configService.addConfig(model);
 		
-		String guid = config.getConfigGuid();
+		String guid = model.getConfigGuid();
 		log.debug("the result id: " + guid);
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
-		JSONSerializer s = new JSONSerializer().exclude("*.class");
+		
 		JSONResponse ret = JSONResponse.saveSuccess(guid);
 		String json = s.deepSerialize(ret);
 		
 		this.responseJson(response, json);
 	}
 	
+	public void get() throws IOException {
+		SystemConfig config = configService.findConfigById(model.getConfigGuid());;
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		JSONResponse ret = JSONResponse.getSuccess(config);
+		String json = s.deepSerialize(ret);
+		
+		this.responseJson(response, json);
+	}
 	
 }
 
 @Getter@Setter
 class JSONResponse {
+	
+	@SuppressWarnings("unused")
 	private boolean success = true;
 	private String guid = "";
 	private SystemConfig body = null;
 	
+	public JSONResponse() {
+		
+	}
+	
 	public static JSONResponse saveSuccess(String guid) {
 		JSONResponse ret = new JSONResponse();
+		ret.setSuccess(true);
 		ret.setGuid(guid);
+		
+		return ret;
+	}
+	
+	public static JSONResponse getSuccess(SystemConfig config) {
+		JSONResponse ret = new JSONResponse();
+		ret.setSuccess(true);
+		ret.setBody(config);
 		
 		return ret;
 	}
