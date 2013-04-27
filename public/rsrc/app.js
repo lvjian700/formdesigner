@@ -24,8 +24,17 @@ define([
 	}
 
 	function loadPlainConfig (guid, callback) {
-		$.getJSON('plain/configs/' + guid, {}, function(data) {
-			callback(data.content);
+		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
+			var form = $('config-form');
+			for(var name in data.body) {
+				if(form[name] == undefined) {
+					continue;
+				}
+
+				form[name].value = data.body[name];
+			}
+
+			callback(data.body.configValue);
 		});
 	}
 
@@ -83,7 +92,7 @@ define([
 			var body = {
 				content: content
 			};
-			$.post('plain/configs/123', body, function() {
+			$.post(Configs.systemConfig.save, body, function() {
 				console.log('post success...');
 
 			});
@@ -98,7 +107,8 @@ define([
 			},
 			createForm: function() {
 				resetForm();
-				loadPlainConfig('123', function(plainConfig) {
+				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
+				loadPlainConfig(guid, function(plainConfig) {
 					initializeCanvas(plainConfig);
 				});
 			},

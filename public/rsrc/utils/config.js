@@ -4,6 +4,6 @@ var Configs = {
 		get: '/configs/get.action'
 	},
 	canvas: {
-		width: 1280;
+		width: 1280
 	}
 };
