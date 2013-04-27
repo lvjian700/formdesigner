@@ -30,6 +30,12 @@
 		</copy>
 	</target>
 
+	<target name="run" depends="compile">
+		<java fork="true" classname="cn.com.dayang.tools.JettyRun"
+				classpathref="classpath">
+			<classpath path="${classes.dir}"/>
+		</java>
+	</target>
 	
 	<target name="clean">
 		<delete dir="${classes.dir}"/>
