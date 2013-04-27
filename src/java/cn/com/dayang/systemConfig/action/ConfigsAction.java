@@ -28,9 +28,10 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 	@Autowired
 	private ConfigService configService = null;
 	
-	JSONSerializer s = new JSONSerializer().exclude("*.class");
 	
-	private SystemConfig model = null;
+	
+	
+	private SystemConfig model = new SystemConfig();
 	
 	public void setModel(SystemConfig model) {
 		this.model = model;
@@ -50,48 +51,39 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		HttpServletResponse response = ServletActionContext.getResponse();
 		
 		JSONResponse ret = JSONResponse.saveSuccess(guid);
-		String json = s.deepSerialize(ret);
+		JSONSerializer s = new JSONSerializer().exclude("*.class");
+		String json = s.serialize(ret);
 		
 		this.responseJson(response, json);
 	}
 	
-	public void get() throws IOException {
+	public String getById() throws IOException {
+		log.info("get by id...");
+		log.debug("--guid: " + model.getConfigGuid());
+		
 		SystemConfig config = configService.findConfigById(model.getConfigGuid());;
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		JSONResponse ret = JSONResponse.getSuccess(config);
-		String json = s.deepSerialize(ret);
+		JSONSerializer s = new JSONSerializer().include("body").exclude("*.class");
+		String json = s.serialize(ret);
+		
+		log.info("response json: \n" + json);
 		
 		this.responseJson(response, json);
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		SystemConfig obj = new SystemConfig();
+		JSONResponse resp = new JSONResponse();
+		resp.setBody(obj);
+		
+		JSONSerializer s = new JSONSerializer().include("body").exclude("*.class");
+		String json = s.serialize(resp);
+		System.out.println(json);
 	}
 	
 }
 
-@Getter@Setter
-class JSONResponse {
-	
-	@SuppressWarnings("unused")
-	private boolean success = true;
-	private String guid = "";
-	private SystemConfig body = null;
-	
-	public JSONResponse() {
-		
-	}
-	
-	public static JSONResponse saveSuccess(String guid) {
-		JSONResponse ret = new JSONResponse();
-		ret.setSuccess(true);
-		ret.setGuid(guid);
-		
-		return ret;
-	}
-	
-	public static JSONResponse getSuccess(SystemConfig config) {
-		JSONResponse ret = new JSONResponse();
-		ret.setSuccess(true);
-		ret.setBody(config);
-		
-		return ret;
-	}
-}
