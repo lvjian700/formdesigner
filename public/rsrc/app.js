@@ -25,7 +25,7 @@ define([
 
 	function loadPlainConfig (guid, callback) {
 		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
-			var form = $('config-form');
+			var form = $('#config-form')[0];
 			for(var name in data.body) {
 				if(form[name] == undefined) {
 					continue;
