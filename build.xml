@@ -22,11 +22,16 @@
 	<target name="compile" depends="init">
 		<mkdir dir="${classes.dir}"/>
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" 
-			classpathref="classpath"/>
+			classpathref="classpath">
+			<compilerarg line="-encoding UTF-8 "/>
+		</javac>
 			
 		<!-- copy properties file to classpath -->
 		<copy todir="${classes.dir}">
 			<fileset dir="${res.dir}" excludes="**.*.jar" />
+		</copy>
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}" excludes="**.java" />
 		</copy>
 	</target>
 
