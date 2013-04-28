@@ -23,7 +23,7 @@ define([
 		}
 	}
 
-	function loadPlainConfig (guid, callback) {
+	function configById (guid, callback) {
 		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
 			var form = $('#config-form')[0];
 			for(var name in data.body) {
@@ -38,7 +38,7 @@ define([
 		});
 	}
 
-	function initializeCanvas (plainConfig) {
+	function drawCanvas (plainConfig) {
 		// body...
 
 		var newsConfig = PlainConfig.convert(plainConfig);
@@ -102,20 +102,25 @@ define([
 		var Workspace = Backbone.Router.extend({
 			routes: {
 				'new': 'createForm',
-				'edit': 'editForm',
+				'edit/:guid': 'editForm',
 				'cell/:row/:column': 'editCell'
 			},
 			createForm: function() {
-				resetForm();
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
-				loadPlainConfig(guid, function(plainConfig) {
-					initializeCanvas(plainConfig);
+				this.navigate('edit/' + guid, {
+					trigger: true
 				});
-			},
-			editForm: function() {
+				/*
 				resetForm();
-				loadPlainConfig('123', function(plainConfig) {
-					initializeCanvas(plainConfig);
+				configById(guid, function(plainConfig) {
+					drawCanvas(plainConfig);
+				});
+				*/
+			},
+			editForm: function(guid) {
+				resetForm();
+				configById(guid, function(plainConfig) {
+					drawCanvas(plainConfig);
 				});
 			},
 			editCell: function(row, column) {
