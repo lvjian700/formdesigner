@@ -3,12 +3,23 @@ define([
 	'backbone',
 	'm/FormModel',
 	'm/PlainConfig',
+	'm/SystemConfigModel',
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
-	'v/LayoutView'
-], function($, Backbone, FormModel, PlainConfig, FormView, config,
-		PropertyFormView, LayoutView) {
+	'v/LayoutView',
+	'v/SaveFormView'
+], function($, Backbone, 
+		FormModel, PlainConfig, SystemConfigModel,
+		FormView, 
+		config,
+		PropertyFormView, LayoutView, SaveFormView) {
+
+	window.configModel = new SystemConfigModel();
+	window.saveFormView = new SaveFormView({
+		model: window.configModel
+	});
+	window.saveFormView.render();
 	
 	function resetForm () {
 		window.propForm.reset();	
@@ -25,14 +36,7 @@ define([
 
 	function configById (guid, callback) {
 		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
-			var form = $('#config-form')[0];
-			for(var name in data.body) {
-				if(form[name] == undefined) {
-					continue;
-				}
-
-				form[name].value = data.body[name];
-			}
+			window.configModel.set(data.body);
 
 			callback(data.body.configValue);
 		});
@@ -86,6 +90,8 @@ define([
 
 		$('#btnSave').click(function(e) {
 			console.log('saving...');
+			window.saveFormView.show();
+			/*
 			var rowsJson = window.formModel.getRows().toJSON();
 			var content = PlainConfig.generate(rowsJson);
 
@@ -96,6 +102,7 @@ define([
 				console.log('post success...');
 
 			});
+			*/
 		});
 
 

@@ -5,12 +5,13 @@ define([
 ], function($, _, Backbone) {
 	
 	var SaveFormView = Backbone.View.extend({
-		el: $('#save-model'),
+		el: '#save-model',
 		events: {
 			'#btnCancel click': 'hide',
 			'#btnSaveConfig click': 'post'
 		},
 		initialize: function() {
+
 			this.form = this.$('#config-form');
 
 			this.guid = this.$('#configGuid');
@@ -20,14 +21,15 @@ define([
 			this.value = this.$('#configValue');
 			this.preceptName = this.$('#preceptName');
 
-			this.model.bind('change', this.render(), this);
+			this.model.bind('change', this.render, this);
 		},
 		render: function() {
-			this.guid.val(this.mode.get('configGuid'));	
+			this.guid.val(this.model.get('configGuid'));	
 			this.name.val(this.model.get('configName'));
 			this.type.val(this.model.get('configType'));
 			this.orderNum.val(this.model.get('orderNum'));
 			this.value.val(this.model.get('configValue'));
+
 			this.preceptName.val(this.model.get('preceptName'));
 
 			return this.el;
@@ -40,9 +42,9 @@ define([
 		},
 		hide: function() {
 			this.$el.modal('hide');
-		}
+		},
 		post: function() {
-			this.model.set{{
+			this.model.set({
 				configGuid: this.guid.val(),
 				configName: this.name.val(),
 				configType: this.type.val(),
