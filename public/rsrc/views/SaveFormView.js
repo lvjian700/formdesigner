@@ -7,8 +7,8 @@ define([
 	var SaveFormView = Backbone.View.extend({
 		el: '#save-model',
 		events: {
-			'#btnCancel click': 'hide',
-			'#btnSaveConfig click': 'post'
+			'click #btnCancelSave': 'close',
+			'click #btnSaveConfig': 'post'
 		},
 		initialize: function() {
 
@@ -40,10 +40,16 @@ define([
 		loadData: function(json) {
 			this.model.set(json);
 		},
-		hide: function() {
+		close: function(e) {
+			e.stopPropagation();
+			e.preventDefault();
 			this.$el.modal('hide');
+
 		},
-		post: function() {
+		post: function(e) {
+			e.stopPropagation();
+			e.preventDefault();	
+
 			this.model.set({
 				configGuid: this.guid.val(),
 				configName: this.name.val(),
