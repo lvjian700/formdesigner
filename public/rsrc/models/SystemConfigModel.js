@@ -17,6 +17,8 @@ define([
 		initialize: function() {
 		}
 	});
+
+	return SystemConfigModel;
 });
 
 
