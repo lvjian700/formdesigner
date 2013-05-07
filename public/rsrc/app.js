@@ -118,13 +118,25 @@ define([
 				});
 			},
 			editCell: function(row, column) {
+				if(window.formModel === undefined) {
+					this.navigate('#new', {
+						trigger: true
+					});
+				}
+				
 				var currentRow = window.formModel.getRows().at(row);
 				if(currentRow == undefined) {
+					this.navigate('#new', {
+						trigger: true
+					});
 					return;
 				}
 
 				var currentColumn = currentRow.getColumns().at(column);
 				if(currentColumn == undefined) {
+					this.navigate('#new', {
+						trigger: true
+					});
 					return;
 				}
 
