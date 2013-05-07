@@ -43,6 +43,7 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 	
 	public void save() throws IOException {
 		log.info("saving config...");
+		log.debug("The new model: " + model.getConfigName());
 		configService.addConfig(model);
 		
 		String guid = model.getConfigGuid();
@@ -68,7 +69,7 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		JSONSerializer s = new JSONSerializer().include("body").exclude("*.class");
 		String json = s.serialize(ret);
 		
-		log.info("response json: \n" + json);
+		log.debug("response json: \n" + json);
 		
 		this.responseJson(response, json);
 		
