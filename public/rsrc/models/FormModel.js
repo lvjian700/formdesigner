@@ -14,7 +14,7 @@ define([
 					labelWidth: 80, //px
 				},
 				rows: []
-			}	
+			};
 		},
 		initialize:	function() {
             
