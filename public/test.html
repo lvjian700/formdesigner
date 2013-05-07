@@ -18,6 +18,7 @@
 	<!-- jasmine bbd testing library -->
 	<link rel="shortcut icon" type="image/png" href="/assets/components/jasmine/jasmine_favicon.png">
 	<link rel="stylesheet" type="text/css" href="/assets/components/jasmine/jasmine.css">
+	<script src="/rsrc/utils/config.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/rsrc/utils/Fields.js" type="text/javascript" charset="utf-8"></script>
 
 	<script data-main="rsrc/main_test.js" src="assets/components/requirejs/require.js" type="text/javascript" charset="utf-8"></script>
@@ -65,6 +66,44 @@
 					</tr>
 				</table>
 			</form>
+		</div>
+	</div>
+	<div id="save-model" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>保存配置</h3>
+		</div>
+		<div class="modal-body">
+			<form id="config-form" action="configs/save.action" method="post" class="form-horizontal">
+				<input id='configGuid' type="hidden" name="configGuid" value="">
+				<div class="control-group">
+					<label class="control-label" for="configName">配置名称</label>
+					<div class="controls">
+						<input id="configName" type="text" name="configName" value="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="configType">类别</label>
+					<div class="controls">
+						<select name="configType" id="configType">
+							<option value="10">新闻稿件</option>
+							<option value="12">新闻选题</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="orderNum">使用等级</label>
+					<div class="controls">
+						<input id='orderNum' type="number" name="orderNum" value="0">
+					</div>
+				</div>
+				<input id='configValue' type="hidden" name="configValue" value="">
+				<input id='preceptName' type="hidden" name="preceptName" value="">
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a id="btnCancelSave" href="#cancel-save" class="btn">取消</a>
+			<a id="btnSaveConfig" href="#saving" class="btn btn-primary">保存</a>
 		</div>
 	</div>
 </body>

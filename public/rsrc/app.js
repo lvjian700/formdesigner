@@ -15,9 +15,9 @@ define([
 		config,
 		PropertyFormView, LayoutView, SaveFormView) {
 
-	window.configModel = new SystemConfigModel();
+	var configModel = new SystemConfigModel();
 	window.saveFormView = new SaveFormView({
-		model: window.configModel
+		model: configModel
 	});
 	window.saveFormView.render();
 	
@@ -36,8 +36,7 @@ define([
 
 	function configById (guid, callback) {
 		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
-			window.configModel.set(data.body);
-
+			window.saveFormView.loadData(data.body);
 			callback(data.body.configValue);
 		});
 	}
@@ -91,18 +90,6 @@ define([
 		$('#btnSave').click(function(e) {
 			console.log('saving...');
 			window.saveFormView.show();
-			/*
-			var rowsJson = window.formModel.getRows().toJSON();
-			var content = PlainConfig.generate(rowsJson);
-
-			var body = {
-				content: content
-			};
-			$.post(Configs.systemConfig.save, body, function() {
-				console.log('post success...');
-
-			});
-			*/
 		});
 
 

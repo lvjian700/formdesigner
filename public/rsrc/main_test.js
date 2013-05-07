@@ -93,6 +93,7 @@ requirejs([
 
 		specs.push('spec/FormSpec');
 		specs.push('spec/views/PropertyFormViewSpec');
+		specs.push('spec/views/SaveFormViewSpec');
 
 
 		$(function() {

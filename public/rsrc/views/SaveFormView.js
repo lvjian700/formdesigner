@@ -38,17 +38,21 @@ define([
 			this.$el.modal('show');
 		},
 		loadData: function(json) {
+			console.log('load data..');
+			console.log(json);
 			this.model.set(json);
 		},
 		close: function(e) {
-			e.stopPropagation();
-			e.preventDefault();
+			if(e && e.preventDefault) {
+				e.preventDefault();
+			}
 			this.$el.modal('hide');
 
 		},
 		post: function(e) {
-			e.stopPropagation();
-			e.preventDefault();	
+			if(e && e.preventDefault) {
+				e.preventDefault();	
+			}
 
 			this.model.set({
 				configGuid: this.guid.val(),
@@ -57,15 +61,15 @@ define([
 				configValue: this.value.val(),
 				orderNum: this.orderNum.val(),
 				preceptName: this.preceptName.val()
-			}, {
-				silent: true
 			});
 			
 			var _this = this;
 			var data = this.model.toJSON()
-			$(Configs.systemConfig.post, data, function(data) {
-				console.log(data);
-				_this.hide();	
+			console.log('posting data...');
+			console.log(data);
+
+			$.post(Configs.systemConfig.post, data, function(resp) {
+				_this.close();	
 			});
 		}
 	});
