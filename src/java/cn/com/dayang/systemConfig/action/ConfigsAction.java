@@ -70,6 +70,11 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		String json = s.serialize(ret);
 		
 		log.debug("response json: \n" + json);
+		response.setHeader("Pragma", "no-cache");
+		response.addHeader("Cache-Control", "must-revalidate");
+		response.addHeader("Cache-Control", "no-cache");
+		response.addHeader("Cache-Control", "no-store");
+		response.setDateHeader("Expires", 0);
 		
 		this.responseJson(response, json);
 		
