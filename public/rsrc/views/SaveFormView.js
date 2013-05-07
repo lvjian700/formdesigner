@@ -68,7 +68,7 @@ define([
 			console.log('posting data...');
 			console.log(data);
 
-			$.post(Configs.systemConfig.post, data, function(resp) {
+			$.post(Configs.systemConfig.save, data, function(resp) {
 				_this.close();	
 			});
 		}
