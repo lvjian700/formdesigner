@@ -35,7 +35,7 @@ define([
 			var width = this.model.get('width');
 			this.$el.css({
 				width: calculateWidth(width)
-			})
+			});
 
 			return this;
 		},
