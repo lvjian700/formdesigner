@@ -118,10 +118,13 @@ define([
 				});
 			},
 			editCell: function(row, column) {
-				if(window.formModel === undefined) {
+				if(window.formModel == undefined
+						|| window.formModel.getRows() == undefined) {
 					this.navigate('#new', {
 						trigger: true
 					});
+
+					return;
 				}
 				
 				var currentRow = window.formModel.getRows().at(row);
