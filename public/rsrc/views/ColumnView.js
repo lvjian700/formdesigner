@@ -61,7 +61,6 @@ define([
 			this.render();
 		},
 		onSelect: function() {
-			var selected = this.model.get('selected');
 			this.parent.parent.clearCellSelect();	
 
 			this.model.set({
