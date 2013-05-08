@@ -87,6 +87,21 @@ define([
             Backbone.history.navigate('#new', {trigger: true});
         });
 
+		$('#btnNewNews').click(function(e) {
+			console.log('new news tmpl ...');
+            Backbone.history.navigate('#new/news', {trigger: true});
+		});
+
+		$('#btnNewTopics').click(function(e) {
+			console.log('new topics tmpl...');
+            Backbone.history.navigate('#new/topics', {trigger: true});
+		});
+
+		$('#btnNewFrom').click(function(e) {
+			console.log('new from exist tmpl...');
+            Backbone.history.navigate('#new/from', {trigger: true});
+		});
+
 		$('#btnSave').click(function(e) {
 			console.log('saving...');
 			window.saveFormView.show();
@@ -96,10 +111,14 @@ define([
 		var Workspace = Backbone.Router.extend({
 			routes: {
 				'new': 'createForm',
+				'new/news': 'createNews',
+				'new/topics': 'createTopics',
+				'new/from': 'showTmpls',
 				'edit/:guid': 'editForm',
 				'cell/:row/:column': 'editCell'
 			},
 			createForm: function() {
+				console.log('only new..');
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
 				this.navigate('edit/' + guid, {
 					trigger: true
@@ -110,6 +129,15 @@ define([
 					drawCanvas(plainConfig);
 				});
 				*/
+			},
+			createNews: function() {
+				console.log('news...');
+			},
+			createTopics: function() {
+				console.log('topics..')
+			},
+			showTmpls: function() {
+				console.log('show from tmpls ...');
 			},
 			editForm: function(guid) {
 				resetForm();
