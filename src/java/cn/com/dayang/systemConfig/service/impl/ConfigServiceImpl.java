@@ -12,7 +12,11 @@ import cn.com.dayang.systemConfig.domain.SystemConfig;
 import cn.com.dayang.systemConfig.service.ConfigService;
 
 @Log4j
+@SuppressWarnings("unchecked")
 public class ConfigServiceImpl extends HibernateDaoSupport implements ConfigService{
+	
+	public static final String FIND_TMPLS 
+		= "from SystemConfig where configType = 10 or configType = 12";
 	
 	public List<SystemConfig> findAllConfig(){
 		return getHibernateTemplate().loadAll(SystemConfig.class);
@@ -34,6 +38,12 @@ public class ConfigServiceImpl extends HibernateDaoSupport implements ConfigServ
 		if(cfg.size() == 0){
 			return null;
 		}
+		return cfg;
+	}
+	
+	public List<SystemConfig> findTmpls() {
+		
+		List<SystemConfig> cfg = this.getHibernateTemplate().find(FIND_TMPLS);
 		return cfg;
 	}
 
