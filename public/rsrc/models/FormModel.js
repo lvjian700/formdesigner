@@ -38,14 +38,19 @@ define([
 		removeLastRow: function() {
 			this.rows.pop();
 		},
+		updateAttrs: function() {
+			console.log('update form model attrs');
+			var json = this.rows.toJSON();
+
+			this.set({
+				rows: json
+			});
+		},
 		setRows: function(rowsCollection) {
 			this.rows = rowsCollection;
 			this.rows.parent = this;
 
-			var json = this.rows.toJSON();
-			this.set({
-				rows: json
-			});
+			this.updateAttrs();
 		},
 		getRows: function() {
 			return this.rows;

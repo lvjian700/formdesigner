@@ -1,8 +1,10 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function($, _, Backbone) {
+	'backbone',
+	'm/PlainConfig',
+	'm/FormModel'
+], function($, _, Backbone, PlainConfig, FormModel) {
 	
 	var SaveFormView = Backbone.View.extend({
 		el: '#save-model',
@@ -54,6 +56,11 @@ define([
 				e.preventDefault();	
 			}
 
+			var json = window.formModel.getRows().toFullJson();
+			var configVal = PlainConfig.generate(json);
+			console.log(configVal);
+			this.value.val(configVal);
+
 			this.model.set({
 				configGuid: this.guid.val(),
 				configName: this.name.val(),
@@ -64,7 +71,7 @@ define([
 			});
 			
 			var _this = this;
-			var data = this.model.toJSON()
+			var data = this.model.toJSON();
 			console.log('posting data...');
 			console.log(data);
 

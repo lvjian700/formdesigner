@@ -22,20 +22,22 @@ define([
 			var c_json = this.get('columns');
 			this.columns = new ColumnCollection(c_json);
 			this.columns.parent = this;
-
+			
+			this.updateAttrs();
+		},
+		
+		updateAttrs: function() {
 			var json = this.columns.toJSON();
 			this.set({
 				columns: json
 			}, { silence: true });
 		},
+		
 		setColumns: function(columnCollection) {
 			this.columns = columnCollection;
 			this.columns.parent = this;
-
-			var json = this.columns.toJSON();
-			this.set({
-				columns: json
-			});
+			
+			this.updateAttrs();
 		},
 		getColumns: function() {
 			return this.columns;

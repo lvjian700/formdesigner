@@ -13,7 +13,16 @@ define(['backbone'], function() {
 			};
 		},
 		initialize: function() {
+			this.bind('change', this.updateParent, this);
 		},
+		
+		updateParent: function() {
+			if(this.parent == undefined) {
+				return;
+			}
+			this.parent.setContent(this);
+		},
+		
 		setName: function(name) {
 			this.set({
 				id: name + '_field',

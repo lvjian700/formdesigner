@@ -31,6 +31,7 @@ define(['backbone', 'm/FieldModel'], function(Backbone, FieldModel) {
 			this.set({
 				content: json
 			}, { silence: true });
+			
 		},
 		setContent: function(fieldModel) {
 			this.content = fieldModel;

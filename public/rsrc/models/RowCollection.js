@@ -43,7 +43,7 @@ define([
 				selected: true
 			});
 
-			return selectedItems
+			return selectedItems;
 		},
 		removeSelected: function() {
 			var items = this.findSelected();
@@ -52,6 +52,13 @@ define([
 			}
 			this.remove(items);
 			this.resetIndexAttr();
+		},
+		toFullJson: function() {
+			this.forEach(function(row) {
+				row.updateAttrs();
+			});
+			
+			return this.toJSON();
 		}
 	});
 
