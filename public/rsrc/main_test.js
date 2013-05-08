@@ -91,6 +91,8 @@ requirejs([
 		specs.push('spec/models/RowCollectionSpec');
 		specs.push('spec/views/RowViewSpec');
 
+		specs.push('spec/models/ConfigCollectionSpec');
+
 		specs.push('spec/FormSpec');
 		specs.push('spec/views/PropertyFormViewSpec');
 		specs.push('spec/views/SaveFormViewSpec');
