@@ -1,6 +1,7 @@
 package cn.com.dayang.systemConfig.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -75,6 +76,20 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		response.addHeader("Cache-Control", "no-cache");
 		response.addHeader("Cache-Control", "no-store");
 		response.setDateHeader("Expires", 0);
+		
+		this.responseJson(response, json);
+		
+		return null;
+	}
+	
+	public String findTmpls() throws IOException {
+		log.info("find news and topics tmpls....");
+		
+		List<SystemConfig> list = configService.findTmpls();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+		JSONSerializer s = new JSONSerializer().exclude("*.class");
+		String json = s.serialize(list);
 		
 		this.responseJson(response, json);
 		
