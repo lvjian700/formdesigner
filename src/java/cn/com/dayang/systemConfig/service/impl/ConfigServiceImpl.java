@@ -16,7 +16,7 @@ import cn.com.dayang.systemConfig.service.ConfigService;
 public class ConfigServiceImpl extends HibernateDaoSupport implements ConfigService{
 	
 	public static final String FIND_TMPLS 
-		= "from SystemConfig where configType = 10 or configType = 12";
+		= "from SystemConfig where configType = 10 or configType = 12 order by configType asc";
 	
 	public List<SystemConfig> findAllConfig(){
 		return getHibernateTemplate().loadAll(SystemConfig.class);
