@@ -4,16 +4,19 @@ define([
 	'm/FormModel',
 	'm/PlainConfig',
 	'm/SystemConfigModel',
+    'm/ConfigCollection',
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
 	'v/LayoutView',
-	'v/SaveFormView'
+	'v/SaveFormView',
+    'v/ChooseConfigsView'
 ], function($, Backbone, 
-		FormModel, PlainConfig, SystemConfigModel,
+		FormModel, PlainConfig, SystemConfigModel, ConfigCollection,
 		FormView, 
 		config,
-		PropertyFormView, LayoutView, SaveFormView) {
+		PropertyFormView, LayoutView, SaveFormView,
+        ChooseConfigsView) {
 
 	var configModel = new SystemConfigModel();
 	window.saveFormView = new SaveFormView({
@@ -110,25 +113,41 @@ define([
 
 		var Workspace = Backbone.Router.extend({
 			routes: {
-				'new': 'createForm',
+                'new/': 'create',
 				'new/news': 'createNews',
 				'new/topics': 'createTopics',
 				'new/from': 'showTmpls',
+				'new/by/:guid': 'createForm',
 				'edit/:guid': 'editForm',
 				'cell/:row/:column': 'editCell'
 			},
-			createForm: function() {
-				console.log('only new..');
+            create: function() {
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
 				this.navigate('edit/' + guid, {
 					trigger: true
 				});
-				/*
+
 				resetForm();
+                if(window.chooseView != undefined) {
+                    window.chooseView.remove();
+                }
+
 				configById(guid, function(plainConfig) {
 					drawCanvas(plainConfig);
+                    $('#configGuid').val('');
 				});
-				*/
+            },
+			createForm: function(guid) {
+				resetForm();
+
+                if(window.chooseView != undefined) {
+                    window.chooseView.remove();
+                }
+
+				configById(guid, function(plainConfig) {
+					drawCanvas(plainConfig);
+                    $('#configGuid').val('');
+				});
 			},
 			createNews: function() {
 				console.log('news...');
@@ -137,10 +156,21 @@ define([
 				console.log('topics..')
 			},
 			showTmpls: function() {
-				console.log('show from tmpls ...');
+                $.getJSON(SC.list, {}, function(array) {
+                    console.log('load system config list ...');
+                    console.log(array);
+
+                    var cn = new ConfigCollection(array);
+                    window.chooseView = new ChooseConfigsView({
+                        model: cn
+                    });
+					var el = chooseView.render();
+					$('#formcanvas').html(el);
+                });
 			},
 			editForm: function(guid) {
 				resetForm();
+
 				configById(guid, function(plainConfig) {
 					drawCanvas(plainConfig);
 				});
