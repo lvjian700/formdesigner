@@ -147,7 +147,7 @@ define([
 
 	function generate (rowsJson) {
 		var parts = new Array();
-		parts.push(rowsJson.length);
+		parts.push(60);
 		
 		var fieldIndex = 0;
 
