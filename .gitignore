@@ -7,3 +7,7 @@ node_modules/
 public/WEB-INF/classes
 public/WEB-INF/lib
 *.class
+
+public/rsrc/templates/news_tmpls.js
+public/rsrc/templates/topics_tmpls.js
+
