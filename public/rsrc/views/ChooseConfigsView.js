@@ -7,17 +7,21 @@ define([
 	SystemConfigModel, ConfigCollection,
 	Core, tmpl) {
 	
-	var ChooseConfigView = Backbone.view.extend({
+	var ChooseConfigView = Backbone.View.extend({
 		tagName: 'div',
 		className: 'tmpls-list',
 		template: Core.read_tmpl(tmpl),
 		events: {
+			
 		},
 		initailize: function() {
+			
 		},
-		render: {
+		render: function() {
 			var array = this.model.toJSON();
-			var html = this.template(array);
+			var html = this.template({
+                data:array
+            });
 
 			this.$el.html(html);
 			
