@@ -5,18 +5,29 @@ define([
 	'm/PlainConfig',
 	'm/SystemConfigModel',
     'm/ConfigCollection',
+    'm/ToolboxCollection',
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
 	'v/LayoutView',
 	'v/SaveFormView',
-    'v/ChooseConfigsView'
+    'v/ChooseConfigsView',
+    'v/ToolboxView',
+    'text!tmpl/news_tmpls.js',
+    'text!tmpl/topics_tmpls.js'
 ], function($, Backbone, 
-		FormModel, PlainConfig, SystemConfigModel, ConfigCollection,
+		FormModel, PlainConfig, SystemConfigModel, 
+        ConfigCollection, ToolboxCollection,
 		FormView, 
 		config,
 		PropertyFormView, LayoutView, SaveFormView,
-        ChooseConfigsView) {
+        ChooseConfigsView, ToolboxView,
+        news_tmpl, topics_tmpl) {
+
+    var newsTools = JSON.parse(news_tmpl);
+    var topicsTools = JSON.parse(news_tmpl);
+	
+    window.toolboxView = new ToolboxView();
 
 	var configModel = new SystemConfigModel();
 	window.saveFormView = new SaveFormView({
@@ -123,8 +134,14 @@ define([
 				'new/from': 'showTmpls',
 				'new/by/:guid': 'createForm',
 				'edit/:guid': 'editForm',
-				'cell/:row/:column': 'editCell'
+				'cell/:row/:column': 'editCell',
+                'fields/add/:name-:label': 'appendCell'
 			},
+            appendCell: function(name, label) {
+                console.log('add cell');
+                console.log(name);
+                console.log(label);
+            },
             create: function() {
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
 				this.navigate('edit/' + guid, {
@@ -153,10 +170,14 @@ define([
 			createNews: function() {
 				console.log('news...');
                 resetForm();
+                
+                window.toolboxView.load(newsTools);
 			},
 			createTopics: function() {
 				console.log('topics..')
                 resetForm();
+
+                window.toolboxView.load(topicsTools);
 			},
 			showTmpls: function() {
                 $.getJSON(SC.list, {}, function(array) {
