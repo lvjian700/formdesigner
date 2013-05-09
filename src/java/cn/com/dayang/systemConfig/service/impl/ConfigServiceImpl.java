@@ -52,6 +52,13 @@ public class ConfigServiceImpl extends HibernateDaoSupport implements ConfigServ
 	}
 	
 	public void addConfig(SystemConfig systemconfig){
+		String guid = systemconfig.getConfigGuid();
+		log.info("saveOrUpdate systemConfig");
+		log.info("-- guid:" + guid);
+		if(guid == null || "".equals(guid)) {
+			systemconfig.setConfigGuid(null);
+			log.info("do save");
+		}
 		getHibernateTemplate().saveOrUpdate(systemconfig);
 	}
 	
