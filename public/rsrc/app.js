@@ -25,6 +25,10 @@ define([
 	window.saveFormView.render();
 	
 	function resetForm () {
+        if(window.chooseView != undefined) {
+            window.chooseView.remove();
+        }
+
 		window.propForm.reset();	
 		if(window.formView != undefined) {
 			window.formView.undelegateEvents();
@@ -128,9 +132,6 @@ define([
 				});
 
 				resetForm();
-                if(window.chooseView != undefined) {
-                    window.chooseView.remove();
-                }
 
 				configById(guid, function(plainConfig) {
 					drawCanvas(plainConfig);
@@ -151,9 +152,11 @@ define([
 			},
 			createNews: function() {
 				console.log('news...');
+                resetForm();
 			},
 			createTopics: function() {
 				console.log('topics..')
+                resetForm();
 			},
 			showTmpls: function() {
                 $.getJSON(SC.list, {}, function(array) {
