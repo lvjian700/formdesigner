@@ -2,9 +2,9 @@
 	<thead>
 		<tr>
 			<th>名称</th>
+			<th>方案名</th>
 			<th>类型</th>
 			<th>优先级</th>
-			<th>备注</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -16,9 +16,9 @@
 					<%= config.configName%>
 				</a>
 			</td>
+			<td> <%= config.preceptName %> </td>
 			<td> <%= SC.type[config.configType] %> </td>
 			<td> <%= config.orderNum%> </td>
-			<td> <%= config.preceptName %> </td>
 			<td>
 				<a class='choose' href="#new/by/<%= config.configGuid %>">
 					选择
