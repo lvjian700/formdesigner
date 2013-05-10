@@ -1,10 +1,16 @@
 define([
     'jquery', 'underscore', 'backbone',
     'm/ToolboxModel', 'm/ToolboxCollection',
-    'v/Core', 'text!tmpl/toolbox_item.html'
+    'v/Core', 
+	'text!tmpl/toolbox.html',
+	'text!tmpl/toolbox_item.html'
 ], function($, _, Backbone,
     ToolboxModel, ToolboxCollection,
-    Core, tmpl) {
+    Core, 
+	tmpl,
+	item_tmpl) {
+
+	var itemc_fun = Core.read_tmpl(item_tmpl);
 
     function read_name (idAttr) {
         var name = idAttr.split('-')[1];
@@ -16,34 +22,37 @@ define([
     }
 
     var ToolboxView = Backbone.View.extend({
-        el: '#toolbox',
+		id: 'toolbox',
+		tagName: 'ul',
+		className: 'tools',
         template: Core.read_tmpl(tmpl),
         events: {
+			"click .toolbox-item>a": "toCanvas"
         },
         initailize: function() {
         },
         render: function() {
             this.$el.empty();
-            var _this = this;
-			
-            this.model.forEach(function(item) {
-                var itemJson = item.toJSON();
-                var itemHtml = _this.template(itemJson);
-                _this.$el.append(itemHtml);				
-            });
-			
-			this.$('li>a').click(function(e) {
-				_this.toCanvas(e);
+			if(this.model == undefined) {
+				return this;
+			}
+
+			var json = this.model.toJSON();
+			var html = this.template({
+				data: json
 			});
+
+			this.$el.html(html);
+			
+			return this;
         },
         load: function(json) {
-			console.log('load toolbox collection...');
             this.model = new ToolboxCollection(json);
 						
             this.model.bind('add', this.onAdd, this);
             this.model.bind('remove', this.onRemoved, this);
 
-            this.render();
+			return this;
         },
         toCanvas: function(e) {
 			e.preventDefault();
@@ -51,36 +60,38 @@ define([
             var id = e.target.id; 
             var name = read_name(id);
 
-			console.log(this.model);
             var choosed = this.model.where({
                 name: name
             })[0];
 
-            var url = ['fields/add/', choosed.get('name'), '-', choosed.get('label')].join('');
-			console.log(url);
-            Backbone.history.navigate(url, {trigger: true});
+            var url = ['fields/add/', 
+				choosed.get('name'), 
+				'-', choosed.get('label')
+			].join('');
+
+			if(Backbone.history) {
+				Backbone.history.navigate(url, {trigger: true});
+			}
             
             this.model.remove(choosed);
 
             return false;
         },
         add: function(name, label) {
-            this.model.add([{
-                name: name,
-                label: label
-            }]);
+            this.model.preAdd(name, label);
         },
         onAdd: function(toolbox, toolboxes, options) {
             var itemJson = toolbox.toJSON();
-            var itemHtml = _this.template(itemJson);
-            this.$el.append(itemHtml);
+            var itemHtml = itemc_fun(itemJson);
+
+            this.$el.prepend(itemHtml);
         },
         onRemoved: function(toolbox, toolboxes, options) {
 			console.log('on remove...');
             var name = toolbox.get('name');
 			console.log(name);
             var selector = to_id(name);
-			console.log(selector)
+			console.log(selector);
 			
             this.$(selector).parent().remove();
         }

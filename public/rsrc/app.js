@@ -25,10 +25,8 @@ define([
         news_tmpl, topics_tmpl) {
 
     var newsTools = JSON.parse(news_tmpl);
-    var topicsTools = JSON.parse(news_tmpl);
+    var topicsTools = JSON.parse(topics_tmpl);
 	
-    window.toolboxView = new ToolboxView();
-
 	var configModel = new SystemConfigModel();
 	window.saveFormView = new SaveFormView({
 		model: configModel
@@ -39,6 +37,10 @@ define([
         if(window.chooseView != undefined) {
             window.chooseView.remove();
         }
+
+		if(window.toolboxView) {
+			toolboxView.remove();
+		}
 
 		window.propForm.reset();	
 		if(window.formView != undefined) {
@@ -170,14 +172,17 @@ define([
 			createNews: function() {
 				console.log('news...');
                 resetForm();
-                
-                window.toolboxView.load(newsTools);
+				
+				window.toolboxView = new ToolboxView();
+                var el = window.toolboxView.load(newsTools).render().el;
+				$('#left-panel').append(el);
 			},
 			createTopics: function() {
-				console.log('topics..')
+				console.log('topics..');
                 resetForm();
 
-                window.toolboxView.load(topicsTools);
+                var el = window.toolboxView.load(topicsTools).render().el;
+				$('#left-panel').append(el);	
 			},
 			showTmpls: function() {
                 $.getJSON(SC.list, {}, function(array) {

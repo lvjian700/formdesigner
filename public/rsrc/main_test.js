@@ -56,9 +56,9 @@ requirejs.config({
 });
 
 requirejs([
-	'jquery', 'jasmine-jquery',
-
-], function($, jasmine) {
+	'jquery', 'backbone',
+	'jasmine-jquery',
+], function($, Backbone, jasmine) {
 
 		var jasmineEnv = jasmine.getEnv();
 		jasmineEnv.updateInterval = 1000;
@@ -82,7 +82,6 @@ requirejs([
 		specs.push('spec/views/SelectFieldViewSpec');
 		specs.push('spec/views/TimelengthFieldViewSpec');
 
-
 		specs.push('spec/models/ColumnModelSpec');
 		specs.push('spec/models/ColumnCollectionSpec');
 		specs.push('spec/views/ColumnViewSpec');
@@ -96,6 +95,9 @@ requirejs([
 		specs.push('spec/FormSpec');
 		specs.push('spec/views/PropertyFormViewSpec');
 		specs.push('spec/views/SaveFormViewSpec');
+
+		specs.push('spec/models/ToolboxSpec');
+		specs.push('spec/views/ToolboxViewSpec');
 
 
 		$(function() {

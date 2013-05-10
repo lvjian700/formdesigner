@@ -1,0 +1,7 @@
+<% data.forEach(function(item) { %>
+	<li class='drags toolbox-item'>
+	<a id='tb-<%= item.name%>' href="#<%= item.name%>" data-type='input-text'>
+		<%= item.label%></a>
+	</li>
+<%}) %>
+
