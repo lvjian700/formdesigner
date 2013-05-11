@@ -85,15 +85,19 @@ define([
 						.toBe(0);
 				});
 
-				it('this.columnViews为[]', function() {
-					expect(view.columnViews).toBeDefined();
-					expect(view.columnViews.constructor)
-						.toEqual(Array);
-					expect(view.columnViews.length).toBe(0);
-				});
-
 			});
 
+			
+		});
+
+
+		describe('渲染到dom后', function() {
+			
+			beforeEach(function() {
+				var renderedEl = fullView.render().el;
+				$('#bbd').append(renderedEl);
+			});
+			
 			describe('使用fullconfig构造', function() {
 				
 				it('this.columnModels有3列元素，并且是ColumnCollection对象', function() {
@@ -119,15 +123,6 @@ define([
 					});
 				});
 
-			});
-		});
-
-
-		describe('渲染到dom后', function() {
-			
-			beforeEach(function() {
-				var renderedEl = fullView.render().el;
-				$('#bbd').append(renderedEl);
 			});
 			
 			it('渲染后的结构应该是: div.form-row>div.form-column>div.form-cell', function() {
