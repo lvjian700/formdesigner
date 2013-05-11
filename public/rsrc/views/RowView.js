@@ -21,32 +21,39 @@ define([
 			}
 
 			this.columnModels = this.model.getColumns();
+            console.log('the columns in initialize of row..');
+            console.log(this.columnModels);
+
+			this.model.bind('change:selected', this.selectChanged, this);
+            this.columnModels.bind('add', this.render, this);
+		},
+		render: function() {
+            console.log('render row ...');
+            if(this.columnViews == undefined || this.columnViews.length > 0) {
+                console.log('clear view');
+                this.clearView();
+            }
+
 			this.columnViews = [];
-				
+
+            console.log(this.columnModels);
+
 			this.columnModels.forEach(function(colModel) {
 				var colView = new ColumnView({
 					model: colModel
 				});
 				colView.parent = this;      
 				this.columnViews.push(colView);
-			}, this);
 
-			this.model.bind('change:selected', this.selectChanged, this);
-		},
-		render: function() {
-			var show = false;
-			_.each(this.columnViews, function(colView) {
 				var colEl = colView.render().el;
 				this.$el.append(colEl);
+
 				if(colView.model.getContent().isUsed() == true) {
 					show = true;	
 				}
+
 			}, this);
-
-			if(show == false) {
-				this.$el.hide();
-			}
-
+            
 			return this;
 		},
 		getTemplate: function() {
