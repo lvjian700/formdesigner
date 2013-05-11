@@ -4,6 +4,7 @@ define([
 		var rowsCfg = {
 			index: rowIndex,
 			layout: 'fit',
+            selected: false,
 			columns: []
 		};
 
