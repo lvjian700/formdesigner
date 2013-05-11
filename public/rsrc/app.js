@@ -143,6 +143,7 @@ define([
                 console.log('add cell');
                 console.log(name);
                 console.log(label);
+                console.log('add cell to model');
             },
             create: function() {
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
@@ -176,6 +177,8 @@ define([
 				window.toolboxView = new ToolboxView();
                 var el = window.toolboxView.load(newsTools).render().el;
 				$('#left-panel').append(el);
+
+                drawCanvas('');
 			},
 			createTopics: function() {
 				console.log('topics..');
@@ -183,6 +186,8 @@ define([
 
                 var el = window.toolboxView.load(topicsTools).render().el;
 				$('#left-panel').append(el);	
+
+                drawCanvas('');
 			},
 			showTmpls: function() {
                 $.getJSON(SC.list, {}, function(array) {

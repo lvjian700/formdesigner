@@ -3,7 +3,10 @@ define([
 	'm/ColumnModel',
 	'm/ColumnCollection',
 	'm/RowModel',
-], function(FieldModel, ColumnModel, ColumnCollection, RowModel) {
+], function(FieldModel,
+    ColumnModel,
+    ColumnCollection,
+    RowModel) {
 	
 	return describe('测试RowModel', function() {
 		var config = null;
@@ -54,19 +57,15 @@ define([
 			collection = new ColumnCollection(config);
 		});
 
-		afterEach(function() {
-
-		});
-
 		describe('默认构造行为', function() {
-			var model = null;
+			var model = false;
 
 			beforeEach(function() {
 				model = new RowModel();
 			});
 
 			afterEach(function() {
-				model = null;
+				model = false;
 			});
 
 			it("默认数据必须是这样:{index: 0, columnCount:3, layout: 'fit',  columns: []}",

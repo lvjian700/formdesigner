@@ -5,7 +5,7 @@ define([
 	'text!tmpl/news_config.txt'
 ], function(_, plain, FormModel, config) {
 
-	describe('测试老版本新闻配置转新版json配置', function() {
+	return describe('测试老版本新闻配置转新版json配置', function() {
 		var itemData = '0,NewsTitle,标题,0,0,100,1,1';
 		var itemJson = {
 			index: 0,

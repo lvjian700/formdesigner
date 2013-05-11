@@ -1,55 +1,29 @@
 define([
-	'm/emptyrow'	
-], function(emptyrow) {
+	'm/emptyrow'	,
+    'm/RowModel'
+], function(emptyrow, RowModel) {
 
 	return describe('测试emptyRowJson是否能够返回正确数值', function() {
 		
 		it('index 1', function() {
 			var index = 1;
 			var ret = emptyrow(index);
+            expect(ret.index).toEqual(1);
 
-			expect(ret).toEqual({
-				index: 1,
-				layout: 'fit',
-				columns: [{
-					index: 0,
-					width: 0.33,
-					content: {
-						id: 'creater_field',
-						name: 'creater',
-						label: '作者',
-						type: 'text',
-						value: '',
-						required: true,
-						used: true
-					}
-				}, {
-					index: 1,
-					width: 0.33,
-					content: {
-						id: 'createTime_field',
-						name: 'createTime',
-						label: '创建时间',
-						type: 'text',
-						value: '',
-						required: true,
-						used: true
-					}
-				}, {
-					index: 2,
-					width: 0.33,
-					content: {
-						id: 'videoLength_field',
-						name: 'videoLength',
-						label: '视频长度',
-						type: 'text',
-						value: '',
-						required: false,
-						used: true
-					}
-				}]
-			});
+            expect(ret.columns).not.toBeUndefined();
+            expect(ret.columns.length).toBe(0);
 		});
+
+        it('构造空Row', function() {
+            var json = emptyrow(0);
+            var row = new RowModel(json);
+
+            expect(row.get('index')).toBe(0);
+
+            var cols = row.getColumns();
+            expect(cols).not.toBeUndefined();
+            expect(cols.length).toBe(0);
+        });
 	});
 });
 

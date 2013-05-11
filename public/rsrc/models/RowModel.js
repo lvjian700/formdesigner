@@ -24,6 +24,7 @@ define([
 			this.columns.parent = this;
 			
 			this.updateAttrs();
+            this.columns.bind('all', this.updateAttrs, this);
 		},
 		
 		updateAttrs: function() {

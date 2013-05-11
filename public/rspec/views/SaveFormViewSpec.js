@@ -7,7 +7,7 @@ define([
 		return jel[0].tagName.toLowerCase();
 	}
 
-	describe('测试SaveFormView', function() {
+	return describe('测试SaveFormView', function() {
 		var model = new SystemConfigModel();
 		var view = new SaveFormView({
 			model: model

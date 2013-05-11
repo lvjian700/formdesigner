@@ -91,6 +91,10 @@ define([
 	}
 	
 	function convert (plain) {
+        if(plain == undefined || plain == '') {
+            return [];
+        }
+
 		var fields = parse2Fields(plain);
 		var arrayRows = fields2Json(fields);
 		

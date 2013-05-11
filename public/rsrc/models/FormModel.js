@@ -29,6 +29,29 @@ define([
 				json
 			]);
 		},
+        addProperty: function(name, label) {
+            var length = this.rows.length; 
+
+            if(length == 0) {
+                console.log('add row in addProperty of FormModel');
+                this.addRow();
+            }
+
+            var index = this.rows.length - 1;
+            console.log(index);
+            var row = this.rows.at(index);
+            console.log(row);
+
+            var cols = row.getColumns();
+            var widthSpace = cols.widthSpace();
+
+            if(widthSpace < 0.25) {
+                this.addRow(); 
+            }
+            
+            var lastRow = this.rows.at(this.rows.length - 1);
+            row.columns.appendCell(name, label); 
+        },
 		removeAt: function(index) {
 			this.rows.removeAt(index);
 		},

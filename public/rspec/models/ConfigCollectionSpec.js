@@ -3,7 +3,7 @@ define([
 	'm/ConfigCollection'
 ], function(SystemConfigModel, ConfigCollection) {
 	
-	describe('测试ConfigCollection', function() {
+	return describe('测试ConfigCollection', function() {
 		var datas = [{
 				configGuid: '',
 				configName: '新建配置',

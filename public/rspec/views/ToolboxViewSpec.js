@@ -10,7 +10,7 @@ define([
 	news_tmpls,
 	topics_tmpls) {
 	
-	describe('测试ToolboxView', function() {
+	return describe('测试ToolboxView', function() {
 		var news = JSON.parse(news_tmpls);
 		var tbv = false;
 

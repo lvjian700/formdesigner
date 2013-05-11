@@ -6,7 +6,7 @@ define([
 	ToolboxModel, ToolboxCollection,
 	news_tmpl) {
 	
-	describe('测试ToolboxModel/Collection', function() {
+	return describe('测试ToolboxModel/Collection', function() {
 		var tbc = false;
 		var news = JSON.parse(news_tmpl);
 		

@@ -5,7 +5,7 @@ define([
 	'v/PropertyFormView'
 ], function($, FieldModel, ColumnModel, PropertyFormView) {
 	
-	describe('测试PropertyFormView', function() {
+	return describe('测试PropertyFormView', function() {
 		var editor = new PropertyFormView();
 		var model = new FieldModel({
 			id: 'title_field',

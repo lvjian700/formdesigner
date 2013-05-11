@@ -352,6 +352,52 @@ define([
 				expect(numAfter).toEqual(numBefore - 1);
 			});
 		});
+
+
+        describe('测试addProperty添加字段', function() {
+            var fm = false;
+            beforeEach(function() {
+                fm = new FormModel();
+            });
+
+            afterEach(function() {
+                fm = false;
+            });
+
+            it('空Form中添加property', function() {
+                var rows = fm.getRows();
+                expect(rows).not.toBeUndefined();
+                expect(rows.length).toBe(0);
+                
+
+                var addSpy = jasmine.createSpy('added');
+                rows.bind('add', addSpy);
+
+                fm.addProperty('addOne', '第一个属性');
+
+                expect(addSpy).toHaveBeenCalled();
+                expect(rows.length).toBe(1);
+                
+                var row = rows.at(0);
+                expect(row).not.toBeUndefined();
+                expect(row.get('index')).toBe(0);
+
+                var cols = row.getColumns();
+                expect(cols).not.toBeUndefined();
+                expect(cols.length).toBe(1);
+                expect(cols.widthSpace()).toBe(0.75);
+
+                var col = cols.at(0);
+                expect(col).not.toBeUndefined();
+                expect(col.get('index')).toBe(0);
+
+                var field = col.getContent();
+                expect(field).not.toBeUndefined();
+                expect(field.get('name')).toEqual('addOne');
+                expect(field.get('label')).toEqual('第一个属性');
+                
+            });
+        });
 	});
 
 
