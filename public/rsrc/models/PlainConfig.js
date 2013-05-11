@@ -91,9 +91,10 @@ define([
 	}
 	
 	function convert (plain) {
-        if(plain == undefined || plain == '') {
-            return [];
-        }
+		if(plain == undefined || plain == '') {
+			console.log('empty plain text, return [] by default..');
+			return [];
+		}
 
 		var fields = parse2Fields(plain);
 		var arrayRows = fields2Json(fields);

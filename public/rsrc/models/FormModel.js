@@ -38,9 +38,7 @@ define([
             }
 
             var index = this.rows.length - 1;
-            console.log(index);
             var row = this.rows.at(index);
-            console.log(row);
 
             var cols = row.getColumns();
             var widthSpace = cols.widthSpace();
@@ -50,7 +48,8 @@ define([
             }
             
             var lastRow = this.rows.at(this.rows.length - 1);
-            row.columns.appendCell(name, label); 
+            console.log('add property to columns ...');
+            row.getColumns().appendCell(name, label); 
         },
 		removeAt: function(index) {
 			this.rows.removeAt(index);

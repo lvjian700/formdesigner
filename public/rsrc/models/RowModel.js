@@ -28,6 +28,7 @@ define([
 		},
 		
 		updateAttrs: function() {
+            console.log('row model update attrs ...');
 			var json = this.columns.toJSON();
 			this.set({
 				columns: json

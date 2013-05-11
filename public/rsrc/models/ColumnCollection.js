@@ -17,6 +17,7 @@ define([
             return 1.0 - width;
         },
         appendCell: function(name, label) {
+            console.log('append cell to columns ...');
             // 计算index
             var index = this.length;
 
@@ -37,6 +38,7 @@ define([
             var column = new ColumnModel(json);
             // 添加列
             this.add([column]);
+            console.log('append success.');
         }
 	});
 
