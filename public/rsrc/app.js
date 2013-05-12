@@ -141,7 +141,16 @@ define([
 			},
             appendCell: function(name, label) {
                 console.log('add cell to model');
-                window.formView.model.addProperty(name, label);
+
+                try {
+
+                    window.formView.model.addProperty(name, label);
+                } catch (e) {
+
+                    this.navigate('new/from', {
+                        trigger: true
+                    });
+                }
             },
             create: function() {
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
