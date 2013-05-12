@@ -25,6 +25,7 @@ define([
 		addRow: function() {
 			var index = this.rows.size();
 			var json = emptyRowJson(index);	
+
 			this.rows.add([
 				json
 			]);
@@ -33,7 +34,6 @@ define([
             var length = this.rows.length; 
 
             if(length == 0) {
-                console.log('add row in addProperty of FormModel');
                 this.addRow();
             }
 
@@ -43,13 +43,13 @@ define([
             var cols = row.getColumns();
             var widthSpace = cols.widthSpace();
 
+            
             if(widthSpace < 0.25) {
                 this.addRow(); 
             }
             
             var lastRow = this.rows.at(this.rows.length - 1);
-            console.log('add property to columns ...');
-            row.getColumns().appendCell(name, label); 
+            lastRow.getColumns().appendCell(name, label); 
         },
 		removeAt: function(index) {
 			this.rows.removeAt(index);

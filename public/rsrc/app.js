@@ -140,9 +140,6 @@ define([
                 'fields/add/:name-:label': 'appendCell'
 			},
             appendCell: function(name, label) {
-                console.log('add cell');
-                console.log(name);
-                console.log(label);
                 console.log('add cell to model');
                 window.formView.model.addProperty(name, label);
             },

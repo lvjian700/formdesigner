@@ -21,22 +21,16 @@ define([
 			}
 
 			this.columnModels = this.model.getColumns();
-            console.log('the columns in initialize of row..');
-            console.log(this.columnModels);
 
 			this.model.bind('change:selected', this.selectChanged, this);
             this.columnModels.bind('add', this.render, this);
 		},
 		render: function() {
-            console.log('render row ...');
             if(this.columnViews == undefined || this.columnViews.length > 0) {
-                console.log('clear view');
                 this.clearView();
             }
 
 			this.columnViews = [];
-
-            console.log(this.columnModels);
 
 			this.columnModels.forEach(function(colModel) {
 				var colView = new ColumnView({

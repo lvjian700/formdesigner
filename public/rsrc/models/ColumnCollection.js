@@ -9,15 +9,15 @@ define([
 			return this.get('index');
 		},
         widthSpace: function() {
-            var width = 0.0;
+            var width = 1.0;
             this.forEach(function(col) {
-                width += col.get('width');
+                width -= col.get('width');
             });
 
-            return 1.0 - width;
+            console.log('width space: ' + width);
+            return width;
         },
         appendCell: function(name, label) {
-            console.log('append cell to columns ...');
             // 计算index
             var index = this.length;
 
@@ -38,7 +38,6 @@ define([
             var column = new ColumnModel(json);
             // 添加列
             this.add([column]);
-            console.log('append success.');
         }
 	});
 

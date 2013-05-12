@@ -63,6 +63,7 @@ define([
 			var rowView = new RowView({
 				model: row
 			});
+            rowView.parent = this;
 			this.rowViews.push(rowView);
 			this.form.append(rowView.render().el);
 		},
