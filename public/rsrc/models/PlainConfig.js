@@ -39,6 +39,23 @@ define([
 		}
 	}
 
+    function toDefault(text) {
+        var fields = parse2Fields(text);
+        
+        var ret = [];
+        
+        for (var i=0; i < fields.length; i++) {
+            var json = parse2Item(fields[i]);
+            
+            ret.push({
+                label: json.label,
+                name: json.name
+            });
+        };
+        
+        return ret;
+    }
+
 	function fields2Json(fields) {
 		var rows = new Array(100);
 		
@@ -177,10 +194,12 @@ define([
 		parse2Item: parse2Item,
 		parse2Fields: parse2Fields,
 		fields2Json: fields2Json,
-		convert: convert,
 		readOptions: readOptions,
 		toPlain: toPlain,
-		generate: generate
+
+		convert: convert,
+		generate: generate,
+        notInToolbox: toDefault
 	};
 });
 
