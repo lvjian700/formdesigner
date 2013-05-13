@@ -42,6 +42,8 @@ define([
 			toolboxView.remove();
 		}
 
+        window.toolboxView = new ToolboxView();
+
 		window.propForm.reset();	
 		if(window.formView != undefined) {
 			window.formView.undelegateEvents();
@@ -56,7 +58,37 @@ define([
 
 	function configById (guid, callback) {
 		$.getJSON(Configs.systemConfig.get, {configGuid: guid}, function(data) {
+
 			window.saveFormView.loadData(data.body);
+
+            var type = data.body.configType;
+            var exists = PlainConfig.notInToolbox(data.body.configValue);
+            console.log('exists: ' + exists.length);
+
+            var all = [];
+            if(data.body.configType == 10) {
+                all = newsTools;
+            } else if(data.body.configType == 12) {
+                all = topicsTools;
+            }
+            console.log('all length:' + all.length);
+
+            var toolboxData = _.filter(all, function(item) {
+
+                for(var i = 0; i < exists.length; i++) {
+                    var exist = exists[i];
+                    if(item.name == exist.name) {
+                        return false
+                    }
+                }
+
+                return true;
+            });
+
+            console.log(toolboxData);
+
+            var el = window.toolboxView.load(toolboxData).render().el;
+            $('#left-panel').append(el);
 			callback(data.body.configValue);
 		});
 	}
@@ -189,7 +221,6 @@ define([
 				console.log('news...');
                 resetForm();
 				
-				window.toolboxView = new ToolboxView();
                 var el = window.toolboxView.load(newsTools).render().el;
 				$('#left-panel').append(el);
 
@@ -223,6 +254,8 @@ define([
 
 				configById(guid, function(plainConfig) {
 					drawCanvas(plainConfig);
+					
+					$('#left-panel').append(el);
 				});
 			},
 			editCell: function(row, column) {
