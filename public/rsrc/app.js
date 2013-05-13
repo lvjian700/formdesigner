@@ -120,20 +120,6 @@ define([
 		window.propForm = new PropertyFormView();
 		propForm.render();
 
-
-		$('#btnAddRow').click(function(e) {
-			window.formModel.addRow();
-		});
-
-		$('#btnRemoveRow').click(function(e) {
-			console.log('remove last row');	
-			window.formModel.removeLastRow();
-		});
-		$('#btnRemoveSelected').click(function() {
-			console.log('remove row selected');
-			window.formModel.removeSelected();
-		});
-
         $('#btnNew').click(function(e) {
             console.log('new ...');
             Backbone.history.navigate('#new', {trigger: true});
@@ -149,9 +135,9 @@ define([
             Backbone.history.navigate('#new/topics', {trigger: true});
 		});
 
-		$('#btnNewFrom').click(function(e) {
+		$('#btnList').click(function(e) {
 			console.log('new from exist tmpl...');
-            Backbone.history.navigate('#new/from', {trigger: true});
+            Backbone.history.navigate('list', {trigger: true});
 		});
 
 		$('#btnSave').click(function(e) {
@@ -162,10 +148,9 @@ define([
 
 		var Workspace = Backbone.Router.extend({
 			routes: {
-                'new/': 'create',
 				'new/news': 'createNews',
 				'new/topics': 'createTopics',
-				'new/from': 'showTmpls',
+				'list': 'showTmpls',
 				'new/by/:guid': 'createForm',
 				'edit/:guid': 'editForm',
 				'cell/:row/:column': 'editCell',
@@ -191,19 +176,6 @@ define([
                 console.log('del cell from canvas. add the deleted one to toolbox.');
                 window.formView.clearCellSelect();
                 toolboxView.model.preAdd(name, label);
-            },
-            create: function() {
-				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
-				this.navigate('edit/' + guid, {
-					trigger: true
-				});
-
-				resetForm();
-
-				configById(guid, function(plainConfig) {
-					drawCanvas(plainConfig);
-                    $('#configGuid').val('');
-				});
             },
 			createForm: function(guid) {
 				resetForm();
