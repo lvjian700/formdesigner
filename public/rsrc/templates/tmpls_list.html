@@ -1,28 +1,37 @@
 <table border="0" class='table'>
 	<thead>
 		<tr>
+			<th>序号</th>
 			<th>名称</th>
 			<th>方案名</th>
 			<th>类型</th>
-			<th>优先级</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<% data.forEach(function(config) { %>
 		<tr>
+			<td> <%= config.orderNum%> </td>
 			<td> 
-				<a class='choose' href="#new/by/<%= config.configGuid %>">
+				<a class='choose' href="#edit/<%= config.configGuid %>">
 					<%= config.configName%>
 				</a>
 			</td>
 			<td> <%= config.preceptName %> </td>
 			<td> <%= SC.type[config.configType] %> </td>
-			<td> <%= config.orderNum%> </td>
-			<td>
-				<a class='choose' href="#new/by/<%= config.configGuid %>">
-					选择
+            <td>
+                <a class='choose choose-edit' href="#edit/<%= config.configGuid %>">
+                    编辑
 				</a>
+                |
+				<a class='choose choose-new' href="#new/by/<%= config.configGuid %>">
+				    以此新建	
+				</a>
+                |
+                <a class='choose choose-del' href="#del/<%= config.configGuid %>">
+                    删除
+				</a>
+
 			</td>
 		</tr>
 		<% }); %>

@@ -12,7 +12,7 @@ define([
 		className: 'tmpls-list',
 		template: Core.read_tmpl(tmpl),
 		events: {
-			
+		    'click .choose-del': 'deleteConfirm'	
 		},
 		initailize: function() {
 			
@@ -26,7 +26,10 @@ define([
 			this.$el.html(html);
 			
 			return this.el;
-		}
+		},
+        deleteConfirm: function(e) {
+            return window.confirm('确认删除配置?');
+        }
 	});
 
 	return ChooseConfigView;

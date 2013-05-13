@@ -153,6 +153,7 @@ define([
 				'list': 'showTmpls',
 				'new/by/:guid': 'createForm',
 				'edit/:guid': 'editForm',
+                'del/:guid': 'delById',
 				'cell/:row/:column': 'editCell',
                 'fields/add/:name-:label': 'appendCell',
                 'fields/del/:name-:label': 'removeCell'
@@ -207,6 +208,12 @@ define([
 
                 drawCanvas('');
 			},
+            delById: function(guid) {
+                var _this = this;
+                $.post(SC.del, {configGuid: guid}, function(ret) {
+                    _this.showTmpls();
+                });
+            },
 			showTmpls: function() {
                 $.getJSON(SC.list, {}, function(array) {
                     console.log('load system config list ...');
