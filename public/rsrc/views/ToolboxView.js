@@ -32,6 +32,7 @@ define([
         initailize: function() {
         },
         render: function() {
+        	console.log('render ....');
             this.$el.empty();
 			if(this.model == undefined) {
 				return this;
@@ -59,32 +60,41 @@ define([
             
             var id = e.target.id; 
             var name = read_name(id);
-
-            var choosed = this.model.where({
-                name: name
-            })[0];
-
-            var url = ['fields/add/', 
-				choosed.get('name'), 
-				'-', choosed.get('label')
-			].join('');
-
-			if(Backbone.history) {
-				Backbone.history.navigate(url, {trigger: true});
-			}
             
-            this.model.remove(choosed);
-
+            this.drawCanvas(name);
+           
             return false;
+        },
+        drawCanvas: function(name) {
+        	 var choosed = this.model.where({
+                 name: name
+             })[0];
+
+             var url = ['fields/add/', 
+ 				choosed.get('name'), 
+ 				'-', choosed.get('label')
+ 			].join('');
+
+ 			if(Backbone.history) {
+ 				Backbone.history.navigate(url, {trigger: true});
+ 			}
+             
+             this.model.remove(choosed);
         },
         add: function(name, label) {
             this.model.preAdd(name, label);
         },
         onAdd: function(toolbox, toolboxes, options) {
+        	console.log('on add...');
             var itemJson = toolbox.toJSON();
             var itemHtml = itemc_fun(itemJson);
 
             this.$el.prepend(itemHtml);
+            
+            _this = this;
+            this.$('#tb-' + itemJson.name).click(function(e) {
+            	return _this.toCanvas(e);
+            });
         },
         onRemoved: function(toolbox, toolboxes, options) {
             var name = toolbox.get('name');
