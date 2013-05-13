@@ -87,11 +87,8 @@ define([
             this.$el.prepend(itemHtml);
         },
         onRemoved: function(toolbox, toolboxes, options) {
-			console.log('on remove...');
             var name = toolbox.get('name');
-			console.log(name);
             var selector = to_id(name);
-			console.log(selector);
 			
             this.$(selector).parent().remove();
         }

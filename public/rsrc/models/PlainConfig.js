@@ -92,7 +92,6 @@ define([
 	
 	function convert (plain) {
 		if(plain == undefined || plain == '') {
-			console.log('empty plain text, return [] by default..');
 			return [];
 		}
 

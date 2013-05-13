@@ -61,7 +61,6 @@ define([
 			this.rows.pop();
 		},
 		updateAttrs: function() {
-			console.log('update form model attrs');
 			var json = this.rows.toJSON();
 
 			this.set({

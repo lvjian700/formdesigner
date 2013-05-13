@@ -9,7 +9,8 @@ define([
 		el: '#prop-form',
 		events: {
 			'change': 'updateModel',
-			'click #ck-required': 'updateModel'
+			'click #ck-required': 'updateModel',
+            'click #delCell': 'delCell'
 		},
 		initialize: function() {
 		},
@@ -19,6 +20,8 @@ define([
 			this.labelInput = this.$('#ipt-label');
 			this.typeSelect = this.$('#sel-type');
 			this.requiredCheck = this.$('#ck-required');
+
+            this.delBtn = this.$('#delCell');
 
 			return this.el;
 		},
@@ -35,6 +38,24 @@ define([
 			var required = this.fieldModel.isRequired();
 			this.requiredCheck.attr('checked', required);
 		},
+
+        delCell: function() {
+            console.log('del cell...');
+            var name = this.fieldModel.getName();
+            var label = this.fieldModel.getLabel();
+            var index = this.columnModel.get('index');
+
+            this.columnModel.destroy();
+
+            this.reset();
+
+            var url = ['fields/del/',
+                name, '-', label].join('');
+            Backbone.history.navigate(url, {
+                trigger: true
+            });
+        },
+
 		updateModel: function() {
 			var width = this.widthInput.val();
 			var numberWidth = parseFloat(width);

@@ -8,13 +8,31 @@ define([
 		comparator: function() {
 			return this.get('index');
 		},
+		resetIndexAttr: function() {
+			// 重新设置index
+			this.forEach(function(item, index, list) {
+				if(item.get('index') <= index) {
+					return;
+				}
+
+				item.set({index: index}, {silent: true});
+			});
+
+		},
+        removeAt: function(index) {
+			if(index < 0 || index > this.length - 1) {
+				return;
+			}
+			var item = this.at(index);
+			this.remove(item);
+			this.resetIndexAttr();
+        },
         widthSpace: function() {
             var width = 1.0;
             this.forEach(function(col) {
                 width -= col.get('width');
             });
 
-            console.log('width space: ' + width);
             return width;
         },
         appendCell: function(name, label) {

@@ -40,8 +40,6 @@ define([
 			this.$el.modal('show');
 		},
 		loadData: function(json) {
-			console.log('load data..');
-			console.log(json);
 			this.model.set(json);
 		},
 		close: function(e) {
@@ -58,7 +56,6 @@ define([
 
 			var json = window.formModel.getRows().toFullJson();
 			var configVal = PlainConfig.generate(json);
-			console.log(configVal);
 			this.value.val(configVal);
 
 			this.model.set({
@@ -72,8 +69,6 @@ define([
 			
 			var _this = this;
 			var data = this.model.toJSON();
-			console.log('posting data...');
-			console.log(data);
 
 			$.post(Configs.systemConfig.save, data, function(resp) {
 				_this.close();	

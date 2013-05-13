@@ -137,20 +137,28 @@ define([
 				'new/by/:guid': 'createForm',
 				'edit/:guid': 'editForm',
 				'cell/:row/:column': 'editCell',
-                'fields/add/:name-:label': 'appendCell'
+                'fields/add/:name-:label': 'appendCell',
+                'fields/del/:name-:label': 'removeCell'
 			},
             appendCell: function(name, label) {
                 console.log('add cell to model');
-
-                try {
-
-                    window.formView.model.addProperty(name, label);
-                } catch (e) {
+                if(window.formView == undefined ||
+                    window.formView.model == undefined) {
 
                     this.navigate('new/from', {
                         trigger: true
                     });
+
+                    return;
                 }
+                
+                window.formView.clearCellSelect();
+                window.formView.model.addProperty(name, label);
+            },
+            removeCell: function(name, label) {
+                console.log('del cell from canvas. add the deleted one to toolbox.');
+                window.formView.clearCellSelect();
+                toolboxView.model.preAdd(name, label);
             },
             create: function() {
 				var guid = '5105E398-01B1-AF50-4459-24F6F186836E';
@@ -205,6 +213,7 @@ define([
                     window.chooseView = new ChooseConfigsView({
                         model: cn
                     });
+
 					var el = chooseView.render();
 					$('#formcanvas').html(el);
                 });
@@ -219,7 +228,7 @@ define([
 			editCell: function(row, column) {
 				if(window.formModel == undefined
 						|| window.formModel.getRows() == undefined) {
-					this.navigate('#new', {
+					this.navigate('#new/news', {
 						trigger: true
 					});
 

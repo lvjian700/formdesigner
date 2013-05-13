@@ -20,6 +20,10 @@ define([
 			this.model.bind('change:content', this.contentUpdated, this);
 			this.model.bind('change:width', this.widthUpdated, this);
 			this.model.bind('change:selected', this.selectedUpdated, this);
+
+			this.model.set({
+				selected: false
+			}, {silent: true});
 			
 			var fieldModel = this.model.getContent();
 

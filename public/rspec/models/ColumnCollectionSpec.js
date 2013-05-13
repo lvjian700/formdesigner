@@ -86,6 +86,18 @@ define([
 					expect(item.constructor).toEqual(ColumnModel);
 				});
 			});
+
+            it('model destory时，collection中移除数据', function() {
+                expect(columns.length).toBe(3);
+                var delSpy = jasmine.createSpy('deleleted');
+                columns.bind('remove', delSpy);
+
+                var first = columns.at(0);
+                first.destroy();
+                
+                expect(delSpy).toHaveBeenCalled();
+                expect(columns.length).toBe(2);
+            });
            
 		});
             

@@ -68,7 +68,6 @@ define([
 			this.form.append(rowView.render().el);
 		},
 		removeRow: function(row, rows, options) {
-			console.log('remove at index:' + options.index);
 			var rowView = this.rowViews[options.index];
 			_.rest(this.rowViews, options.index);
 			rowView.remove();

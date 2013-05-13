@@ -24,12 +24,15 @@ define([
 			this.columns.parent = this;
 			
 			this.updateAttrs();
-            this.columns.bind('all', this.updateAttrs, this);
+            this.columns.bind('add', this.updateAttrs, this);
+            this.columns.bind('change', this.updateAttrs, this);
+            this.columns.bind('remove', this.updateAttrs, this);
 		},
 		
 		updateAttrs: function() {
-            console.log('row model update attrs ...');
-			var json = this.columns.toJSON();
+            this.columns.resetIndexAttr();
+            var json = this.columns.toJSON();
+
 			this.set({
 				columns: json
 			}, { silence: true });

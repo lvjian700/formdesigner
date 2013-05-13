@@ -24,6 +24,7 @@ define([
 
 			this.model.bind('change:selected', this.selectChanged, this);
             this.columnModels.bind('add', this.render, this);
+            this.columnModels.bind('remove', this.render, this);
 		},
 		render: function() {
             if(this.columnViews == undefined || this.columnViews.length > 0) {
@@ -36,17 +37,17 @@ define([
 				var colView = new ColumnView({
 					model: colModel
 				});
+
 				colView.parent = this;      
 				this.columnViews.push(colView);
+
 
 				var colEl = colView.render().el;
 				this.$el.append(colEl);
 
-				if(colView.model.getContent().isUsed() == true) {
-					show = true;	
-				}
 
 			}, this);
+
             
 			return this;
 		},
@@ -62,7 +63,6 @@ define([
 			this.$el.empty();
 		},
 		onSelect: function() {
-			var currentSelected = this.model.get('selected');
 			this.parent.clearRowSelect();			
 
 			this.model.set({
@@ -70,6 +70,7 @@ define([
 			});
 		},
 		selectChanged: function() {
+            console.log('select changed ....');
 			var selected = this.model.get('selected');
 
 			if(selected) {
