@@ -162,7 +162,7 @@ define([
                 if(window.formView == undefined ||
                     window.formView.model == undefined) {
 
-                    this.navigate('new/from', {
+                    this.navigate('list', {
                         trigger: true
                     });
 
@@ -233,10 +233,7 @@ define([
 			editCell: function(row, column) {
 				if(window.formModel == undefined
 						|| window.formModel.getRows() == undefined) {
-					this.navigate('#new/news', {
-						trigger: true
-					});
-
+                    $('#btnList').click();
 					return;
 				}
 				
