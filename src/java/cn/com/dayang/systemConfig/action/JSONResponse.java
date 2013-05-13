@@ -33,4 +33,20 @@ public class JSONResponse {
 		return ret;
 	}
 	
+	public static JSONResponse delSuccess(String guid) {
+		JSONResponse ret = new JSONResponse();
+		ret.setSuccess(true);
+		ret.setGuid(guid);
+		
+		return ret;
+	}
+	
+	public static JSONResponse delFail(String guid) {
+		JSONResponse ret = new JSONResponse();
+		ret.setSuccess(false);
+		ret.setGuid(guid);
+		
+		return ret;
+	}
+	
 }
