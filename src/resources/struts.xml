@@ -33,5 +33,6 @@
 		<action name="save" class="configsAction" method="save"></action>
 		<action name="get" class="configsAction" method="getById"></action>
 		<action name="list" class="configsAction" method="findTmpls"></action>
+		<action name="del" class="configsAction" method="delById"></action>
 	</package>
 </struts>

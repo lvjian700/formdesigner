@@ -63,7 +63,7 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		log.info("get by id...");
 		log.debug("--guid: " + model.getConfigGuid());
 		
-		SystemConfig config = configService.findConfigById(model.getConfigGuid());;
+		SystemConfig config = configService.findConfigById(model.getConfigGuid());
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		JSONResponse ret = JSONResponse.getSuccess(config);
@@ -90,6 +90,36 @@ public class ConfigsAction extends AppAction  implements ModelDriven<SystemConfi
 		
 		JSONSerializer s = new JSONSerializer().exclude("*.class");
 		String json = s.serialize(list);
+		
+		this.responseJson(response, json);
+		
+		return null;
+	}
+	
+	public String delById() throws IOException {
+		log.info("remove SystemConfig ById ...");
+		log.debug("--guid: " + model.getConfigGuid());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+		String guid = model.getConfigGuid();
+		
+		SystemConfig config = configService.findConfigById(guid);
+		
+		if(config == null) {
+			JSONResponse ret = JSONResponse.delFail(guid);
+			JSONSerializer s = new JSONSerializer().exclude("*.class");
+			String json = s.serialize(ret);
+			
+			this.responseJson(response, json);
+			return null;
+		}
+		
+		configService.deleteConfig(config);
+
+		
+		JSONResponse ret = JSONResponse.delSuccess(guid);
+		JSONSerializer s = new JSONSerializer().exclude("*.class");
+		String json = s.serialize(ret);
 		
 		this.responseJson(response, json);
 		
