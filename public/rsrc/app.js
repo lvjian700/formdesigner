@@ -63,7 +63,6 @@ define([
 
             var type = data.body.configType;
             var exists = PlainConfig.notInToolbox(data.body.configValue);
-            console.log('exists: ' + exists.length);
 
             var all = [];
             if(data.body.configType == 10) {
@@ -71,7 +70,6 @@ define([
             } else if(data.body.configType == 12) {
                 all = topicsTools;
             }
-            console.log('all length:' + all.length);
 
             var toolboxData = _.filter(all, function(item) {
 
@@ -85,10 +83,9 @@ define([
                 return true;
             });
 
-            console.log(toolboxData);
-
             var el = window.toolboxView.load(toolboxData).render().el;
             $('#left-panel').append(el);
+
 			callback(data.body.configValue);
 		});
 	}
