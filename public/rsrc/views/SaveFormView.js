@@ -49,6 +49,19 @@ define([
 			this.$el.modal('hide');
 
 		},
+		readValues: function() {
+			this.model.set({
+				configGuid: this.guid.val(),
+				configName: this.name.val(),
+				configType: this.type.val(),
+				configValue: this.value.val(),
+				orderNum: this.orderNum.val(),
+				preceptName: this.preceptName.val()
+			});
+		},
+		reset: function() {
+			this.form[0].reset();
+		},
 		post: function(e) {
 			if(e && e.preventDefault) {
 				e.preventDefault();	
@@ -58,14 +71,7 @@ define([
 			var configVal = PlainConfig.generate(json);
 			this.value.val(configVal);
 
-			this.model.set({
-				configGuid: this.guid.val(),
-				configName: this.name.val(),
-				configType: this.type.val(),
-				configValue: this.value.val(),
-				orderNum: this.orderNum.val(),
-				preceptName: this.preceptName.val()
-			});
+			this.readValues();
 			
 			var _this = this;
 			var data = this.model.toJSON();
