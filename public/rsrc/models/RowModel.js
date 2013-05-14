@@ -25,8 +25,7 @@ define([
 			
 			this.updateAttrs();
             this.columns.bind('add', this.updateAttrs, this);
-            this.columns.bind('change', this.updateAttrs, this);
-            this.columns.bind('remove', this.updateAttrs, this);
+            this.columns.bind('remove', this.onRemoved, this);
 		},
 		
 		updateAttrs: function() {
@@ -37,7 +36,16 @@ define([
 				columns: json
 			}, { silence: true });
 		},
-		
+		onRemoved: function() {
+			console.log('on column removed...');
+			if(this.columns.length == 0) {
+				console.log('destroy empty row');
+				this.destroy();
+				return;
+			}
+			
+			this.updateAttrs();
+		},
 		setColumns: function(columnCollection) {
 			this.columns = columnCollection;
 			this.columns.parent = this;

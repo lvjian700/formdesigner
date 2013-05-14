@@ -43,6 +43,9 @@ define([
 
 			return this;
 		},
+		resetRow: function() {
+			this.rowModels.resetIndexAttr();
+		},
 		getTemplate: function() {
 			var el = this.render().el;
 			return $('<p></p>').append(el).html();
@@ -68,10 +71,14 @@ define([
 			this.form.append(rowView.render().el);
 		},
 		removeRow: function(row, rows, options) {
+			console.log('row removed...');
+			
 			var rowView = this.rowViews[options.index];
 			_.rest(this.rowViews, options.index);
 			rowView.remove();
 			rowView = null;
+			
+			this.rowModels.resetIndexAttr();
 		}
 	});
 

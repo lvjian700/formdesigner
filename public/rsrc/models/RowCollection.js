@@ -15,11 +15,9 @@ define([
             return 0;
         },
 		resetIndexAttr: function() {
+			console.log('reindex row...');
 			// 重新设置index
 			this.forEach(function(item, index, list) {
-				if(item.get('index') <= index) {
-					return;
-				}
 
 				item.set({index: index});
 			});

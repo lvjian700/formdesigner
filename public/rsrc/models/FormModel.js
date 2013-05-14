@@ -20,7 +20,8 @@ define([
             
 			var r_json = this.get('rows');
 
-			this.rows = new RowCollection(r_json);
+			var rows = new RowCollection(r_json);
+			this.setRows(rows);
 		},
 		addRow: function() {
 			var index = this.rows.size();
@@ -70,8 +71,8 @@ define([
 		setRows: function(rowsCollection) {
 			this.rows = rowsCollection;
 			this.rows.parent = this;
-
 			this.updateAttrs();
+			
 		},
 		getRows: function() {
 			return this.rows;

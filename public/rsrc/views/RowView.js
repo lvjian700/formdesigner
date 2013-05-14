@@ -71,7 +71,6 @@ define([
 			});
 		},
 		selectChanged: function() {
-            console.log('select changed ....');
 			var selected = this.model.get('selected');
 
 			if(selected) {

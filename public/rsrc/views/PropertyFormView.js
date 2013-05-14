@@ -48,10 +48,8 @@ define([
 		},
 
         delCell: function() {
-            console.log('del cell...');
             var name = this.fieldModel.getName();
             var label = this.fieldModel.getLabel();
-            var index = this.columnModel.get('index');
 
             this.columnModel.destroy();
 
