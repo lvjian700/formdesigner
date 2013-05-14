@@ -10,7 +10,8 @@ define([
 		events: {
 			'change': 'updateModel',
 			'click #ck-required': 'updateModel',
-            'click #delCell': 'delCell'
+            'click #delCell': 'delCell',
+            'click #btnMove': 'moveCell'
 		},
 		initialize: function() {
 		},
@@ -23,11 +24,15 @@ define([
 
             this.delBtn = this.$('#delCell');
 
+            this.rowInput = this.$('#ipt-row');
+            this.columnInput = this.$('#ipt-column');
+
 			return this.el;
 		},
-		loadData: function(field, column) {
+		loadData: function(field, column, row) {
 			this.fieldModel = field;
-			this.columnModel = column
+			this.columnModel = column;
+            this.rowModel = row;
 
 			this.widthInput.val(this.columnModel.get('width'));
 			
@@ -37,6 +42,9 @@ define([
 
 			var required = this.fieldModel.isRequired();
 			this.requiredCheck.attr('checked', required);
+
+            this.rowInput.val(row.get('index'));
+            this.columnInput.val(column.get('index'));
 		},
 
         delCell: function() {
@@ -51,6 +59,25 @@ define([
 
             var url = ['fields/del/',
                 name, '-', label].join('');
+            Backbone.history.navigate(url, {
+                trigger: true
+            });
+        },
+        moveCell: function() {
+            var r = this.rowInput.val();
+            var c = this.columnInput.val();
+
+            r = parseInt(r);
+            c = parseInt(c);
+
+            var url = ['move/', 
+                this.rowModel.get('index'), '/',
+                this.columnModel.get('index'), '/',
+                'to/',
+                r, '/',
+                c
+            ].join('');
+
             Backbone.history.navigate(url, {
                 trigger: true
             });

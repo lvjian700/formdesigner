@@ -57,6 +57,7 @@ define([
 		},
 		clearView: function() {
 			_.each(this.columnViews, function(col) {
+				col.undelegateEvents();
 				col.remove();
 			}, this);
 

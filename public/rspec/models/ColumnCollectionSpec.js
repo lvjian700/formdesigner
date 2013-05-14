@@ -178,7 +178,56 @@ define([
                 expect(field.get('name')).toEqual('newColumn');
                 expect(field.get('label')).toEqual('新列');
             });
+            
+            it('insertAt 插入col', function() {
+                var insert = new ColumnModel({
+					index: 0,
+					width: 0.25,
+					selected: true,
+					content: {
+						id: 'insert_field',
+						name: 'insert',
+						label: '插入',
+						type: 'text',
+						value: '',
+						required: false,
+						used: true
+					}
+				}); 
+                var insertIndex = 0;
+                
+                expect(cc.length).toBe(3);
+                expect(cc.widthSpace()).toBe(0.25);
 
+                var changeSpy = jasmine.createSpy('changed');
+                var addSpy = jasmine.createSpy('added');
+
+                cc.bind('change', changeSpy);
+                cc.bind('add', addSpy);
+
+                cc.insertAt(insert, insertIndex);
+
+                expect(changeSpy).toHaveBeenCalled();
+                expect(addSpy).toHaveBeenCalled();
+                
+                expect(cc.length).toBe(4);
+                expect(cc.widthSpace()).toBe(0);
+
+                var inserted = cc.at(insertIndex); 
+                expect(inserted.get('index')).toBe(0);
+                expect(inserted.get('selected')).toBe(false);
+                expect(inserted.get('width')).toBe(0.25);
+                expect(inserted.getContent().getName()).toEqual('insert');
+                
+                var sec = cc.at(1);
+                expect(sec.get('index')).toBe(1);
+                expect(sec.getContent().getName()).toEqual('author');
+                
+                cc.forEach(function(item, i, list) {
+                    expect(item.get('index')).toEqual(i);
+                });
+
+            });
         });
 	});
 });

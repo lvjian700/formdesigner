@@ -1,9 +1,12 @@
 define([
 	'jquery',
-	'm/FieldModel',
-	'm/ColumnModel',
+	'm/FieldModel', 'm/ColumnModel', 'm/RowModel',
+    'm/ColumnCollection',
 	'v/PropertyFormView'
-], function($, FieldModel, ColumnModel, PropertyFormView) {
+], function($, 
+    FieldModel, ColumnModel, RowModel,
+    ColumnCollection,
+    PropertyFormView) {
 	
 	return describe('测试PropertyFormView', function() {
 		var editor = new PropertyFormView();
@@ -13,7 +16,7 @@ define([
 			label: '标题',
 			type: 'text',
 			required: false 
-		});;
+		});
 
 		var column = new ColumnModel({
 			index: 0,
@@ -21,8 +24,18 @@ define([
 			selected: false,
 			content: model.toJSON()
 		});
+
+        var row = new RowModel({
+            index: 0,
+            layout: 'fit',
+            selected: false ,
+            columns: [] 
+        });
+        var cc = new ColumnCollection([column]);
+        row.setColumns(cc);
+
 		editor.render();
-		editor.loadData(model, column);
+		editor.loadData(model, column, row);
 
 		it('初始化成功', function() {
 			expect(editor.widthInput).not.toBeUndefined();

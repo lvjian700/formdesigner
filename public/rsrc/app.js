@@ -1,11 +1,8 @@
 define([
 	'jquery',
 	'backbone',
-	'm/FormModel',
-	'm/PlainConfig',
-	'm/SystemConfigModel',
-    'm/ConfigCollection',
-    'm/ToolboxCollection',
+	'm/FormModel', 'm/PlainConfig', 'm/SystemConfigModel', 'm/ColumnModel', 
+	'm/ConfigCollection', 'm/ToolboxCollection',
 	'v/FormView',
 	'./data',
 	'v/PropertyFormView',
@@ -16,7 +13,7 @@ define([
     'text!tmpl/news_tmpls.js',
     'text!tmpl/topics_tmpls.js'
 ], function($, Backbone, 
-		FormModel, PlainConfig, SystemConfigModel, 
+		FormModel, PlainConfig, SystemConfigModel,  ColumnModel,
         ConfigCollection, ToolboxCollection,
 		FormView, 
 		config,
@@ -152,6 +149,7 @@ define([
 				'edit/:guid': 'editForm',
                 'del/:guid': 'delById',
 				'cell/:row/:column': 'editCell',
+                'move/:row/:column/to/:row/:column': 'moveCell',
                 'fields/add/:name-:label': 'appendCell',
                 'fields/del/:name-:label': 'removeCell'
 			},
@@ -230,11 +228,10 @@ define([
 
 				configById(guid, function(plainConfig) {
 					drawCanvas(plainConfig);
-					
-					$('#left-panel').append(el);
 				});
 			},
 			editCell: function(row, column) {
+				console.log('row: ' + row + '; col:' + column);
 				if(window.formModel == undefined
 						|| window.formModel.getRows() == undefined) {
                     $('#btnList').click();
@@ -265,8 +262,44 @@ define([
 
 				var fieldModel = currentColumn.getContent();	
 
-				propForm.loadData(fieldModel, currentColumn);
-			}
+				propForm.loadData(fieldModel, currentColumn, currentRow);
+			},
+            moveCell: function(row, column, to_row, to_column) {
+                console.log('move to...');
+                if(window.formModel == undefined
+						|| window.formModel.getRows() == undefined) {
+                    $('#btnList').click();
+					return;
+				}
+			
+                var rows = window.formModel.getRows();
+				var currentRow = rows.at(row);
+                var toRow = rows.at(to_row); 
+
+				if(currentRow == undefined || toRow == undefined) {
+					this.navigate('#new', {
+						trigger: true
+					});
+					return;
+				}
+
+				var currentColumn = currentRow.getColumns().at(column);
+
+				if(currentColumn == undefined) {
+					this.navigate('#new', {
+						trigger: true
+					});
+					return;
+				}
+                
+                currentRow.getColumns().removeAt(currentColumn.get('index'));
+
+                var insert = new ColumnModel(currentColumn.toJSON());
+                toRow.getColumns().insertAt(insert, to_column); 
+                
+                var url = ['cell' , to_row, to_column].join('/');
+                //this.navigate(url, {trigger: true});
+            },
 		});
 		
 		router = new Workspace;
