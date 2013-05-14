@@ -51,6 +51,8 @@ define([
 		if(window.formModel != undefined) {
 			window.formModel = undefined;
 		}
+		
+		window.saveFormView.reset();
 	}
 
 	function configById (guid, callback) {
@@ -192,6 +194,11 @@ define([
                 var el = window.toolboxView.load(newsTools).render().el;
 				$('#left-panel').append(el);
 
+				window.saveFormView.model.set({
+					configName: '新建稿件模板',
+					configType: 10
+				});
+				
                 drawCanvas('');
 			},
 			createTopics: function() {
@@ -201,6 +208,11 @@ define([
                 var el = window.toolboxView.load(topicsTools).render().el;
 				$('#left-panel').append(el);	
 
+				window.saveFormView.model.set({
+					configName: '新建选题模板',
+					configType: 12
+				});
+				
                 drawCanvas('');
 			},
             delById: function(guid) {
