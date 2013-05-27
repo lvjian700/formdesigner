@@ -46,4 +46,41 @@
 		<delete dir="${classes.dir}"/>
 	</target>
 	
+	<target name="dbhelp" depends="compile"   
+		description="help [hibernate export tools]">
+		
+		<java fork="true" classname="com.dayang.tools.HibernateSchemaExport"  
+				classpathref="classpath">
+			<classpath path="${classes.dir}" />
+			<arg value="-h" />
+		</java>
+	</target>
+
+	<target name="dbcreate" depends="compile" 
+		description="create database [hibernate export tools]">
+
+		<java fork="true" classname="com.dayang.tools.HibernateSchemaExport" 
+			 	classpathref="classpath">
+			<classpath path="${classes.dir}" />
+			<arg value="-a" />
+			<arg value="create" />
+			<arg value="-f" />
+			<arg value="hibernate.cfg.xml" />
+
+		</java>
+	</target>
+
+	<target name="dbupdate" depends="compile" 
+		description="update database [hibernate export tools]">
+
+		<java fork="true" classname="com.dayang.tools.HibernateSchemaExport"  
+				classpathref="classpath">
+			<classpath path="${classes.dir}" />
+			<arg value="-a" />
+			<arg value="update" />
+			<arg value="-f" />
+			<arg value="hibernate.cfg.xml" />
+
+		</java>
+	</target>
 </project>
