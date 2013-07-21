@@ -1,10 +1,12 @@
+.idea/
+.com.apple.timemachine.supported
 *.swp
 .DS_Store
+**/.DS_Store
 logs/
 *.log
 *.log.*
 node_modules/
 public/WEB-INF/classes
-public/WEB-INF/lib
 *.class
 
