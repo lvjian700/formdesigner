@@ -79,7 +79,7 @@ http://localhost:8000
 
 * Backbone书: <http://addyosmani.github.io/backbone-fundamentals/>
 * Tusplus上的backbone教程: <http://net.tutsplus.com/tutorials/javascript-ajax/building-a-scalable-app-with-backbone-js/>
-* jasmine文档: <http://pivotal.github.io/jasmine/>
+* jasmine文档: <https://jasmine.github.io/>
 * backbone文档: <http://backbonejs.org/>
 * underscore文档: <http://underscorejs.org/>	
 
